@@ -16,5 +16,9 @@
     "url": "https://github.com/kofmangregory/senior_design_2019/issues"
   },
   "homepage": "https://github.com/kofmangregory/senior_design_2019#readme",
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "ejs": "^2.7.1",
+    "express": "^4.17.1"
+  }
 }
