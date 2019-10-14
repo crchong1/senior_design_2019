@@ -18,7 +18,10 @@
   "homepage": "https://github.com/kofmangregory/senior_design_2019#readme",
   "keywords": [],
   "dependencies": {
+    "@types/node": "^12.7.12",
+    "argon2": "^0.25.0",
     "ejs": "^2.7.1",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.7.5"
   }
 }
