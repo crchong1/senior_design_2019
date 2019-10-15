@@ -1,8 +1,8 @@
-var getLogin = function(req, res) {
+let getLogin = function(req, res) {
 	res.render('login.ejs');
 }
 
-var routes = {
+let routes = {
 	get_login: getLogin
 }
 
