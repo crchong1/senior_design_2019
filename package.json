@@ -21,8 +21,11 @@
   "keywords": [],
   "dependencies": {
     "@types/node": "^12.7.12",
+    "@typescript-eslint/eslint-plugin": "^2.4.0",
+    "@typescript-eslint/parser": "^2.4.0",
     "argon2": "^0.25.0",
     "ejs": "^2.7.1",
+    "eslint": "^6.5.1",
     "express": "^4.17.1",
     "mongoose": "^5.7.5"
   }

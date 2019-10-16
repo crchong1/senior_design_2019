@@ -13,10 +13,12 @@ export class Organization {
     org_clients: [Client];
     // getter and setter methods
     constructor(){
+        this.org_admin_ids = [];
+
         
     }
     add_worker(worker_id : number) {
-        
+        this.org_worker_ids.push(worker_id);
     }
 
     to_JSON() : string {
