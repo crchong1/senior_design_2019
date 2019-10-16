@@ -1,5 +1,3 @@
-import Organization from './Organization';
-import Client from './Client';
 import User from './User';
 
 export default class OrgWorker extends User {
