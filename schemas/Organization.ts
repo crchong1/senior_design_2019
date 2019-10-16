@@ -1,35 +1,76 @@
-import {Client} from './Client'
-import {Org_Worker} from './Org_Worker'
+import Client from './Client';
+import OrgWorker from './OrgWorker';
+import {readFileSync, writeFileSync} from 'fs';
+
+export default class Organization {
+  private orgId : number;
+
+  private orgName: string;
+
+  private orgDescription: string;
+
+  private orgAdminIds: number[];
+
+  private orgWorkerIds: number[];
+
+  private orgClientIds: number[];
+
+  private orgWorkers: OrgWorker[];
+
+  private orgClients: Client[];
+
+  // getter and setter methods
+  constructor() {
+    this.orgAdminIds = [];
+    this.orgWorkerIds = [];
+    this.orgClients = [];
+    this.orgWorkers = [];
+    this.createId();
+  }
+
+  // getters
+  getId() : number { return this.orgId; }
+
+  getName() : string { return this.orgName; }
+
+  getDescription() : string { return this.orgDescription; }
+
+  getAdminIds() : number[] { return this.orgAdminIds; }
+
+  getWorkerIds() : number[] { return this.orgWorkerIds; }
+
+  getWorkers() : OrgWorker[] { return this.orgWorkers; }
+
+  getClients() : Client[] { return this.orgClients; }
+
+  getClientIds() : number[] { return this.orgClientIds; }
 
 
-export class Organization {
-	org_id : number;
-	org_name: string;
-	org_description: string;
-	org_admin_ids: [number];
-	org_worker_ids: [number];
-    org_clients_ids: [number];
-    org_workers: [Org_Worker];
-    org_clients: [Client];
-    // getter and setter methods
-    constructor(){
-        this.org_admin_ids = [];
+  addWorker(orgWorker : OrgWorker) : void {
+    this.orgWorkers.push(orgWorker);
+    this.orgWorkerIds.push(orgWorker.getId());
+  }
 
-        
-    }
-    add_worker(worker_id : number) {
-        this.org_worker_ids.push(worker_id);
-    }
+  addClient(client : Client) : void {
+    this.orgClients.push(client);
+    this.orgClientIds.push(client.getId());
+  }
 
-    to_JSON() : string {
-        return JSON.stringify({
-            'org_id' : this.org_id,
-            'org_name': this.org_name,
-            'org_description': this.org_description,
-            'org_admin_ids': this.org_admin_ids,
-            'org_worker_ids': this.org_worker_ids,
-            'org_clients_ids': this.org_clients_ids,
-        });
-    }
+  createId() : void {
+    let json = JSON.parse(readFileSync('./counter.json', 'utf8'));
+    this.orgId = json.orgId;
+    json.orgId++;
+    writeFileSync('./counter.json', json);
+  }
+
+  toJSON() : string {
+    return JSON.stringify({
+      orgId: this.orgId,
+      orgName: this.orgName,
+      orgDescription: this.orgDescription,
+      orgAdminIds: this.orgAdminIds,
+      orgWorkerIds: this.orgWorkerIds,
+      orgClientsIds: this.orgClientIds,
+    });
+  }
 }
-

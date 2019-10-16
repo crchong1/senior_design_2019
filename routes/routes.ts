@@ -1,9 +1,7 @@
-export let getLogin = function(req, res) {
-	res.render('login.ejs');
-}
+export const getLogin = function (req, res) {
+  res.render('login.ejs');
+};
 
-let routes = {
-	get_login: getLogin
-}
-
-export default routes
+export const postLogin = function (req, res) {
+  res.render('login.ejs');
+};

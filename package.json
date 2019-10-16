@@ -6,13 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
-    "dev": "ts-node-dev --respawn --transpileOnly ./app/app.ts"
+    "dev": "ts-node-dev --respawn --transpileOnly ./app/app.ts",
+    "lint": "eslint \"**/*.ts\" --ignore-pattern node_modules/",
+    "lint-fix": "eslint \"**/*.ts\" --ignore-pattern node_modules --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kofmangregory/senior_design_2019.git"
   },
-  "author": "Gregory Kofman",
+  "author": "Gregory Kofman, Connor Chong, Steffen Cornwell, Alexander Do, James Bigbee",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kofmangregory/senior_design_2019/issues"
@@ -21,14 +23,23 @@
   "keywords": [],
   "dependencies": {
     "@types/node": "^12.7.12",
-    "@typescript-eslint/eslint-plugin": "^2.4.0",
-    "@typescript-eslint/parser": "^2.4.0",
     "argon2": "^0.25.0",
     "ejs": "^2.7.1",
-    "eslint": "^6.5.1",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
     "mongoose": "^5.7.5",
     "ts-node-dev": "^1.0.0-pre.43",
     "typescript": "^3.6.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.4.0",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-typescript": "^5.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^1.7.0"
   }
 }
