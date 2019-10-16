@@ -1,6 +1,6 @@
+import { readFileSync, writeFileSync } from 'fs';
 import Client from './Client';
 import OrgWorker from './OrgWorker';
-import {readFileSync, writeFileSync} from 'fs';
 
 export default class Organization {
   private orgId : number;
@@ -57,9 +57,9 @@ export default class Organization {
   }
 
   createId() : void {
-    let json = JSON.parse(readFileSync('./counter.json', 'utf8'));
+    const json = JSON.parse(readFileSync('./counter.json', 'utf8'));
     this.orgId = json.orgId;
-    json.orgId++;
+    json.orgId += 1;
     writeFileSync('./counter.json', json);
   }
 

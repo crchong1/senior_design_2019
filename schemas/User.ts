@@ -1,5 +1,5 @@
+import { readFileSync, writeFileSync } from 'fs';
 import Organization from './Organization';
-import {readFileSync, writeFileSync} from 'fs';
 
 export default class User {
   userId: number;
@@ -81,28 +81,28 @@ export default class User {
   // remove
   removeOrgId(orgId : number) : void {
     const index = this.orgIds.indexOf(orgId);
-    if (index != -1) {
+    if (index !== -1) {
       this.orgIds.splice(index, 1);
     } // if not found do nothing
   }
 
   removeOrg(orgId : number) : void {
     let index = -1;
-    for (let i = 0; i < this.orgs.length; i++) {
-      if (this.orgs[i].getId() == orgId) {
+    for (let i = 0; i < this.orgs.length; i += 1) {
+      if (this.orgs[i].getId() === orgId) {
         index = i;
         break;
       }
     }
-    if (index != -1) {
+    if (index !== -1) {
       this.orgs.splice(index, 1);
     } // if not found do nothing
   }
 
   createId() : void {
-    let json = JSON.parse(readFileSync('./counter.json', 'utf8'));
+    const json = JSON.parse(readFileSync('./counter.json', 'utf8'));
     this.userId = json.userId;
-    json.userId++;
+    json.userId += 1;
     writeFileSync('./counter.json', json);
   }
 }
