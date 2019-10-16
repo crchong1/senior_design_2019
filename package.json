@@ -27,6 +27,8 @@
     "ejs": "^2.7.1",
     "eslint": "^6.5.1",
     "express": "^4.17.1",
-    "mongoose": "^5.7.5"
+    "mongoose": "^5.7.5",
+    "ts-node-dev": "^1.0.0-pre.43",
+    "typescript": "^3.6.4"
   }
 }
