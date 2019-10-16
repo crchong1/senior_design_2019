@@ -1,5 +1,5 @@
 import * as argon2 from 'argon2';
-import Message from './error_messages';
+import Message from './errorMessages';
 
 
 export const generateHash = async (password : string) : Promise<string> => {
