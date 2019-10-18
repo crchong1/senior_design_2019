@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form';
 import OrganizationSelector from './OrganizationSelector';
 
 class Login extends Component
@@ -26,33 +29,26 @@ class Login extends Component
 
 	render() {
 		return (
-			<form onSubmit={this.handleSubmit}>
-				<OrganizationSelector props={this.state}/>
-				<label>
-					First Name:
-						<input type="text"
-						value={this.state.firstName}
-						/>
-				</label>
-				<label>
-					Last Name:
-						<input type="text"
-						value={this.state.lastName}
-						/>
-				</label>
-				<label>
-					Birthday:
-						<input type="text"
-						value={this.state.dob}
-						/>
-				</label>
-				<label>
-					Private Key:
-						<input type="text"
-						value={this.state.key}
-						/>
-				</label>
-			</form>
+			<div>
+			<Form>
+				<grid>
+					<Row>
+					<Col>
+					<Form.Group controlId="firstName">
+						<Form.Label>First Name</Form.Label>
+						<Form.Control type="text" placeholder="First Name on State ID" />
+					</Form.Group>
+					</Col>
+					<Col>
+					<Form.Group controlId="lastName">
+						<Form.Label>Last Name</Form.Label>
+						<Form.Control type="text" placeholder="Last Name on State ID" />
+					</Form.Group>
+					</Col>
+					</Row>
+				</grid>
+			</Form>
+			</div>
 		);
 	}
 }
