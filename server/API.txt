@@ -1,14 +1,14 @@
 API:
 
 
-@Param firstName, lastName, dateOfBirth, privateKey
-Log the user in
+@Param organization, userId, privateKey
+@Desc Log the user in
 @Return true if successful, false otherwise
 
-loginUser()
+	loginUser()
 
 @Param 
-Return the list of organizations
+@Desc Return the list of organizations
 @Return list of organizations
 
-getOrganizations()
+	getOrganizations()
