@@ -13,7 +13,7 @@ class OrganizationSelector extends Component {
 	}
 
 	selectOrganization() {
-		this.props.setState({organization: "BSM"});//organizationSelected);
+		//this.props.setState({organization: "BSM"});//organizationSelected);
 	}
 
 	render() {

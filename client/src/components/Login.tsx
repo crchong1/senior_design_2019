@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import Navbar from 'react-bootstrap/Navbar'
-import Form from 'react-bootstrap/Form';
+import React, {Component} from 'react';
+import {Navbar, Form} from 'react-bootstrap';
 import OrganizationSelector from './OrganizationSelector';
 
 class Login extends Component
