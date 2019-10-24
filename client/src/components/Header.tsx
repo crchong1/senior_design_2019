@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Navbar, Button, Col, Form, InputGroup,
+  Navbar, Button, Col, Row, Form, InputGroup,
 } from 'react-bootstrap';
 import Logo from '../static/images/logo.svg';
 import UsernameSVG from '../static/images/username.svg';
@@ -12,7 +12,7 @@ class Header extends Component {
       <div>
         <Navbar bg="primary-theme" variant="dark" sticky="top">
           <Form>
-            <Form.Row className="d-flex justify-content-end">
+            <Row className="d-flex justify-content-end">
               <Col sm={2}>
                 <Navbar.Brand href="#home">
                   <img
@@ -78,7 +78,7 @@ class Header extends Component {
                   <b>Login</b>
                 </Button>
               </Col>
-            </Form.Row>
+            </Row>
           </Form>
         </Navbar>
       </div>

@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import OrganizationSelector from './OrganizationSelector';
+import Header from './Header';
 
 class Login extends Component {
   constructor(props: Readonly<{}>) {
@@ -27,6 +28,7 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <Header></Header>
         <Navbar className="bg-light justify-content-between">
           <Form inline>
             <OrganizationSelector />

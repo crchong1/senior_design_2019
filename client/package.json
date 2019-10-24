@@ -1,5 +1,5 @@
 {
-  "name": "Cache",
+  "name": "cache",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
