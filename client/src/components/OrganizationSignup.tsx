@@ -3,7 +3,7 @@ import { Component } from 'react';
 import {Form} from 'react-bootstrap';
 
 class OrganizationSignup extends Component{
-	constructor(props) {
+	constructor(props: Readonly<{}>) {
 		super(props);
 		this.state = {
 			organizationName : '',
