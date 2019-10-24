@@ -1,13 +1,11 @@
 import React from 'react';
-import './static/App.scss';
+import './static/styles/App.scss';
 import Login from './components/Login';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <Login />
-      </header>
+      <Login/>
     </div>
   );
 }

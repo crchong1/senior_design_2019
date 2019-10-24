@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Form } from 'react-bootstrap';
 import OrganizationSelector from './OrganizationSelector';
+import Header from './Header';
 
 class Login extends Component {
   constructor(props: Readonly<{}>) {
@@ -24,7 +25,8 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className='div'>
+        <Header></Header>
         <Form>
           <Navbar>
             <OrganizationSelector />
