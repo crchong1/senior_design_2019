@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Navbar, Button, Col, Form, InputGroup } from 'react-bootstrap';
-import Logo from "../static/images/logo.svg";
-import UsernameSVG from "../static/images/username.svg";
-import PasswordSVG from "../static/images/password.svg";
+import {
+  Navbar, Button, Col, Form, InputGroup,
+} from 'react-bootstrap';
+import Logo from '../static/images/logo.svg';
+import UsernameSVG from '../static/images/username.svg';
+import PasswordSVG from '../static/images/password.svg';
 
 class Header extends Component {
-  render = () => {
+  render() {
     return (
       <div>
         <Navbar bg="primary-theme" variant="dark" sticky="top">
@@ -14,26 +16,26 @@ class Header extends Component {
               <Col sm={2}>
                 <Navbar.Brand href="#home">
                   <img
-                      alt=""
-                      src={Logo}
-                      width="48"
-                      height="48"
-                      className="d-inline-block align-top"
-                  /> 
-                {' cache'}
+                    alt=""
+                    src={Logo}
+                    width="48"
+                    height="48"
+                    className="d-inline-block align-top"
+                  />
+                    cache
                 </Navbar.Brand>
               </Col>
               <Col sm={4}>
                 <InputGroup>
                   <InputGroup.Prepend>
                     <InputGroup.Text id="inputGroupPrepend">
-                    <img
+                      <img
                         alt=""
                         src={UsernameSVG}
-                        width='22px'
-                        height='22px'
+                        width="22px"
+                        height="22px"
                         className="d-inline-block align-middle"
-                      /> 
+                      />
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control
@@ -43,8 +45,8 @@ class Header extends Component {
                     required
                   />
                   {/* <Form.Control.Feedback type="invalid">
-                    Please choose a username.
-                  </Form.Control.Feedback> */}
+                      Please choose a username.
+                    </Form.Control.Feedback> */}
                 </InputGroup>
               </Col>
               <Col sm={4}>
@@ -54,10 +56,10 @@ class Header extends Component {
                       <img
                         alt=""
                         src={PasswordSVG}
-                        width='22px'
-                        height='22px'
+                        width="22px"
+                        height="22px"
                         className="d-inline-block align-middle"
-                      /> 
+                      />
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control
@@ -67,8 +69,8 @@ class Header extends Component {
                     required
                   />
                   {/* <Form.Control.Feedback type="invalid">
-                    Please choose a username.
-                  </Form.Control.Feedback> */}
+                      Please choose a username.
+                    </Form.Control.Feedback> */}
                 </InputGroup>
               </Col>
               <Col sm={2}>
@@ -78,7 +80,6 @@ class Header extends Component {
               </Col>
             </Form.Row>
           </Form>
-          
         </Navbar>
       </div>
     );

@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Form } from 'react-bootstrap';
 
 class OrganizationSignup extends Component {
@@ -76,7 +75,9 @@ class OrganizationSignup extends Component {
             <Form.Label>Organization Status</Form.Label>
             <Form.Control type="text" placeholder="" />
           </Form.Group>
-          <h3>When submitting the form, please be prepared to wait 1-3 business days for us to investigate your organization in order to ensure you are in good standing with clients and the law. We will email you a link with instructions at the email you provided when we have approved your request to join, and we will give you a courtesy call</h3>
+          <h3>
+When submitting the form, please be prepared to wait 1-3 business days for us to investigate your organization in order to ensure you are in good standing with clients and the law. We will email you a link with instructions at the email you provided when we have approved your request to join, and we will give you a courtesy call
+          </h3>
           <Form.Group controlId="acceptEULA">
             <Form.Label>I have read and accept the End User License Agreement</Form.Label>
             <Form.Control type="text" placeholder="" />

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Navbar, Form } from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import OrganizationSelector from './OrganizationSelector';
-import Header from './Header';
 
 class Login extends Component {
   constructor(props: Readonly<{}>) {
@@ -25,24 +26,23 @@ class Login extends Component {
 
   render() {
     return (
-      <div className='div'>
-        <Header></Header>
-        <Form>
-          <Navbar>
+      <div>
+        <Navbar className="bg-light justify-content-between">
+          <Form inline>
             <OrganizationSelector />
             <Form.Group controlId="userId">
-              <Form.Label>User Id</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="firstname-lastname-MM-DD-YYYY"
-              />
+              <Form.Label>User Id:</Form.Label>
+              <Form.Control type="text" placeholder="first-last-MM-DD-YYYY" />
             </Form.Group>
             <Form.Group controlId="key">
-              <Form.Label>Key</Form.Label>
-              <Form.Control type="text" placeholder="key" />
+              <Form.Label>Key:</Form.Label>
+              <Form.Control type="password" placeholder="key" />
             </Form.Group>
-          </Navbar>
-        </Form>
+            <Form.Group controlId="submit">
+              <Button type="submit">Log In</Button>
+            </Form.Group>
+          </Form>
+        </Navbar>
       </div>
     );
   }

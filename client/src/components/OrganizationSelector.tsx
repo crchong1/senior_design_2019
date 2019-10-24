@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form';
 
 class OrganizationSelector extends Component {
   constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
-      organizations: [],
+      organizations: ['Broad Street Ministries', 'Prevention Point', 'Project HOME'],
     };
   }
 
@@ -13,12 +14,17 @@ class OrganizationSelector extends Component {
   }
 
   selectOrganization() {
-    // this.props.setState({organization: "BSM"});//organizationSelected);
+    this.setState({ organization: 'BSM' });// organizationSelected);
   }
 
   render() {
     return (
-      <h1>Organization Selector</h1>
+      <Form.Group id="organization_selector">
+        <Form.Label>Organization:</Form.Label>
+        <Form.Control as="select">
+          {/* {this.state.organizations.map(organization => <option>{organization}</option>)} */}
+        </Form.Control>
+      </Form.Group>
     );
   }
 }
