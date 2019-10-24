@@ -28,7 +28,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <Header></Header>
+        <Header />
         <Navbar className="bg-light justify-content-between">
           <Form inline>
             <OrganizationSelector />

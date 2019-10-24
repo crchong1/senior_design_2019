@@ -22,9 +22,9 @@ class OrganizationSignup extends Component {
 
   handleSubmit() {
     // if (isLoggedIn) {
-    // 	//Redirect to main
+    //   Redirect to main
     // } else {
-    // 	this.setState({incorrectCredentials: true});
+    //   this.setState({incorrectCredentials: true});
     // }
   }
 
