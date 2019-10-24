@@ -3,7 +3,7 @@ import { Navbar, Form } from 'react-bootstrap';
 import OrganizationSelector from './OrganizationSelector';
 
 class Login extends Component {
-  constructor(props) {
+  constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
       incorrectCredentials: false,
@@ -30,7 +30,10 @@ class Login extends Component {
             <OrganizationSelector />
             <Form.Group controlId="userId">
               <Form.Label>User Id</Form.Label>
-              <Form.Control type="text" placeholder="firstname-lastname-MM-DD-YYYY" />
+              <Form.Control
+                type="text"
+                placeholder="firstname-lastname-MM-DD-YYYY"
+              />
             </Form.Group>
             <Form.Group controlId="key">
               <Form.Label>Key</Form.Label>
