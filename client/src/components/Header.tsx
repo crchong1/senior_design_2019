@@ -22,7 +22,7 @@ class Header extends Component {
                     height="48"
                     className="d-inline-block align-top"
                   />
-                    cache
+                    keep.id
                 </Navbar.Brand>
               </Col>
               <Col sm={4}>
