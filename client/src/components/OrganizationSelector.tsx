@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 
-class OrganizationSelector extends Component {
+export interface State {
+  organizations: string[];
+  organization: string;
+}
+
+class OrganizationSelector extends Component<any, State, any> {
   constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
       organizations: ['Broad Street Ministries', 'Prevention Point', 'Project HOME'],
+      organization: ''
     };
   }
 
@@ -22,7 +28,7 @@ class OrganizationSelector extends Component {
       <Form.Group id="organization_selector">
         <Form.Label>Organization:</Form.Label>
         <Form.Control as="select">
-          {/* {this.state.organizations.map(organization => <option>{organization}</option>)} */}
+          {this.state.organizations.map(organization => <option>{organization}</option>)}
         </Form.Control>
       </Form.Group>
     );

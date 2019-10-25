@@ -7,6 +7,25 @@ import UsernameSVG from '../static/images/username.svg';
 import PasswordSVG from '../static/images/password.svg';
 
 class Header extends Component {
+  constructor(props: Readonly<{}>) {
+    super(props);
+    this.state = {
+      incorrectCredentials: false,
+      organization: '', // Selection Menu
+      userId: '',
+      password: '', // Ensure proper length, combination of words and numbers (have a mapping for people to remember)
+    };
+  }
+
+  handleSubmit() {
+    const isLoggedIn = false;// api.submitLogin(this.state.organization, this.userId, this.privateKey);
+    if (isLoggedIn) {
+      // Redirect to main
+    } else {
+      this.setState({ incorrectCredentials: true });
+    }
+  }
+
   render() {
     return (
       <div>
@@ -40,7 +59,7 @@ class Header extends Component {
                   </InputGroup.Prepend>
                   <Form.Control
                     type="text"
-                    placeholder="Username"
+                    placeholder="First-Last-MM-DD-YYYY"
                     aria-describedby="Username Login"
                     required
                   />
