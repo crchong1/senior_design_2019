@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1>Client Side Application</h1> 
+<h3>Connor Chong, Steffen Cornwell, Gregory Kofman, Alexander Do, James Bigbee</h3>
+
+## How to Install the Client
+After cloning, `cd client` and then do npm install
+
+
 
 ## Available Scripts
 
