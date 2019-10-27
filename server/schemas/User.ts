@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import Organization from './Organization';
 
-export default class User {
+export class User {
   userId: number;
 
   username: string;
@@ -26,12 +26,15 @@ export default class User {
 
   orgIds: number[];
 
-  constructor(username: string, password: string) {
+  constructor() {
+  }
+
+  serialize(userJSON : UserJSON) : void {
     this.orgs = [];
     this.orgIds = [];
     this.dateCreated = new Date();
-    this.username = username;
-    this.password = password;
+    this.username = userJSON.username;
+    this.password = userJSON.password;
     this.createId();
   }
 
@@ -105,4 +108,28 @@ export default class User {
     json.userId += 1;
     writeFileSync('./counter.json', json);
   }
+}
+
+export interface UserJSON {
+  userId: number;
+
+  username: string;
+
+  password: string;
+
+  firstName: string;
+
+  middleName: string;
+
+  lastName: string;
+
+  birthDate: Date;
+
+  sex: string;
+
+  dateCreated: Date;
+
+  privilegeLevel: string;
+
+  orgIds: number[];
 }
