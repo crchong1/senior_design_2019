@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import https from 'https';
 import USStates from '../static/data/states_titlecase.json';
 
 //Need to validate form to make sure inputs are good, address is good, etc. 
@@ -8,6 +9,7 @@ import USStates from '../static/data/states_titlecase.json';
 class OrganizationSignup extends Component {
   constructor(props: Readonly<{}>) {
     super(props);
+    console.log(USStates);
     this.state = {
       organizationName: '',
       organizationStatus: '', // 501c3, etc.
@@ -25,11 +27,26 @@ class OrganizationSignup extends Component {
   }
 
   handleSubmit() {
-    // if (isLoggedIn) {
-    //   Redirect to main
-    // } else {
-    //   this.setState({incorrectCredentials: true});
-    // }
+    console.log("submit form");
+
+    const options = {
+      hostname: 'www.google.com',
+      port: 80,
+      path: '/upload',
+      method: 'POST'
+    };
+
+    const req = https.request(options, (res) => {
+      res.on('data', (d) => {
+        console.log(d);
+      });
+
+      res.on('err', (err) => {
+        console.error(err);
+      });
+    });
+    
+    req.end();
   }
 
   render() {
@@ -112,9 +129,9 @@ class OrganizationSignup extends Component {
           </Form.Group>
           <Form.Group controlId="organizationState">
             <Form.Label>Organization State</Form.Label>
-            <Form.Control as="select"/>
-              {USStates.map(state => <option>{state.name}</option>)}
-            <Form.Control/>
+            <Form.Control as="select" multiple>
+              {USStates.map((state) => (<option>{state.name}</option>) )}
+            </Form.Control>
           </Form.Group>
           <Form.Group controlId="organizationZipcode">
             <Form.Label>Zipcode</Form.Label>
@@ -124,9 +141,9 @@ class OrganizationSignup extends Component {
               required
             />
           </Form.Group>
-          <h3>
+          <h5>
             When submitting the form, please be prepared to wait 1-3 business days for us to investigate your organization in order to ensure you are in good standing with clients and the law. We will email you a link with instructions at the email you provided when we have approved your request to join, and we will give you a courtesy call
-          </h3>
+          </h5>
           <Form.Group controlId="acceptEULA">
             <Form.Check 
               required
