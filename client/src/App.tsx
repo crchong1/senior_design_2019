@@ -7,16 +7,16 @@ import {
 import './static/styles/App.scss';
 import OrganizationSignup from './components/OrganizationSignup';
 import ClientSignup from './components/ClientSignup';
-import Login from './components/Login';
 import Header from './components/Header';
-
+import Landing from './components/Landing';
 function App() {
   return (
     <div className="App">
+	  <Header></Header>
       <Router>
       	<Switch>
       		<Route exact path="/">
-      			<Login />
+      			<Landing/>
       		</Route>
       		<Route path="/organization-signup">
       			<OrganizationSignup />

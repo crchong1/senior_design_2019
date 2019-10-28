@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Login extends Component {
+class Landing extends Component {
 	constructor(props: Readonly<{}>) {
 		super(props);
 		this.state = {};
@@ -13,4 +13,4 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+export default Landing;
