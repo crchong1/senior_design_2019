@@ -47,30 +47,30 @@ Documents
             </p>
           </a>
         </div>
-          <div id="Applications container">
-              <a href="/client-signup">
-                  <div className="appRectangle">
-                      <img className="appImg" src={AppLogo} alt="Applications" />
-                  </div>
-                  <p className="appText">My Applications</p>
-              </a>
-          </div>
-          <div id="Email container">
-              <a href="/client-signup">
-                  <div className="emailRectangle">
-                      <img className="emailImg" src={EmailLogo} alt="Email" />
-                  </div>
-                  <p className="emailText">Send an Email</p>
-              </a>
-          </div>
-          <div id="Assistance container">
-              <a href="/client-signup">
-                  <div className="assistRectangle">
-                      <img className="assistImg" src={AssistLogo} alt="Assistance" />
-                  </div>
-                  <p className="assistText">Need Assistance?</p>
-              </a>
-          </div>
+        <div id="Applications container">
+          <a href="/client-signup">
+            <div className="appRectangle">
+              <img className="appImg" src={AppLogo} alt="Applications" />
+            </div>
+            <p className="appText">My Applications</p>
+          </a>
+        </div>
+        <div id="Email container">
+          <a href="/client-signup">
+            <div className="emailRectangle">
+              <img className="emailImg" src={EmailLogo} alt="Email" />
+            </div>
+            <p className="emailText">Send an Email</p>
+          </a>
+        </div>
+        <div id="Assistance container">
+          <a href="/client-signup">
+            <div className="assistRectangle">
+              <img className="assistImg" src={AssistLogo} alt="Assistance" />
+            </div>
+            <p className="assistText">Need Assistance?</p>
+          </a>
+        </div>
       </div>
     );
   }
