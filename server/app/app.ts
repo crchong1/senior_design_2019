@@ -1,9 +1,9 @@
 import config from './config';
 import * as express from "express";
-import compression from "compression";  // compresses requests using huffman encoding
-import session from "express-session"; // session for express
-import bodyParser from "body-parser"; // express parser for request bodies
-import lusca from "lusca"; // security for requests
+import * as compression from "compression";  // compresses requests using huffman encoding
+import * as session from "express-session"; // session for express
+import * as bodyParser from "body-parser"; // express parser for request bodies
+import * as lusca from "lusca"; // security for requests
 // import {default as mongo} from "connect-mongo"; // mongodb store for sessions
 import * as path from "path"; // get path stuff
 import * as mongoose from "mongoose"; // mongo driver for node
