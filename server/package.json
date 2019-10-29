@@ -24,6 +24,7 @@
   "dependencies": {
     "@types/node": "^12.11.6",
     "argon2": "^0.25.0",
+    "compress": "^0.99.0",
     "compression": "^1.7.4",
     "connect-mongo": "^3.1.0",
     "crypto": "^1.0.1",
