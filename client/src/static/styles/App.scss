@@ -7,8 +7,11 @@ $theme-colors: (
 
 
 // import bootstrap
-@import "node_modules/bootstrap/scss/bootstrap";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
+$primary-theme: #7B81FF;
+$secondary-theme: rgba(123, 130, 255, 0.12);
+$secondary-dark-theme: #262867;
 
 .uploadRectangle {
   position: absolute;
@@ -16,27 +19,27 @@ $theme-colors: (
   height: 242px;
   left: 82px;
   top: 129px;
-  background: rgba(123, 129, 255, 0.12);
+  background: $secondary-theme;
 };
-// const uploadText = {
-//   position: 'absolute' as 'absolute',
-//   width: '242px',
-//   height: '71px',
-//   left: '130px',
-//   top: '268px',
+.uploadText {
+position: absolute;
+width: 242px;
+height: 71px;
+left: 130px;
+top: 268px;
 
-//   fontFamily: 'Roboto',
-//   fontStyle: 'normal',
-//   fontWeight: 'bold' as 'bold',
-//   fontSize: '24px',
-//   lineHeight: '28px',
-//   textAlign: 'center' as 'center',
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+line-height: 28px;
+text-align: center;
 
-//   color: '#000000',
-// };
-// const uploadImg = {
-//   display: 'block',
-//   marginLeft: 'auto',
-//   marginRight: 'auto',
-//   width: '50%',
-// };
+color: #000000;
+};
+.uploadImg {
+  display: block;
+  position: relative;
+  left: 25%;
+  width: 50%;
+};
