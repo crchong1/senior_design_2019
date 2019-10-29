@@ -1,0 +1,9 @@
+
+$theme-colors: (
+  "primary-theme": #7B81FF,
+  "secondary-theme": rgba(123, 130, 255, 0.12),
+  "secondary-dark-theme": #262867
+);
+
+// import bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
