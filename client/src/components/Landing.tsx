@@ -8,14 +8,6 @@ class Landing extends Component {
   }
 
   render() {
-    const uploadRect = {
-      position: 'absolute' as 'absolute',
-      width: '339px',
-      height: '242px',
-      left: '82px',
-      top: '129px',
-      background: 'rgba(123, 129, 255, 0.12)',
-    };
     const uploadText = {
       position: 'absolute' as 'absolute',
       width: '242px',
@@ -42,7 +34,7 @@ class Landing extends Component {
 
       <div id="Upload container">
         <a href="/client-signup">
-          <div style={uploadRect}>
+          <div className='uploadRectangle'>
             <img style={uploadImg} src={UploadLogo} alt="Upload" />
           </div>
           <p style={uploadText}>
