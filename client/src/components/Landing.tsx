@@ -33,19 +33,24 @@ class Landing extends Component {
       color: '#000000',
     };
     const uploadImg = {
-      position: 'absolute' as 'absolute',
-      left: '15.62%',
-      right: '76.41%',
-      top: '23.75%',
-      bottom: '66.72%',
+      display: 'block',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '50%',
     };
     return (
-      <div>
+
+      <div id="Upload container">
+		  <a href="/client-signup">
         <div style={uploadRect}>
           <img style={uploadImg} src={UploadLogo} alt="Upload" />
         </div>
-        <p style={uploadText}>Upload or Edit a Document</p>
-
+        <p style={uploadText}>
+Upload or Edit a
+          <br />
+Document
+        </p>
+		  </a>
       </div>
     );
   }
