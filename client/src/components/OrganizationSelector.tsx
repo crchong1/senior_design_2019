@@ -11,7 +11,7 @@ class OrganizationSelector extends Component<any, State, any> {
     super(props);
     this.state = {
       organizations: ['Broad Street Ministries', 'Prevention Point', 'Project HOME'],
-      organization: ''
+      organization: '',
     };
   }
 
@@ -28,7 +28,7 @@ class OrganizationSelector extends Component<any, State, any> {
       <Form.Group id="organization_selector">
         <Form.Label>Organization:</Form.Label>
         <Form.Control as="select">
-          {this.state.organizations.map(organization => <option>{organization}</option>)}
+          {this.state.organizations.map((organization) => <option>{organization}</option>)}
         </Form.Control>
       </Form.Group>
     );
