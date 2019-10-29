@@ -1,7 +1,8 @@
 import { readFileSync, writeFileSync } from 'fs';
 import Organization from './Organization';
+import mongoose = require('mongoose');
 
-export default class User {
+export class User {
   userId: number;
 
   username: string;
@@ -106,3 +107,21 @@ export default class User {
     writeFileSync('./counter.json', json);
   }
 }
+
+export const userModel = mongoose.model('User',
+  mongoose.Schema({
+    _id: mongoose.Types.ObjectId,
+    user_id: Number,
+    username: String,
+    password: String,
+    firstName: String,
+    middleName: String, 
+    lastName: String,
+    birthDate: Date,
+    sex: String,
+    dateCreated: Date,
+    privelegeLevel: String,
+    orgs: Organization[],
+    orgIds: Number[]
+  })
+);

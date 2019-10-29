@@ -2,8 +2,10 @@
 exports.__esModule = true;
 var routes = require("../routes/routes");
 var express = require("express");
+var mongoose = require("mongoose");
 var port = 8080;
 var app = express();
+mongoose.connect('mongodb+srv://' + process.env.MONGO_UN + ':' + process.env.MONGO_PW + '@ewb-jtahb.mongodb.net/test?retryWrites=true&w=majority');
 app.get('/', routes.getLogin);
 app.listen(port);
 console.log("Server running on port " + port + ".");

@@ -1,0 +1,6 @@
+{
+	"env": {
+		"MONGO_UN": "greg",
+		"MONGO_PW": "greg"
+	}
+}
