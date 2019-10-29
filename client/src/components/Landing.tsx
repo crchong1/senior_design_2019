@@ -41,16 +41,16 @@ class Landing extends Component {
     return (
 
       <div id="Upload container">
-		  <a href="/client-signup">
-        <div style={uploadRect}>
-          <img style={uploadImg} src={UploadLogo} alt="Upload" />
-        </div>
-        <p style={uploadText}>
+        <a href="/client-signup">
+          <div style={uploadRect}>
+            <img style={uploadImg} src={UploadLogo} alt="Upload" />
+          </div>
+          <p style={uploadText}>
 Upload or Edit a
-          <br />
+            <br />
 Document
-        </p>
-		  </a>
+          </p>
+        </a>
       </div>
     );
   }
