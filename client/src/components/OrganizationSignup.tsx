@@ -89,7 +89,6 @@ class OrganizationSignup extends Component<{}, State, {}> {
 
         res.setEncoding('utf8');
 
-
         res.on('data', (chunk) => {
           console.log(chunk);
         });
@@ -102,7 +101,6 @@ class OrganizationSignup extends Component<{}, State, {}> {
       req.on('error', (error) => {
         console.log(error.message);
       });
-
 
       req.write(postData);
       req.end();
@@ -160,6 +158,7 @@ class OrganizationSignup extends Component<{}, State, {}> {
   handleChangeReaffirmStage(event: any) {
     event.preventDefault();
     this.setState({ reaffirmStage: !this.state.reaffirmStage });
+
   }
 
   render() {
@@ -227,8 +226,6 @@ class OrganizationSignup extends Component<{}, State, {}> {
               type="text"
               value={this.state.organizationStatus}
               onChange={this.handleChangeOrganizationStatus}
-              placeholder=""
-              required
             />
           </Form.Group>
           <Form.Group controlId="organizationWebsite">
