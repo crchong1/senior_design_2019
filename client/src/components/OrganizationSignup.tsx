@@ -6,6 +6,7 @@ import querystring from 'querystring';
 import https from 'https';
 import USStates from '../static/data/states_titlecase.json';
 import NumClientOptions from '../static/data/num_client_options.json';
+import SignaturePad from '../react-typescript-signature-pad';
 
 // Need to validate form to make sure inputs are good, address is good, etc.
 // Google API for address checking
@@ -34,13 +35,13 @@ class OrganizationSignup extends Component<{}, State, {}> {
       organizationName: '',
       organizationStatus: '', // 501c3, etc.
       organizationWebsite: '',
-      organizationNumClients: '',
+      organizationNumClients: '' + NumClientOptions[0][0] + '-' + NumClientOptions[0][1],
       organizationEmail: '',
       organizationPhoneNumber: '',
       organizationAddressLine1: '',
       organizationAddressLine2: '',
       organizationAddressCity: '',
-      organizationAddressState: '',
+      organizationAddressState: USStates[0].name,
       organizationAddressZipcode: '',
       acceptEULA: false,
       reaffirmStage: false,
@@ -168,6 +169,11 @@ class OrganizationSignup extends Component<{}, State, {}> {
           <Container>
             <Row>
               <Col>
+                Organization Details:
+              </Col>
+            </Row>
+            <Row>
+              <Col>
                 Organization Name:
               </Col>
               <Col>
@@ -190,17 +196,77 @@ class OrganizationSignup extends Component<{}, State, {}> {
                 {this.state.organizationWebsite}
               </Col>
             </Row>
+            <Row>
+              <Col>
+                Organization Size of Client Base:
+              </Col>
+              <Col>
+                {this.state.organizationNumClients}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                Organization Contact:
+              </Col>
+              <Col>
+                
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                Organization Email:
+              </Col>
+              <Col>
+                {this.state.organizationEmail}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                Organization Phone Number:
+              </Col>
+              <Col>
+                {this.state.organizationPhoneNumber}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                Organization Address:
+              </Col>
+              <Col>
+                {this.state.organizationAddressLine1}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                
+              </Col>
+              <Col>
+                {this.state.organizationAddressLine2}
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                
+              </Col>
+              <Col>
+                {this.state.organizationAddressCity}, {this.state.organizationAddressState} {this.state.organizationAddressZipcode}
+              </Col>
+            </Row>
           </Container>
           When submitting the form, please be prepared to wait 1-3 business days for us to investigate your organization in order to ensure you are in good standing with clients and the law. We will email you a link with instructions at the email you provided when we have approved your request to join, and we will give you a courtesy call
           <Form.Group controlId="acceptEULA">
-            <Form.Check
+            <Form.Label>
+              I accept and have read the <a href="/eula"> EULA</a>
+            </Form.Label>
+            <Form.Control
               required
-              label="I accept and have read the EULA"
+              type="checkbox"
+              checked={this.state.acceptEULA}
               onChange={this.handleChangeAcceptEULA}
-              feedback="Please consent to EULA before submitting"
             />
           </Form.Group>
-          By Signing Below, you certify this application data is true to your knowledge and that you consent to the EULA
+          <SignaturePad />
+          By Signing Above, you certify this application data is true to your knowledge and that you consent to the EULA
           <Button onClick={this.handleChangeReaffirmStage}>Back</Button>
           <Button onClick={this.handleSubmit}>Submit</Button>
         </div>
@@ -248,9 +314,7 @@ class OrganizationSignup extends Component<{}, State, {}> {
             >
               {NumClientOptions.map((numClientOption) => (
                 <option>
-                  {numClientOption[0]}
--
-                  {numClientOption[1]}
+                  {numClientOption[0]}-{numClientOption[1]}
                 </option>
               ))}
             </Form.Control>

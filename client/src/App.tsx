@@ -6,6 +6,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import './static/styles/App.scss';
+import EULA from './static/eula.json';
 import OrganizationSignup from './components/OrganizationSignup';
 import ClientSignup from './components/ClientSignup';
 import Header from './components/Header';
@@ -19,6 +20,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Landing />
+          </Route>
+          <Route path="/eula">
+            {EULA[0]}
           </Route>
           <Route path="/organization-signup">
             <OrganizationSignup />
