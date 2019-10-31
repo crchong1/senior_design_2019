@@ -107,7 +107,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "set CI=true && npm test --watchall"
+      "pre-push": "cross-env set CI=true && npm test --watchall"
     }
   }
 }
