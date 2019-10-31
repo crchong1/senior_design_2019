@@ -15,7 +15,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <h1></h1>
       <Router>
         <Switch>
           <Route exact path="/">
