@@ -13,27 +13,20 @@ $primary-theme: #7B81FF;
 $secondary-theme: rgba(123, 130, 255, 0.12);
 $secondary-dark-theme: #262867;
 
-// "Upload or edit a document" classes
-.uploadRectangle {
-  position: absolute;
+.rectangle {
   width: 339px;
   height: 242px;
-  left: 82px;
-  top: 129px;
   background: $secondary-theme;
 };
-.uploadText {
-position: absolute;
-width: 242px;
-height: 71px;
-left: 130px;
-top: 268px;
+
+// "Upload or edit a document" classes
+
+.text {
 
 font-family: Roboto;
 font-style: normal;
 font-weight: bold;
 font-size: 24px;
-line-height: 28px;
 text-align: center;
 
 color: #000000;
@@ -45,32 +38,7 @@ color: #000000;
   width: 50%;
 };
 
-// "Print" classes
-.printRectangle {
-  position: absolute;
-  width: 339px;
-  height: 242px;
-  left: 469px;
-  top: 129px;
-  background: $secondary-theme;
-};
-.printText {
-  position: absolute;
-  width: 242px;
-  height: 71px;
-  left: 517px;
-  top: 268px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  text-align: center;
-
-  color: #000000;
-};
-.printImg {
+.normalImage {
   display: block;
   position: relative;
   left: 35%;
@@ -78,134 +46,3 @@ color: #000000;
   width: 30%;
 };
 
-// "Request" classes
-.requestRectangle {
-  position: absolute;
-  width: 339px;
-  height: 242px;
-  left: 858px;
-  top: 129px;
-  background: $secondary-theme;
-};
-.requestText {
-  position: absolute;
-  width: 242px;
-  height: 71px;
-  left: 906px;
-  top: 268px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  text-align: center;
-
-  color: #000000;
-};
-.requestImg {
-  display: block;
-  position: relative;
-  left: 35%;
-  top: 10%;
-  width: 30%;
-};
-
-// "My Applications" classes
-.appRectangle {
-  position: absolute;
-  width: 339px;
-  height: 242px;
-  left: 82px;
-  top: 399px;
-  background: $secondary-theme;
-};
-.appText {
-  position: absolute;
-  width: 242px;
-  height: 71px;
-  left: 128px;
-  top: 538px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  text-align: center;
-
-  color: #000000;
-};
-.appImg {
-  display: block;
-  position: relative;
-  left: 35%;
-  top: 10%;
-  width: 30%;
-};
-
-// "Send an Email" classes
-.emailRectangle {
-  position: absolute;
-  width: 339px;
-  height: 242px;
-  left: 469px;
-  top: 399px;
-  background: $secondary-theme;
-};
-.emailText {
-  position: absolute;
-  width: 242px;
-  height: 71px;
-  left: 517px;
-  top: 538px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  text-align: center;
-
-  color: #000000;
-};
-.emailImg {
-  display: block;
-  position: relative;
-  left: 35%;
-  top: 10%;
-  width: 30%;
-};
-
-// "Need Assistance" classes
-.assistRectangle {
-  position: absolute;
-  width: 339px;
-  height: 242px;
-  left: 858px;
-  top: 399px;
-  background: $secondary-theme;
-};
-.assistText {
-  position: absolute;
-  width: 242px;
-  height: 71px;
-  left: 906px;
-  top: 538px;
-
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  text-align: center;
-
-  color: #000000;
-};
-.assistImg {
-  display: block;
-  position: relative;
-  left: 35%;
-  top: 10%;
-  width: 30%;
-};
