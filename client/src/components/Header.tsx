@@ -82,7 +82,7 @@ class Header extends Component {
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <Form.Control
-                    type="text"
+                    type="password"
                     placeholder="Password"
                     aria-describedby="Password Login"
                     required
