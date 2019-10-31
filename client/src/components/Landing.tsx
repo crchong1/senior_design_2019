@@ -30,7 +30,7 @@ class Landing extends Component<{}, State, {}> {
         <div className="row">
           <div id="Upload container">
             <a href="/client-signup">
-              <div className="rectangle col-lg">
+              <div className="rectangle col-lg offset-lg-2">
                 <img className="uploadImg" src={UploadLogo} alt="Upload" />
                 <p className="text">
                   Upload or Edit a
@@ -43,7 +43,7 @@ class Landing extends Component<{}, State, {}> {
           </div>
           <div id="Print container">
             <a href="/client-signup">
-              <div className="rectangle col-lg">
+              <div className="rectangle col-lg offset-lg-2">
                 <img className="normalImage" src={PrintLogo} alt="Print" />
                 <p className="text">Print My Documents</p>
               </div>
@@ -52,7 +52,7 @@ class Landing extends Component<{}, State, {}> {
           </div>
           <div id="Request container">
             <a href="/client-signup">
-              <div className="rectangle col-lg">
+              <div className="rectangle col-lg offset-lg-2">
                 <img className="normalImage" src={RequestLogo} alt="Request" />
                 <p className="text">
                   Request My
@@ -67,7 +67,7 @@ class Landing extends Component<{}, State, {}> {
         <div className="row">
           <div id="Applications container">
             <a href="/client-signup">
-              <div className="rectangle col-lg">
+              <div className="rectangle col-lg offset-lg-2">
                 <img className="normalImage" src={AppLogo} alt="Applications" />
                 <p className="text">My Applications</p>
               </div>
@@ -75,7 +75,7 @@ class Landing extends Component<{}, State, {}> {
           </div>
           <div id="Email container">
             <a href="/client-signup">
-              <div className="rectangle col-lg">
+              <div className="rectangle col-lg offset-lg-2">
                 <img className="normalImage" src={EmailLogo} alt="Email" />
                 <p className="text">Send an Email</p>
               </div>
@@ -83,7 +83,7 @@ class Landing extends Component<{}, State, {}> {
           </div>
           <div id="Assistance container">
             <a href="/client-signup">
-              <div className="rectangle col-lg">
+              <div className="rectangle col-lg offset-lg-2">
                 <img className="normalImage" src={AssistLogo} alt="Assistance" />
                 <p className="text">Need Assistance?</p>
               </div>
