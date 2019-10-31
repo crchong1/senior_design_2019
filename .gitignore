@@ -47,6 +47,9 @@ typings/
 # TypeScript cache
 *.tsbuildinfo
 
+# TypeScript linter config
+.tsline.json
+
 # Optional npm cache directory
 .npm
 

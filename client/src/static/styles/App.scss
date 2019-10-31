@@ -1,0 +1,48 @@
+
+$theme-colors: (
+  "primary-theme": #7B81FF,
+  "secondary-theme": rgba(123, 130, 255, 0.12),
+  "secondary-dark-theme": #262867
+);
+
+
+// import bootstrap
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+$primary-theme: #7B81FF;
+$secondary-theme: rgba(123, 130, 255, 0.12);
+$secondary-dark-theme: #262867;
+
+.rectangle {
+  width: 339px;
+  height: 242px;
+  background: $secondary-theme;
+};
+
+// "Upload or edit a document" classes
+
+.text {
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 24px;
+text-align: center;
+
+color: #000000;
+};
+.uploadImg {
+  display: block;
+  position: relative;
+  left: 25%;
+  width: 50%;
+};
+
+.normalImage {
+  display: block;
+  position: relative;
+  left: 35%;
+  top: 10%;
+  width: 30%;
+};
+

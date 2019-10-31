@@ -2,14 +2,16 @@
 exports.__esModule = true;
 var fs_1 = require("fs");
 var User = /** @class */ (function () {
-    function User(username, password) {
+    function User() {
+    }
+    User.prototype.serialize = function (userJSON) {
         this.orgs = [];
         this.orgIds = [];
         this.dateCreated = new Date();
-        this.username = username;
-        this.password = password;
+        this.username = userJSON.username;
+        this.password = userJSON.password;
         this.createId();
-    }
+    };
     // getters
     User.prototype.getId = function () { return this.userId; };
     User.prototype.getUsername = function () { return this.username; };
@@ -60,4 +62,4 @@ var User = /** @class */ (function () {
     };
     return User;
 }());
-exports["default"] = User;
+exports.User = User;
