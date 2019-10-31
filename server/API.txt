@@ -1,0 +1,14 @@
+API:
+
+
+@Param organization, userId, privateKey
+@Desc Log the user in
+@Return true if successful, false otherwise
+
+	loginUser()
+
+@Param 
+@Desc Return the list of organizations
+@Return list of organizations
+
+	getOrganizations()

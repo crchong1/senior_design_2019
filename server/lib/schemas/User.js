@@ -1,15 +1,19 @@
 "use strict";
 exports.__esModule = true;
 var fs_1 = require("fs");
+var Organization_1 = require("./Organization");
+var mongoose = require("mongoose");
 var User = /** @class */ (function () {
-    function User(username, password) {
+    function User() {
+    }
+    User.prototype.serialize = function (userJSON) {
         this.orgs = [];
         this.orgIds = [];
         this.dateCreated = new Date();
-        this.username = username;
-        this.password = password;
+        this.username = userJSON.username;
+        this.password = userJSON.password;
         this.createId();
-    }
+    };
     // getters
     User.prototype.getId = function () { return this.userId; };
     User.prototype.getUsername = function () { return this.username; };
@@ -60,4 +64,42 @@ var User = /** @class */ (function () {
     };
     return User;
 }());
-exports["default"] = User;
+exports.User = User;
+exports.userModel = mongoose.model('User', mongoose.Schema({
+    _id: mongoose.Types.ObjectId,
+    user_id: Number,
+    username: String,
+    password: String,
+    firstName: String,
+    middleName: String,
+    lastName: String,
+    birthDate: Date,
+    sex: String,
+    dateCreated: Date,
+    privelegeLevel: String,
+    orgs: Organization_1["default"][],
+    orgIds: Number[]
+}));
+/*export interface UserJSON {
+  userId: number;
+
+  username: string;
+
+  password: string;
+
+  firstName: string;
+
+  middleName: string;
+
+  lastName: string;
+
+  birthDate: Date;
+
+  sex: string;
+
+  dateCreated: Date;
+
+  privilegeLevel: string;
+
+  orgIds: number[];
+}*/

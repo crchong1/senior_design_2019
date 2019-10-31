@@ -27,12 +27,15 @@ export class User {
 
   orgIds: number[];
 
-  constructor(username: string, password: string) {
+  constructor() {
+  }
+
+  serialize(userJSON : UserJSON) : void {
     this.orgs = [];
     this.orgIds = [];
     this.dateCreated = new Date();
-    this.username = username;
-    this.password = password;
+    this.username = userJSON.username;
+    this.password = userJSON.password;
     this.createId();
   }
 
@@ -121,7 +124,33 @@ export const userModel = mongoose.model('User',
     sex: String,
     dateCreated: Date,
     privelegeLevel: String,
-    orgs: Organization[],
-    orgIds: Number[]
+    orgs: {type: Array, "default": []},
+    orgIds: {type: Array, "default": []}
   })
 );
+
+export interface UserJSON {
+  userId: number;
+
+  username: string;
+
+  password: string;
+
+  firstName: string;
+
+  middleName: string;
+
+  lastName: string;
+
+  birthDate: Date;
+
+  sex: string;
+
+  dateCreated: Date;
+
+  privilegeLevel: string;
+
+  orgs: Organization[];
+
+  orgIds: number[];
+}
