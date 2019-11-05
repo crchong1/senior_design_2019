@@ -62,8 +62,7 @@ class Login extends Component<{}, State, {}> {
                     <p className="textLoginRightPara">
                       <span>
 1. Local organizations become
-                        <b>hubs</b>
-                        {' '}
+                        <b> hubs </b>
 for Cache services
                       </span>
                     </p>
@@ -77,8 +76,7 @@ for Cache services
                     <p className="textLoginRightPara">
                       <span>
 2. Cache
-                        <b>securely stores</b>
-                        {' '}
+                        <b> securely stores </b>
 documents and records for those experiencing homelessness
                       </span>
                     </p>
@@ -92,8 +90,7 @@ documents and records for those experiencing homelessness
                     <p className="textLoginRightPara">
                       <span>
 3. Cache becomes an
-                        <b>aid platform</b>
-                        {' '}
+                        <b> aid platform </b>
 to streamline access to assistance programs and strengthen relationships between organizations and people
                       </span>
                     </p>
