@@ -8,9 +8,9 @@ import {
 import './static/styles/App.scss';
 import EULA from './static/eula.json';
 import OrganizationSignup from './components/OrganizationSignup';
-import ClientSignup from './components/ClientSignup';
 import Header from './components/Header';
 import Landing from './components/Landing';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -27,8 +27,8 @@ function App() {
           <Route path="/organization-signup">
             <OrganizationSignup />
           </Route>
-          <Route path="/client-signup">
-            <ClientSignup />
+          <Route path="/login">
+            <Login />
           </Route>
         </Switch>
       </Router>

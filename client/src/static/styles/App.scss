@@ -9,19 +9,26 @@ $theme-colors: (
 // import bootstrap
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
+// import roboto
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 $primary-theme: #7B81FF;
 $secondary-theme: rgba(123, 130, 255, 0.12);
 $secondary-dark-theme: #262867;
+
+.background {
+  background: $secondary-theme;
+};
 
 .rectangle {
   width: 339px;
   height: 242px;
   background: $secondary-theme;
-};
+}
 
-// "Upload or edit a document" classes
+// Landing
 
-.text {
+.textLanding {
 
 font-family: Roboto;
 font-style: normal;
@@ -46,3 +53,44 @@ color: #000000;
   width: 30%;
 };
 
+// Login classes
+.textLoginLeftHeader {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 33px;
+  line-height: 39px;
+}
+
+.textLoginLeftSubHeader {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 35px;
+
+  color: #000000;
+}
+
+.textLoginRightHeader {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.textLoginRightPara {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.btn {
+  background: #7B81FF;
+}
