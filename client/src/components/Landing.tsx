@@ -42,7 +42,7 @@ class Landing extends Component<{}, State, {}> {
             </a>
           </div>
           <div id="Print container">
-            <a href="/client-signup">
+            <a href="/print">
               <div className="rectangle col-lg mr-5 mt-5">
                 <img className="normalImage" src={PrintLogo} alt="Print" />
                 <p className="textLanding mt-5">Print My Documents</p>

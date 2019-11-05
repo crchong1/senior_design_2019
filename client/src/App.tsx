@@ -11,6 +11,7 @@ import OrganizationSignup from './components/OrganizationSignup';
 import Header from './components/Header';
 import Landing from './components/Landing';
 import Login from './components/Login';
+import Print from './components/Print';
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/print">
+            <Print />
           </Route>
         </Switch>
       </Router>
