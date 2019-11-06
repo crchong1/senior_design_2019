@@ -1,4 +1,4 @@
-package id.keep.Organization;
+package classes;
 
 public class Organization {
 }
