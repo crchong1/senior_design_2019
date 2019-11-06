@@ -1,10 +1,16 @@
+package id.keep;
+
+import id.keep.Config.Env;
+import id.keep.Config.MongoConfig;
+import id.keep.Organization.OrganizationController;
 import io.github.cdimascio.dotenv.Dotenv;
 import io.javalin.Javalin;
 
-public class Main {
+public class App {
     public static void main(String[] args) {
 
-        Dotenv dotenv = Dotenv.load();
+        Dotenv dotenv = Env.getInstance();
+        MongoConfig.startConnection();
 
         Javalin app = Javalin.create()
                 .start(Integer.parseInt(dotenv.get("PORT_NUMBER")));
@@ -21,20 +27,13 @@ public class Main {
          *     - Sets proper privilege level.
          *
          * TODO: /organization-signup
-         *     - Takes Organization and admin json:
-         *       {
-         *          organization: {
-         *                  ...
-         *          },
-         *          admin: {
-         *              ...
-         *          }
-         *       }
+         *     - Takes:
+         *          orgName,
+         *          adminInfo ...
          *     - Adds the organization to the database, as well as the first admin.
          *     - TODO: Returns a status:
          *          - Organization already exists.
-         *          - Error in database.
-         *          - Organization is not in database.
+         *          - Organization is not in database; successful insertion.
          *
          * TODO: /worker-enroll
          *     - Takes a User JSON.
@@ -48,5 +47,7 @@ public class Main {
          * TODO: /put-documents
          *     - Adds a document to the user's db entry
          */
+
+        app.post("/organization-signup", OrganizationController.enrollOrganization);
     }
 }
