@@ -35,54 +35,54 @@ class Print extends Component<{}, State, {}> {
         </div>
         <div className="row">
           <div className="col-md-12 overflow-auto" id="printTable">
-              <table className="table table-bordered table-hover">
-                  <tbody>
-                  <tr>
-                      <td>
-                          <input className="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-                      </td>
-                      <td>
-                          Document name
-                      </td>
-                  </tr>
-                  <tr>
+            <table className="table table-bordered table-hover">
+              <tbody>
+                <tr>
                   <td>
-                      <input className="form-check-input" type="checkbox" value="" id="defaultCheck2"/>
+                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+                  </td>
+                  <td>
+                          Document name
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
                   </td>
                   <td>
                       Document name
                   </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          <input className="form-check-input" type="checkbox" value="" id="defaultCheck2"/>
-                      </td>
-                      <td>
+                </tr>
+                <tr>
+                  <td>
+                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+                  </td>
+                  <td>
                           Document name
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          <input className="form-check-input" type="checkbox" value="" id="defaultCheck2"/>
-                      </td>
-                      <td>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+                  </td>
+                  <td>
                           Document name
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          <input className="form-check-input" type="checkbox" value="" id="defaultCheck2"/>
-                      </td>
-                      <td>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck2" />
+                  </td>
+                  <td>
                           Document name
-                      </td>
-                  </tr>
-                  </tbody>
-              </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-            <button type="button" className="btn btn-lg">
+          <button type="button" className="btn btn-lg">
                 Print
-            </button>
+          </button>
         </div>
       </div>
     );
