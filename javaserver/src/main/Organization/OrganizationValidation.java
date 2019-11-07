@@ -22,7 +22,7 @@ public class OrganizationValidation {
         	return false;
         }       
         if (fn.length() > 30 || fn.length() < 2) {
-        	l.logger.warning("First Name Inapopriate Length " + fn.length());
+        	l.logger.warning("First Name Inappropriate Length " + fn.length());
         	return false;
         }
         if (!Pattern.matches(ValRegex.name, fn)) {
@@ -36,7 +36,7 @@ public class OrganizationValidation {
         	return false;
         }
         if (ln.length() > 30 || ln.length() < 2) {
-        	l.logger.warning("Last Name Inapopriate Length " + fn.length());
+        	l.logger.warning("Last Name Inappropriate Length " + fn.length());
         	return false;
         }
         if (!Pattern.matches(ValRegex.name, ln)) {
@@ -70,11 +70,11 @@ public class OrganizationValidation {
         
         //Organization Name
         if (org == null || org.strip().length() == 0) {
-        	l.logger.warning("Orginization is Empty");
+        	l.logger.warning("Organization is Empty");
         	return false;
         }
         if (!Pattern.matches(ValRegex.org, org)) {
-        	l.logger.warning("Orginization Name Contains Invalid Characters");
+        	l.logger.warning("Organization Name Contains Invalid Characters");
         	return false;
         }
         return true;
