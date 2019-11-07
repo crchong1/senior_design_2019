@@ -35,7 +35,7 @@ public class App {
          *
          * TODO: /login
          *     - Takes {
-         *          username: (Of the form <firstname>-<[lastname]>-<[orgName]>-<[dateofbirth]>)
+         *          username: (Of the form <firstname>-<lastname>-<orgName>-<dateofbirth>)
          *          password:
          *      }
          *      as form parameters.
