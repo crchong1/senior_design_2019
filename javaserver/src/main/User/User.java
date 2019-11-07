@@ -1,4 +1,4 @@
-package id.keep.User;
+package User;
 
 public class User {
 

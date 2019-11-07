@@ -1,4 +1,4 @@
-package id.keep.User;
+package User;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;

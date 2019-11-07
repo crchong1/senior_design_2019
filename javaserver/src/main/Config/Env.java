@@ -1,4 +1,4 @@
-package id.keep.Config;
+package Config;
 
 import io.github.cdimascio.dotenv.Dotenv;
 

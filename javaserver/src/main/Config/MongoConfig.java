@@ -1,4 +1,4 @@
-package id.keep.Config;
+package Config;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;

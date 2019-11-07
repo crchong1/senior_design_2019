@@ -1,4 +1,4 @@
-package id.keep.Organization;
+package Organization;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;

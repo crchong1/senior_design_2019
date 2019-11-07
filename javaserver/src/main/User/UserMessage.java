@@ -1,4 +1,4 @@
-package id.keep.User;
+package User;
 
 public enum UserMessage {
     AUTH_SUCCESS("AUTH_SUCCESS:Successfully Authenticated User"),

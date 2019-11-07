@@ -1,7 +1,7 @@
-import id.keep.Config.Env;
-import id.keep.Config.MongoConfig;
-import id.keep.Organization.OrganizationController;
-import id.keep.User.UserController;
+import Config.Env;
+import Config.MongoConfig;
+import Organization.OrganizationController;
+import User.UserController;
 import io.github.cdimascio.dotenv.Dotenv;
 import io.javalin.Javalin;
 import io.javalin.core.compression.Brotli;
