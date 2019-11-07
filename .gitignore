@@ -116,3 +116,8 @@ yarn-debug.log*
 yarn-error.log*
 
 package-lock.json
+
+# make sure not to load intellij settings
+/javaserver/.idea
+/javaserver/.settings 
+/javaserver/target/*

@@ -37,8 +37,8 @@ public class OrganizationController {
                 argon2.wipeArray(password);
             }
             catch (Exception e) {
-                ctx.json(OrgEnrollmentStatus.PASS_HASH_FAILURE);
                 argon2.wipeArray(password);
+                ctx.json(OrgEnrollmentStatus.PASS_HASH_FAILURE);
                 return;
             }
 
