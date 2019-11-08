@@ -7,7 +7,7 @@ import Log.Log;
 import io.javalin.http.Context;
 
 public class OrganizationValidation {
-	public static boolean valOrg(Context ctx) throws SecurityException, IOException{
+	protected static boolean valOrg(Context ctx) throws SecurityException, IOException{
 		Log l = new Log();
 		String fn = ctx.formParam("firstname");
         String ln = ctx.formParam("lastname");
