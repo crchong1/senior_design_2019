@@ -3,9 +3,8 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 import Regex.ValRegex;
-import id.keep.Log.Log;
+import Log.Log;
 import io.javalin.http.Context;
-import io.javalin.http.Handler;
 
 public class OrganizationValidation {
 	public static boolean valOrg(Context ctx) throws SecurityException, IOException{
