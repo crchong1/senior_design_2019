@@ -11,7 +11,7 @@ class Login extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
-      loggedIn: true, // Change to true in order to show landing logged in
+      loggedIn: false, // Change to true in order to show landing logged in
     };
   }
 
