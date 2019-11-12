@@ -232,12 +232,12 @@ class ClientSignup extends Component<{}, State, {}> {
               </div>
               <div className="row mt-2">
                 <div className="col-md-4">
-                  <label htmlFor="inputPassword">Password:</label>
+                  <label htmlFor="inputPassword">Password</label>
                   <text className="red-star">*</text>
                   <input type="password" className="form-control form-purple" id="password" placeholder="Password" />
                 </div>
                 <div className="col-md-4">
-                  <label htmlFor="input">Password:</label>
+                  <label htmlFor="input">Confirm Password</label>
                   <text className="red-star">*</text>
                   <input type="password" className="form-control form-purple" id="confirmPassword" placeholder="Confirm password" />
                 </div>
