@@ -6,7 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import static com.mongodb.client.model.Filters.*;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
-import id.keep.Config.MongoConfig;
+import Config.MongoConfig;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.bson.Document;

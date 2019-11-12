@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 import Regex.ValRegex;
-import id.keep.Log.Log;
+import Logger.Log;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
