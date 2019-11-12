@@ -23,11 +23,12 @@ public class OrganizationController {
             ctx.json(OrgEnrollmentStatus.ORG_EXISTS);
         }
         else {
-            String adminFirstname = ctx.formParam("firstname");
-            String adminLastname = ctx.formParam("lastname");
+            String adminFirstname = ctx.formParam("firstname").toLowerCase();
+            String adminLastname = ctx.formParam("lastname").toLowerCase();
+            String birthdate = ctx.formParam("birthdate");
             String adminUsername = adminFirstname + "-" + adminLastname
-                    + "-" + orgName + "-" + ctx.formParam("birthdate");
-            String adminEmail = ctx.formParam("email");
+                    + "-" + orgName + "-" + birthdate;
+            String adminEmail = ctx.formParam("email").toLowerCase();
 
             Argon2 argon2 = Argon2Factory.create();
             char[] password = ctx.formParam("password").toCharArray();
@@ -49,6 +50,7 @@ public class OrganizationController {
                     .append("email", adminEmail)
                     .append("firstname", adminFirstname)
                     .append("lastname", adminLastname)
+                    .append("birthdate", birthdate)
                     .append("usertype", "admin");
             userCollection.insertOne(newAdmin);
 

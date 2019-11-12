@@ -15,6 +15,7 @@ $theme-colors: (
 $primary-theme: #7B81FF;
 $secondary-theme: rgba(123, 130, 255, 0.12);
 $secondary-dark-theme: #262867;
+$text-red: #F24D4D;
 
 .background {
   background: $secondary-theme;
@@ -108,10 +109,10 @@ color: #000000;
 .textPrintDesc {
   font-family: Roboto;
   font-style: normal;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 18px;
   line-height: 21px;
-  text-align: center;
+  text-align: left;
 }
 
 td {
@@ -121,4 +122,14 @@ td {
 
 #printTable {
   height: 300px;
+  overflow: auto;
+}
+
+.red-star {
+  color: $text-red
+}
+
+.form-purple {
+  border: 1px solid $primary-theme;
+  border-radius: 0;
 }

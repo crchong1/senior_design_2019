@@ -11,7 +11,7 @@ class Login extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
-      loggedIn: true, // Change to true in order to show landing logged in
+      loggedIn: false, // Change to true in order to show landing logged in
     };
   }
 
@@ -24,10 +24,10 @@ class Login extends Component<{}, State, {}> {
               <div className="col-md-12" />
             </div>
             <div className="row">
-              <div className="background col-md-5">
+              <div className="background col-md-5 ml-5 pb-4">
                 <div className="page-header textLoginLeftHeader">
                   <h1>
-                    <span>Building a Safety Net around experienced homelessness in the Cloud</span>
+                    <span><b>Building a Safety Net around experienced homelessness in the Cloud</b></span>
                   </h1>
                 </div>
                 <h2 className="textLoginLeftSubHeader mt-5">
@@ -49,7 +49,7 @@ class Login extends Component<{}, State, {}> {
                     Join Our Cause
                 </button>
               </div>
-              <div className="col-md-2" />
+              <div className="col-md-1" />
               <div className="col-md-5">
                 <h3 className="text-center textLoginRightHeader">
                     How Cache Works

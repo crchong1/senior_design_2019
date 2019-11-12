@@ -7,11 +7,13 @@ import {
 } from 'react-router-dom';
 import './static/styles/App.scss';
 import EULA from './static/eula.json';
+import ClientSignup from './components/ClientSignup';
 import OrganizationSignup from './components/OrganizationSignup';
 import Header from './components/Header';
 import Landing from './components/Landing';
 import Login from './components/Login';
 import Print from './components/Print';
+import Request from './components/Request';
 
 function App() {
   return (
@@ -25,6 +27,9 @@ function App() {
           <Route path="/eula">
             {EULA[0]}
           </Route>
+          <Route path="/client-signup">
+            <ClientSignup />
+          </Route>
           <Route path="/organization-signup">
             <OrganizationSignup />
           </Route>
@@ -33,6 +38,9 @@ function App() {
           </Route>
           <Route path="/print">
             <Print />
+          </Route>
+          <Route path="/request">
+            <Request />
           </Route>
         </Switch>
       </Router>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 import UploadLogo from '../static/images/uploading-files-to-the-cloud.svg';
 import PrintLogo from '../static/images/print.svg';
 import RequestLogo from '../static/images/request.svg';
@@ -22,7 +22,7 @@ class Landing extends Component<{}, State, {}> {
   render() {
     if (!this.state.loggedIn) {
       return (
-        <Button href="/organization-signup">Sign up Organization</Button>
+        <Redirect to='/login' />
       );
     }
     return (
@@ -51,7 +51,7 @@ class Landing extends Component<{}, State, {}> {
             </a>
           </div>
           <div id="Request container">
-            <a href="/client-signup">
+            <a href="/request">
               <div className="rectangle col-lg mt-5">
                 <img className="normalImage" src={RequestLogo} alt="Request" />
                 <p className="textLanding mt-3">
