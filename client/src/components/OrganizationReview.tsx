@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import USStates from '../static/data/states_titlecase.json';
+import SignaturePad from '../react-typescript-signature-pad';
 /*
 import {
   Form, Button, Container, Row, Col,
@@ -8,7 +9,7 @@ import querystring from 'querystring';
 import https from 'https';
 
 import NumClientOptions from '../static/data/num_client_options.json';
-import SignaturePad from '../react-typescript-signature-pad';
+
  */
 
 // Need to validate form to make sure inputs are good, address is good, etc.
@@ -32,11 +33,12 @@ interface State {
    */
 }
 
-class ClientSignup extends Component<{}, State, {}> {
+class OrganizationReview extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
     console.log(USStates);
-    this.state = {/*
+    this.state = {
+      /*
       organizationName: '',
       organizationStatus: '', // 501c3, etc.
       organizationWebsite: '',
@@ -50,10 +52,9 @@ class ClientSignup extends Component<{}, State, {}> {
       organizationAddressZipcode: '',
       acceptEULA: false,
       reaffirmStage: false,
-      */
+       */
     };
-
-    /*
+/*
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeOrganizationName = this.handleChangeOrganizationName.bind(this);
     this.handleChangeOrganizationStatus = this.handleChangeOrganizationStatus.bind(this);
@@ -68,9 +69,10 @@ class ClientSignup extends Component<{}, State, {}> {
     this.handleChangeOrganizationAddressZipcode = this.handleChangeOrganizationAddressZipcode.bind(this);
     this.handleChangeReaffirmStage = this.handleChangeReaffirmStage.bind(this);
     this.handleChangeAcceptEULA = this.handleChangeAcceptEULA.bind(this);
-     */
+
+ */
   }
-  /*
+/*
   handleSubmit(event: any) {
     if (!this.state.acceptEULA) {
       alert('Please accept EULA before completing application');
@@ -170,79 +172,103 @@ class ClientSignup extends Component<{}, State, {}> {
     this.setState({ reaffirmStage: !this.state.reaffirmStage });
   }
 */
-
   render() {
-    // if (this.state.reaffirmStage) {
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12 mt-5">
-            <h3 className="text-center textPrintHeader">
-                  Client Signup Page
-            </h3>
-            <p className="textPrintDesc pl-3">
-              <span>Thank you for using Keep.id to store your personal documents. Please fill out the following form to proceed with setting up your Keep.id account.</span>
-            </p>
-            <form>
-              <div className="col-md-12">
-                <div className="form-row">
-                  <div className="col-md-6 form-group">
-                    <label htmlFor="inputFirstName">First Name<text className="red-star">*</text></label>
-                    <input type="text" className="form-control form-purple" id="firstName" placeholder="John" required />
+    //if (this.state.reaffirmStage) {
+      return (
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12 mt-5">
+                <h3 className="text-center textPrintHeader">
+                  Review Your Information
+                </h3>
+                <p className="textPrintDesc pl-3">
+              <span>This is just to check if you have filled out all the fields correctly.</span>
+                </p>
+                <div className="col-md-12">
+                  <div className="row">
+                    <div className="col-md-6">
+                      <label htmlFor="inputOrgName">Organization Name</label>
+                      <input type="text" readOnly className="form-control form-purple" id="orgName" placeholder="Keep" />
+                    </div>
+                    <div className="col-md-6">
+                      <label htmlFor="inputOrgWebsite">Organization Website</label>
+                      <input type="url" readOnly className="form-control form-purple" id="orgWebsite" placeholder="https://www.keep.id" />
+                    </div>
                   </div>
-                  <div className="col-md-6 form-group">
-                    <label htmlFor="inputLastName">Last Name<text className="red-star">*</text></label>
-                    <input type="text" className="form-control form-purple" id="lastName" placeholder="Doe" required />
+                  <div className="row mt-2">
+                    <div className="col-md-4">
+                      <label htmlFor="inputContactName">Contact Name</label>
+                      <input type="text" readOnly className="form-control form-purple" id="contactName" placeholder="John Doe" />
+                    </div>
+                    <div className="col-md-4">
+                      <label htmlFor="inputContactPhoneNumber">Contact Phone Number</label>
+                      <input type="tel" readOnly className="form-control form-purple" id="contactPhoneNumber" placeholder="1-(234)-567-8901" />
+                    </div>
+                    <div className="col-md-4">
+                      <label htmlFor="inputContactEmail">Contact Email Address</label>
+                      <input type="email" readOnly className="form-control form-purple" id="contactemail" placeholder="contact@example.com" />
+                    </div>
                   </div>
-                </div>
-                <div className="form-row">
-                  <div className="col-md-5 form-group">
-                    <label htmlFor="inputPhone">Contact Phone Number<text className="red-star">*</text></label>
-                    <input type="tel" className="form-control form-purple" id="phoneNumber" placeholder="1-(234)-567-8901" required />
+                  <div className="row mt-2">
+                    <div className="col-md-4">
+                      <label htmlFor="inputAddress">Organization Address</label>
+                      <input type="text" readOnly className="form-control form-purple" id="address" placeholder="311 Broad St" />
+                    </div>
+                    <div className="col-md-3">
+                      <label htmlFor="inputCity">City</label>
+                      <input type="text" readOnly className="form-control form-purple" id="city" placeholder="Philadelphia" />
+                    </div>
+                    <div className="col-md-2">
+                      <label htmlFor="inputState">State</label>
+                      <input type="text" readOnly className="form-control form-purple" id="state" placeholder="PA" />
+                    </div>
+                    <div className="col-md-3">
+                      <label htmlFor="inputZipCode">Zip Code</label>
+                      <input type="number" readOnly className="form-control form-purple" id="zipCode" placeholder="19104" />
+                    </div>
                   </div>
-                  <div className="col-md-7 form-group">
-                    <label htmlFor="inputEmail">Contact Email Address<text className="red-star">*</text></label>
-                    <input type="email" className="form-control form-purple" id="email" placeholder="contact@example.com" required />
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="col-md-4 form-group">
-                    <label htmlFor="inputMailingAddress">Client Mailing Address<text className="red-star">*</text></label>
-                    <input type="text" className="form-control form-purple" id="mailingAddress" placeholder="311 Broad St" required />
-                  </div>
-                  <div className="col-md-3 form-group">
-                    <label htmlFor="inputCity">City<text className="red-star">*</text></label>
-                    <input type="text" className="form-control form-purple" id="city" placeholder="Philadelphia" required />
-                  </div>
-                  <div className="col-md-2 form-group">
-                    <label htmlFor="inputState">State<text className="red-star">*</text></label>
-                    <input type="text" className="form-control form-purple" id="state" placeholder="PA" required />
-                  </div>
-                  <div className="col-md-3 form-group">
-                    <label htmlFor="inputZipCode">Zip Code<text className="red-star">*</text></label>
-                    <input type="number" className="form-control form-purple" id="zipCode" placeholder="19104" required />
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div className="col-md-4 form-group">
-                    <label htmlFor="inputPassword">Password<text className="red-star">*</text></label>
-                    <input type="password" className="form-control form-purple" id="password" placeholder="Password" required />
-                  </div>
-                  <div className="col-md-4 form-group">
-                    <label htmlFor="inputConfirmPassword">Confirm Password<text className="red-star">*</text></label>
-                    <input type="password" className="form-control form-purple" id="confirmPassword" placeholder="Confirm password" required />
-                  </div>
-                  <div className="col-auto mt-4 pt-2">
-                    <button type="submit" className="btn btn-primary">Submit</button>
+                  <div className="row mt-2">
+                    <div className="col-md-4">
+                      <label htmlFor="inputEIN">Employer Identification Number </label>
+                      <input type="password" readOnly className="form-control form-purple" id="ein" placeholder="12-3456789" />
+                    </div>
+                    <div className="col-md-4">
+                      <label htmlFor="inputNumUsers">Expected Number of Users</label>
+                      <input type="number" readOnly className="form-control form-purple" id="numUsers" placeholder="1000" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
+            <div className="row mt-5">
+              <p className="textPrintDesc pl-3">
+                <span>End User License Agreement</span>
+              </p>
+              <div className="embed-responsive embed-responsive-16by9">
+                <iframe className="embed-responsive-item" src="eula-template.pdf" title="EULA Agreement"/>
+              </div>
+            </div>
+            <div className="row mt-5">
+              <p className="textPrintDesc pl-3">
+                <span>I Agree and Sign</span>
+              </p>
+            </div>
+            <div className="row mt-5 mb-auto">
+            <span className="border">
+              <SignaturePad />
+              </span>
+            </div>
+            <div className="row mt-5">
+              <div className="col-md-6">
+                <p> Need API key for ReCaptcha, which requires domain name</p>
+              </div>
+              <div className="col-md-6 text-right">
+                <button type="submit" className="btn btn-primary">Continue</button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
     );
   }
 }
 
-export default ClientSignup;
+export default OrganizationReview;
