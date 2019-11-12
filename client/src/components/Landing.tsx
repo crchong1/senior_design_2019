@@ -22,7 +22,7 @@ class Landing extends Component<{}, State, {}> {
   render() {
     if (!this.state.loggedIn) {
       return (
-        <Redirect to='/login' />
+        <Redirect to="/login" />
       );
     }
     return (

@@ -70,7 +70,7 @@ class ClientSignup extends Component<{}, State, {}> {
     this.handleChangeAcceptEULA = this.handleChangeAcceptEULA.bind(this);
      */
   }
-/*
+  /*
   handleSubmit(event: any) {
     if (!this.state.acceptEULA) {
       alert('Please accept EULA before completing application');
@@ -172,73 +172,83 @@ class ClientSignup extends Component<{}, State, {}> {
 */
 
   render() {
-    //if (this.state.reaffirmStage) {
-      return (
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 mt-5">
-                <h3 className="text-center textPrintHeader">
+    // if (this.state.reaffirmStage) {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12 mt-5">
+            <h3 className="text-center textPrintHeader">
                   Client Signup Page
-                </h3>
-                <p className="textPrintDesc pl-3">
-                  <span>Thank you for using Keep.id to store your personal documents. Please fill out the following form to proceed with setting up your Keep.id account.</span>
-                </p>
-                <div className="col-md-12">
-                <div className="row">
-                  <div className="col-md-6">
-                    <label htmlFor="inputFirstName">First Name</label><text className="red-star">*</text>
-                    <input type="text" className="form-control form-purple" id="firstName" placeholder="John" />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="inputLastName">Last Name</label><text className="red-star">*</text>
-                    <input type="text" className="form-control form-purple" id="lastName" placeholder="Doe" />
-                  </div>
+            </h3>
+            <p className="textPrintDesc pl-3">
+              <span>Thank you for using Keep.id to store your personal documents. Please fill out the following form to proceed with setting up your Keep.id account.</span>
+            </p>
+            <div className="col-md-12">
+              <div className="row">
+                <div className="col-md-6">
+                  <label htmlFor="inputFirstName">First Name</label>
+                  <text className="red-star">*</text>
+                  <input type="text" className="form-control form-purple" id="firstName" placeholder="John" />
                 </div>
-                <div className="row mt-2">
-                  <div className="col-md-5">
-                    <label htmlFor="inputPhone">Contact Phone Number</label><text className="red-star">*</text>
-                    <input type="tel" className="form-control form-purple" id="phoneNumber" placeholder="1-(234)-567-8901" />
-                  </div>
-                  <div className="col-md-7">
-                    <label htmlFor="inputEmail">Contact Email Address</label><text className="red-star">*</text>
-                    <input type="email" className="form-control form-purple" id="email" placeholder="contact@example.com" />
-                  </div>
+                <div className="col-md-6">
+                  <label htmlFor="inputLastName">Last Name</label>
+                  <text className="red-star">*</text>
+                  <input type="text" className="form-control form-purple" id="lastName" placeholder="Doe" />
                 </div>
-                <div className="row mt-2">
-                  <div className="col-md-4">
-                    <label htmlFor="inputMailingAddress">Client Mailing Address</label><text className="red-star">*</text>
-                    <input type="text" className="form-control form-purple" id="mailingAddress" placeholder="311 Broad St" />
-                  </div>
-                  <div className="col-md-3">
-                    <label htmlFor="inputCity">City</label><text className="red-star">*</text>
-                    <input type="text" className="form-control form-purple" id="city" placeholder="Philadelphia" />
-                  </div>
-                  <div className="col-md-2">
-                    <label htmlFor="inputState">State</label><text className="red-star">*</text>
-                    <input type="text" className="form-control form-purple" id="lastName" placeholder="PA" />
-                  </div>
-                  <div className="col-md-3">
-                    <label htmlFor="inputZipCode">Zip Code</label><text className="red-star">*</text>
-                    <input type="number" className="form-control form-purple" id="zipCode" placeholder="19104" />
-                  </div>
+              </div>
+              <div className="row mt-2">
+                <div className="col-md-5">
+                  <label htmlFor="inputPhone">Contact Phone Number</label>
+                  <text className="red-star">*</text>
+                  <input type="tel" className="form-control form-purple" id="phoneNumber" placeholder="1-(234)-567-8901" />
                 </div>
-                <div className="row mt-2">
-                  <div className="col-md-4">
-                    <label htmlFor="inputPassword">Password:</label><text className="red-star">*</text>
-                    <input type="password" className="form-control form-purple" id="password" placeholder="Password" />
-                  </div>
-                  <div className="col-md-4">
-                    <label htmlFor="input">Password:</label><text className="red-star">*</text>
-                    <input type="password" className="form-control form-purple" id="confirmPassword" placeholder="Confirm password" />
-                  </div>
-                  <div className="col-auto mt-4 pt-2">
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                  </div>
+                <div className="col-md-7">
+                  <label htmlFor="inputEmail">Contact Email Address</label>
+                  <text className="red-star">*</text>
+                  <input type="email" className="form-control form-purple" id="email" placeholder="contact@example.com" />
+                </div>
+              </div>
+              <div className="row mt-2">
+                <div className="col-md-4">
+                  <label htmlFor="inputMailingAddress">Client Mailing Address</label>
+                  <text className="red-star">*</text>
+                  <input type="text" className="form-control form-purple" id="mailingAddress" placeholder="311 Broad St" />
+                </div>
+                <div className="col-md-3">
+                  <label htmlFor="inputCity">City</label>
+                  <text className="red-star">*</text>
+                  <input type="text" className="form-control form-purple" id="city" placeholder="Philadelphia" />
+                </div>
+                <div className="col-md-2">
+                  <label htmlFor="inputState">State</label>
+                  <text className="red-star">*</text>
+                  <input type="text" className="form-control form-purple" id="lastName" placeholder="PA" />
+                </div>
+                <div className="col-md-3">
+                  <label htmlFor="inputZipCode">Zip Code</label>
+                  <text className="red-star">*</text>
+                  <input type="number" className="form-control form-purple" id="zipCode" placeholder="19104" />
+                </div>
+              </div>
+              <div className="row mt-2">
+                <div className="col-md-4">
+                  <label htmlFor="inputPassword">Password:</label>
+                  <text className="red-star">*</text>
+                  <input type="password" className="form-control form-purple" id="password" placeholder="Password" />
+                </div>
+                <div className="col-md-4">
+                  <label htmlFor="input">Password:</label>
+                  <text className="red-star">*</text>
+                  <input type="password" className="form-control form-purple" id="confirmPassword" placeholder="Confirm password" />
+                </div>
+                <div className="col-auto mt-4 pt-2">
+                  <button type="submit" className="btn btn-primary">Submit</button>
                 </div>
               </div>
             </div>
           </div>
-          </div>
+        </div>
+      </div>
     );
   }
 }
