@@ -8,13 +8,14 @@ import {
 import './static/styles/App.scss';
 import EULA from './static/eula.json';
 import ClientSignup from './components/ClientSignup';
+import WorkerSignup from './components/WorkerSignup';
 import OrganizationSignup from './components/OrganizationSignup';
 import Header from './components/Header';
 import Landing from './components/Landing';
 import Login from './components/Login';
 import Print from './components/Print';
 import Request from './components/Request';
-import OrganizationReview from "./components/OrganizationReview";
+import OrganizationReview from './components/OrganizationReview';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/client-signup">
             <ClientSignup />
+          </Route>
+          <Route path="/worker-signup">
+            <WorkerSignup />
           </Route>
           <Route path="/organization-signup">
             <OrganizationSignup />
