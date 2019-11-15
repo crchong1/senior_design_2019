@@ -2,5 +2,11 @@
     "cSpell.words": [
         "browserslist",
         "stylelint"
-    ]
+    ],
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    }
 }
