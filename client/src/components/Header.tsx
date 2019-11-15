@@ -33,7 +33,7 @@ class Header extends Component {
           <Form>
             <Row className="d-flex justify-content-end">
               <Col sm={2}>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="/">
                   <img
                     alt=""
                     src={Logo}

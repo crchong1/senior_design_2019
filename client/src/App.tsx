@@ -3,10 +3,10 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
+  Redirect,
   Switch,
 } from 'react-router-dom';
 import './static/styles/App.scss';
-import EULA from './static/eula.json';
 import ClientSignup from './components/ClientSignup';
 import WorkerSignup from './components/WorkerSignup';
 import OrganizationSignup from './components/OrganizationSignup';
@@ -15,45 +15,58 @@ import Landing from './components/Landing';
 import Login from './components/Login';
 import Print from './components/Print';
 import Request from './components/Request';
-import OrganizationReview from './components/OrganizationReview';
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Landing />
-          </Route>
-          <Route path="/eula">
-            {EULA[0]}
-          </Route>
-          <Route path="/client-signup">
-            <ClientSignup />
-          </Route>
-          <Route path="/worker-signup">
-            <WorkerSignup />
-          </Route>
-          <Route path="/organization-signup">
-            <OrganizationSignup />
-          </Route>
-          <Route path="/organization-review">
-          <OrganizationReview />
-        </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/print">
-            <Print />
-          </Route>
-          <Route path="/request">
-            <Request />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+interface State {
+  loggedIn : boolean,
+}
+
+// const LoggedInRoute = ({component: (React.Component), ...rest}) => (
+//   <Route {...rest} render={(props) => (
+//     this.state.loggedIn === true ?
+//     <React.Component component={component} {...props} /> :
+//     <Redirect to="/login" />
+//   )} />
+// );
+
+class App extends React.Component<{}, State, {}> {
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      loggedIn: false,
+    }
+  }
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Landing />
+            </Route>
+            <Route path="/client-signup">
+              <ClientSignup />
+            </Route>
+            <Route path="/worker-signup">
+              <WorkerSignup />
+            </Route>
+            <Route component={OrganizationSignup} path="/organization-signup" />
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/print">
+              <Print />
+            </Route>
+            <Route path="/request">
+              <Request />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
   );
+
+  }
+  
 }
 
 export default hot(App);
