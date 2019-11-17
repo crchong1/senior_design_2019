@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { Modal } from 'react-bootstrap';
 import UploadLogo from '../static/images/uploading-files-to-the-cloud.svg';
 import PrintLogo from '../static/images/print.svg';
 import RequestLogo from '../static/images/request.svg';
 import AppLogo from '../static/images/calendar.svg';
 import EmailLogo from '../static/images/email-24px.svg';
 import AssistLogo from '../static/images/assistance.svg';
-import {Modal} from "react-bootstrap";
 
 interface State {
 	loggedIn: boolean,
@@ -23,11 +23,11 @@ class Landing extends Component<{}, State, {}> {
   }
 
   showModal = () => {
-    this.setState({show: true});
+    this.setState({ show: true });
   }
 
   hideModal = () => {
-    this.setState({show: false});
+    this.setState({ show: false });
   }
 
   render() {
@@ -83,7 +83,7 @@ class Landing extends Component<{}, State, {}> {
             </a>
           </div>
           <div id="Email container">
-            <a href="/client-signup">
+            <a href="/email">
               <div className="rectangle col-lg mr-5 mt-4">
                 <img className="normalImage" src={EmailLogo} alt="Email" />
                 <p className="textLanding mt-5">Send an Email</p>
@@ -99,20 +99,24 @@ class Landing extends Component<{}, State, {}> {
             </a>
           </div>
           <Modal show={this.state.show} onHide={this.hideModal}>
-            <section className="modal-header background" >
+            <section className="modal-header background">
               <h5 className="modal-title" id="assistTitle">FAQ</h5>
               <button type="button" className="close" onClick={this.hideModal}>
                 <span>&times;</span>
               </button>
             </section>
             <section className="modal-main">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<br/><br/>
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <br />
+                <br />
 
-                Send all technical issues to admin@keep.id</p>
+                Send all technical issues to admin@keep.id
+              </p>
             </section>
           </Modal>
         </div>

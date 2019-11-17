@@ -17,7 +17,7 @@ interface ISignaturePadProps extends React.Props<any> {
     acceptEULA: boolean;
     minDistance?: number;
 }
- 
+
 interface ISignatureState {
     acceptEULA: boolean;
 }
@@ -66,7 +66,7 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, IS
       super(props);
 
       this.state = {
-        acceptEULA: this.props.acceptEULA
+        acceptEULA: this.props.acceptEULA,
       };
       this._isEmpty = true;
       this.points = [];
@@ -100,7 +100,7 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, IS
 
     componentWillReceiveProps(props: ISignaturePadProps) {
       this.setState({
-        acceptEULA: this.props.acceptEULA
+        acceptEULA: this.props.acceptEULA,
       });
     }
 
@@ -177,7 +177,6 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, IS
 
       ctx.scale(ratio, ratio);
       this._isEmpty = true;
-
     }
 
     private reset() {
@@ -186,8 +185,8 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, IS
       this.lastWidth = (this.minWidth + this.maxWidth) / 2;
       this._isEmpty = true;
       this.ctx.fillStyle = this.penColor;
-        this.handleChangeAcceptEULA(false);
-          }
+      this.handleChangeAcceptEULA(false);
+    }
 
     private handleMouseEvents() {
       this.mouseButtonDown = false;
@@ -304,7 +303,6 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, IS
     }
 
     private strokeEnd(event: any) {
-
       const canDrawCurve = this.points.length > 2;
       const point = this.points[0]; // Point instance
 

@@ -17,6 +17,7 @@ import Print from './components/Print';
 import Request from './components/Request';
 import SeeDocs from './components/SeeDocs';
 import Applications from './components/Applications';
+import Email from "./components/Email";
 
 interface State {
   loggedIn : boolean,
@@ -35,8 +36,9 @@ class App extends React.Component<{}, State, {}> {
     super(props);
     this.state = {
       loggedIn: false,
-    }
+    };
   }
+
   render() {
     return (
       <div className="App">
@@ -68,13 +70,14 @@ class App extends React.Component<{}, State, {}> {
             <Route path="/request">
               <Request />
             </Route>
+            <Route path="/email">
+                <Email />
+            </Route>
           </Switch>
         </Router>
       </div>
-  );
-
+    );
   }
-  
 }
 
 export default hot(App);
