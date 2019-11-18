@@ -99,10 +99,10 @@ class App extends React.Component<{}, State, {}> {
               <Request />
             </Route>
             <Route path="/email">
-                <Email />
+              <Email />
             </Route>
             <Route path="/adminlanding">
-                <AdminLanding />
+              <AdminLanding />
             </Route>
           </Switch>
         </Router>

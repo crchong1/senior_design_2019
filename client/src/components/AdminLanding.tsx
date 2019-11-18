@@ -21,39 +21,39 @@ class AdminLanding extends Component<{}, State, {}> {
   // with the appropriate data fields
   exampleData = [
     {
-      id: "id1",
-      name: "exampleName1",
-      role: "worker"
+      id: 'id1',
+      name: 'exampleName1',
+      role: 'worker',
     },
     {
-      id: "id2",
-      name: "exampleName2",
-      role: "worker"
+      id: 'id2',
+      name: 'exampleName2',
+      role: 'worker',
     },
     {
-      id: "id3",
-      name: "exampleName3",
-      role: "worker"
+      id: 'id3',
+      name: 'exampleName3',
+      role: 'worker',
     },
     {
-      id: "id4",
-      name: "exampleName4",
-      role: "admin"
-    }
+      id: 'id4',
+      name: 'exampleName4',
+      role: 'admin',
+    },
   ];
 
   tableCols = [{
     dataField: 'id',
     text: 'Worker ID',
-    sort: true
+    sort: true,
   }, {
     dataField: 'name',
     text: 'Name',
-    sort: true
+    sort: true,
   }, {
     dataField: 'role',
     text: 'Role',
-    sort: true
+    sort: true,
   }];
 
   render() {
@@ -72,14 +72,18 @@ class AdminLanding extends Component<{}, State, {}> {
         </div>
         <div className="container">
           <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
             <button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search Workers</button>
           </form>
           <div className="d-flex flex-row bd-highlight mb-3 pt-5">
             <div className="w-50 pd-3">
-              <BootstrapTable bootstrap4={true} keyField='id' 
-              data={this.exampleData} columns={this.tableCols} 
-              pagination={ paginationFactory() }/>
+              <BootstrapTable
+                bootstrap4
+                keyField="id"
+                data={this.exampleData}
+                columns={this.tableCols}
+                pagination={paginationFactory()}
+              />
             </div>
             <div className="card ml-5">
               <div className="card-body">
@@ -89,24 +93,24 @@ class AdminLanding extends Component<{}, State, {}> {
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                     <label className="form-check-label">Can View Client Documents</label>
                   </div>
                   <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                     <label className="form-check-label">Can Edit Client Documents</label>
                   </div>
                   <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                     <label className="form-check-label">Can Register New Clients</label>
                   </div>
                   <div className="form-group">
                     <label>Set Worker Permission Level</label>
-                      <select className="form-control" id="exampleFormControlSelect1">
-                        <option>Worker</option>
-                        <option>Admin</option>
-                        <option>Volunteer</option>
-                      </select>
+                    <select className="form-control" id="exampleFormControlSelect1">
+                      <option>Worker</option>
+                      <option>Admin</option>
+                      <option>Volunteer</option>
+                    </select>
                   </div>
                   <div className="form-group">
                     <button type="submit" className="btn btn-danger">Delete User</button>

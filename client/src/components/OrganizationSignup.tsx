@@ -289,39 +289,39 @@ Expected Number of Users in 100s
     return (
       <div>
         <div className="container">
-        <div className="row">
-          <div className="col-md-12 mt-5">
-            <h3 className="text-center textPrintHeader">
+          <div className="row">
+            <div className="col-md-12 mt-5">
+              <h3 className="text-center textPrintHeader">
                   Review Your Information
-            </h3>
-            <p className="textPrintDesc pl-3">
-              <span>This is just to check if you have filled out all the fields correctly.</span>
-            </p>
-            <div className="col-md-12">
-              <div className="row">
-                <div className="col-md-6">
-                  <label htmlFor="inputOrgName">Organization Name</label>
-                  <input type="text" readOnly className="form-control form-purple" id="orgName" value={this.state.organizationName} />
+              </h3>
+              <p className="textPrintDesc pl-3">
+                <span>This is just to check if you have filled out all the fields correctly.</span>
+              </p>
+              <div className="col-md-12">
+                <div className="row">
+                  <div className="col-md-6">
+                    <label htmlFor="inputOrgName">Organization Name</label>
+                    <input type="text" readOnly className="form-control form-purple" id="orgName" value={this.state.organizationName} />
+                  </div>
+                  <div className="col-md-6">
+                    <label htmlFor="inputOrgWebsite">Organization Website</label>
+                    <input type="url" readOnly className="form-control form-purple" id="orgWebsite" value={this.state.organizationWebsite} />
+                  </div>
                 </div>
-                <div className="col-md-6">
-                  <label htmlFor="inputOrgWebsite">Organization Website</label>
-                  <input type="url" readOnly className="form-control form-purple" id="orgWebsite" value={this.state.organizationWebsite} />
+                <div className="row mt-2">
+                  <div className="col-md-4">
+                    <label htmlFor="inputContactName">Contact Name</label>
+                    <input type="text" readOnly className="form-control form-purple" id="contactName" value={this.state.contactName} />
+                  </div>
+                  <div className="col-md-4">
+                    <label htmlFor="inputContactPhoneNumber">Contact Phone Number</label>
+                    <input type="tel" readOnly className="form-control form-purple" id="contactPhoneNumber" value={this.state.contactPhoneNumber} />
+                  </div>
+                  <div className="col-md-4">
+                    <label htmlFor="inputContactEmail">Contact Email Address</label>
+                    <input type="email" readOnly className="form-control form-purple" id="contactEmail" value={this.state.contactEmail} />
+                  </div>
                 </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col-md-4">
-                  <label htmlFor="inputContactName">Contact Name</label>
-                  <input type="text" readOnly className="form-control form-purple" id="contactName" value={this.state.contactName} />
-                </div>
-                <div className="col-md-4">
-                  <label htmlFor="inputContactPhoneNumber">Contact Phone Number</label>
-                  <input type="tel" readOnly className="form-control form-purple" id="contactPhoneNumber" value={this.state.contactPhoneNumber} />
-                </div>
-                <div className="col-md-4">
-                  <label htmlFor="inputContactEmail">Contact Email Address</label>
-                  <input type="email" readOnly className="form-control form-purple" id="contactEmail" value={this.state.contactEmail} />
-                </div>
-              </div>
               </div>
               <div className="row mt-2">
                 <div className="col-md-4">
