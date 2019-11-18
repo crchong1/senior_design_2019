@@ -17,10 +17,10 @@ import Request from './components/Request';
 
 interface State {
   isLoggedIn : boolean,
-};
+}
 
 class App extends React.Component<{}, State, {}> {
-  // LoggedInRoute(component: (React.Component), exact: boolean, path: string) { 
+  // LoggedInRoute(component: (React.Component), exact: boolean, path: string) {
   //     const loggedIn = this.state.loggedIn;
   //   return(
   //   <Route exact={exact} path={path} render={(props) => (
@@ -32,12 +32,12 @@ class App extends React.Component<{}, State, {}> {
   // }
 
   logIn() {
-    console.log("Log In");
-    this.setState({ isLoggedIn : true });
+    console.log('Log In');
+    this.setState({ isLoggedIn: true });
   }
 
   logOut() {
-    console.log("Log Out");
+    console.log('Log Out');
     this.setState({ isLoggedIn: false });
   }
 
@@ -57,26 +57,36 @@ class App extends React.Component<{}, State, {}> {
         <Header isLoggedIn={this.state.isLoggedIn} logIn={this.logIn} logOut={this.logOut} />
         <Router>
           <Switch>
-            <Route exact path="/" render={() => (
-              this.state.isLoggedIn === true ?
-              <Redirect to="/home" /> :
-              <Redirect to="/login"/>
-            )}/>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                this.state.isLoggedIn === true
+                  ? <Redirect to="/home" />
+                  : <Redirect to="/login" />
+              )}
+            />
 
-            <Route path="/login" render={() => (
-              this.state.isLoggedIn === true ?
-              <Redirect to="/home" /> :
-              <Login />
-            )}/>
+            <Route
+              path="/login"
+              render={() => (
+                this.state.isLoggedIn === true
+                  ? <Redirect to="/home" />
+                  : <Login />
+              )}
+            />
             <Route path="/organization-signup">
               <OrganizationSignup />
             </Route>
 
-            <Route path="/home" render={() => (
-              this.state.isLoggedIn === true ?
-              <Landing /> :
-              <Redirect to="/login"/>
-            )}/>
+            <Route
+              path="/home"
+              render={() => (
+                this.state.isLoggedIn === true
+                  ? <Landing />
+                  : <Redirect to="/login" />
+              )}
+            />
             <Route path="/client-signup">
               <ClientSignup />
             </Route>
