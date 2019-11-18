@@ -34,7 +34,7 @@ class OrganizationSignup extends Component<{}, State, {}> {
       organizationName: '',
       organizationStatus: '', // 501c3, etc.
       organizationWebsite: 'http://',
-      organizationNumClients: 0, //${NumClientOptions[0][0]}-${NumClientOptions[0][1]}`,
+      organizationNumClients: 0, // ${NumClientOptions[0][0]}-${NumClientOptions[0][1]}`,
       organizationEIN: '',
       contactName: '',
       contactEmail: '',
@@ -175,180 +175,213 @@ class OrganizationSignup extends Component<{}, State, {}> {
   render() {
     if (!this.state.reaffirmStage) {
       return (
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 mt-5">
-                <h3 className="text-center textPrintHeader">
-                  Organization Signup Page
-                </h3>
-                <p className="textPrintDesc pl-3">
-              <span>Thank you for expressing interest in using Keep.id in the fight to end homelessness.
-                 Please fill out the following form so we can get back to you with instructions on how to proceed.</span>
-                </p>
-                <form onSubmit={this.handleChangeReaffirmStage}>
-                  <div className="col-md-12">
-                    <div className="form-row">
-                      <div className="col-md-6 form-group">
-                        <label htmlFor="inputOrgName">Organization Name<text className="red-star">*</text></label>
-                        <input type="text" className="form-control form-purple" id="orgName" placeholder="Keep" value={this.state.organizationName} onChange={this.handleChangeOrganizationName} required />
-                      </div>
-                      <div className="col-md-6 form-group">
-                        <label htmlFor="inputOrgWebsite">Organization Website</label>
-                        <input type="url" className="form-control form-purple" id="orgWebsite" placeholder="https://www.keep.id" value={this.state.organizationWebsite} onChange={this.handleChangeOrganizationWebsite} />
-                      </div>
-                    </div>
-                    <div className="form-row">
-                      <div className="col-md-4 form-group">
-                        <label htmlFor="inputContactName">Contact Name<text className="red-star">*</text></label>
-                        <input type="text" className="form-control form-purple" id="contactName" placeholder="John Doe"  value={this.state.contactName} onChange={this.handleChangeContactName} required />
-                      </div>
-                      <div className="col-md-4 form-group">
-                        <label htmlFor="inputContactPhoneNumber">Contact Phone Number<text className="red-star">*</text></label>
-                        <input type="tel" className="form-control form-purple" id="contactPhoneNumber" placeholder="1-(234)-567-8901" value={this.state.contactPhoneNumber} onChange={this.handleChangeContactPhoneNumber} required />
-                      </div>
-                      <div className="col-md-4 form-group">
-                        <label htmlFor="inputContactEmail">Contact Email Address<text className="red-star">*</text></label>
-                        <input type="email" className="form-control form-purple" id="contactEmail" placeholder="contact@example.com" value={this.state.contactEmail} onChange={this.handleChangeContactEmail} required />
-                      </div>
-                    </div>
-                    <div className="form-row">
-                      <div className="col-md-4 form-group">
-                        <label htmlFor="inputAddress">Organization Address<text className="red-star">*</text></label>
-                        <input type="text" className="form-control form-purple" id="address" placeholder="311 Broad St" value={this.state.organizationAddressLine1} onChange={this.handleChangeOrganizationAddressLine1} required />
-                      </div>
-                      <div className="col-md-3 form-group">
-                        <label htmlFor="inputCity">City<text className="red-star">*</text></label>
-                        <input type="text" className="form-control form-purple" id="city" placeholder="Philadelphia" value={this.state.organizationAddressCity} onChange={this.handleChangeOrganizationAddressCity} required />
-                      </div>
-                      <div className="col-md-2 form-group">
-                        <label htmlFor="inputState">State<text className="red-star">*</text></label>
-                        <select className="form-control form-purple" id="state" value={this.state.organizationAddressState} onChange={this.handleChangeOrganizationAddressState} required>
-                          {USStates.map((USState) => (<option>{USState.name}</option>))}
-                        </select>
-                      </div>
-                      <div className="col-md-3 form-group">
-                        <label htmlFor="inputZipCode">Zip Code<text className="red-star">*</text></label>
-                        <input type="text" className="form-control form-purple" id="zipCode" placeholder="19104" value={this.state.organizationAddressZipcode} onChange={this.handleChangeOrganizationAddressZipcode} required />
-                      </div>
-                    </div>
-                    <div className="form-row">
-                      <div className="col-md-4 form-group">
-                        <label htmlFor="inputEIN">Organization Employer Identification Number<text className="red-star">*</text> </label>
-
-                        <input type="text" className="form-control form-purple" id="ein" placeholder="12-3456789" value={this.state.organizationEIN} onChange={this.handleChangeOrganizationEIN} required />
-                      </div>
-                      <div className="col-md-4 form-group">
-                        <label htmlFor="inputNumUsers">Expected Number of Users in 100s<text className="red-star">*</text></label>
-
-                        <input type="number" className="form-control form-purple" id="numUsers" min="0" step="100" placeholder="1000"  value={this.state.organizationNumClients} onChange={this.handleChangeOrganizationNumClients} required />
-                      </div>
-                      <div className="col-auto mt-4 pt-2">
-                        <button type="submit" className="btn btn-primary">Continue</button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-      );
-    } else {
-      return(
         <div className="container">
-            <div className="row">
-              <div className="col-md-12 mt-5">
-                <h3 className="text-center textPrintHeader">
-                  Review Your Information
-                </h3>
-                <p className="textPrintDesc pl-3">
-              <span>This is just to check if you have filled out all the fields correctly.</span>
-                </p>
+          <div className="row">
+            <div className="col-md-12 mt-5">
+              <h3 className="text-center textPrintHeader">
+                  Organization Signup Page
+              </h3>
+              <p className="textPrintDesc pl-3">
+                <span>
+Thank you for expressing interest in using Keep.id in the fight to end homelessness.
+                 Please fill out the following form so we can get back to you with instructions on how to proceed.
+                </span>
+              </p>
+              <form onSubmit={this.handleChangeReaffirmStage}>
                 <div className="col-md-12">
-                  <div className="row">
-                    <div className="col-md-6">
-                      <label htmlFor="inputOrgName">Organization Name</label>
-                      <input type="text" readOnly className="form-control form-purple" id="orgName" value={this.state.organizationName} />
+                  <div className="form-row">
+                    <div className="col-md-6 form-group">
+                      <label htmlFor="inputOrgName">
+Organization Name
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="orgName" placeholder="Keep" value={this.state.organizationName} onChange={this.handleChangeOrganizationName} required />
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 form-group">
                       <label htmlFor="inputOrgWebsite">Organization Website</label>
-                      <input type="url" readOnly className="form-control form-purple" id="orgWebsite" value={this.state.organizationWebsite} />
+                      <input type="url" className="form-control form-purple" id="orgWebsite" placeholder="https://www.keep.id" value={this.state.organizationWebsite} onChange={this.handleChangeOrganizationWebsite} />
                     </div>
                   </div>
-                  <div className="row mt-2">
-                    <div className="col-md-4">
-                      <label htmlFor="inputContactName">Contact Name</label>
-                      <input type="text" readOnly className="form-control form-purple" id="contactName" value={this.state.contactName} />
+                  <div className="form-row">
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputContactName">
+Contact Name
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="contactName" placeholder="John Doe" value={this.state.contactName} onChange={this.handleChangeContactName} required />
                     </div>
-                    <div className="col-md-4">
-                      <label htmlFor="inputContactPhoneNumber">Contact Phone Number</label>
-                      <input type="tel" readOnly className="form-control form-purple" id="contactPhoneNumber" value={this.state.contactPhoneNumber} />
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputContactPhoneNumber">
+Contact Phone Number
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="tel" className="form-control form-purple" id="contactPhoneNumber" placeholder="1-(234)-567-8901" value={this.state.contactPhoneNumber} onChange={this.handleChangeContactPhoneNumber} required />
                     </div>
-                    <div className="col-md-4">
-                      <label htmlFor="inputContactEmail">Contact Email Address</label>
-                      <input type="email" readOnly className="form-control form-purple" id="contactEmail" value={this.state.contactEmail} />
-                    </div>
-                  </div>
-                  <div className="row mt-2">
-                    <div className="col-md-4">
-                      <label htmlFor="inputAddress">Organization Address</label>
-                      <input type="text" readOnly className="form-control form-purple" id="address" value={this.state.organizationAddressLine1} />
-                    </div>
-                    <div className="col-md-3">
-                      <label htmlFor="inputCity">City</label>
-                      <input type="text" readOnly className="form-control form-purple" id="city" value={this.state.organizationAddressCity} />
-                    </div>
-                    <div className="col-md-2">
-                      <label htmlFor="inputState">State</label>
-                      <input type="text" readOnly className="form-control form-purple" id="state" value={this.state.organizationAddressState} />
-                    </div>
-                    <div className="col-md-3">
-                      <label htmlFor="inputZipCode">Zip Code</label>
-                      <input type="number" readOnly className="form-control form-purple" id="zipCode" value={this.state.organizationAddressZipcode} />
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputContactEmail">
+Contact Email Address
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="email" className="form-control form-purple" id="contactEmail" placeholder="contact@example.com" value={this.state.contactEmail} onChange={this.handleChangeContactEmail} required />
                     </div>
                   </div>
-                  <div className="row mt-2">
-                    <div className="col-md-4">
-                      <label htmlFor="inputEIN">Organization Employer Identification Number </label>
-                      <input type="password" readOnly className="form-control form-purple" id="ein" value={this.state.organizationEIN} />
+                  <div className="form-row">
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputAddress">
+Organization Address
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="address" placeholder="311 Broad St" value={this.state.organizationAddressLine1} onChange={this.handleChangeOrganizationAddressLine1} required />
                     </div>
-                    <div className="col-md-4">
-                      <label htmlFor="inputNumUsers">Expected Number of Users</label>
-                      <input type="number" readOnly className="form-control form-purple" id="numUsers" value={this.state.organizationNumClients} />
+                    <div className="col-md-3 form-group">
+                      <label htmlFor="inputCity">
+City
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="city" placeholder="Philadelphia" value={this.state.organizationAddressCity} onChange={this.handleChangeOrganizationAddressCity} required />
+                    </div>
+                    <div className="col-md-2 form-group">
+                      <label htmlFor="inputState">
+State
+                        <text className="red-star">*</text>
+                      </label>
+                      <select className="form-control form-purple" id="state" value={this.state.organizationAddressState} onChange={this.handleChangeOrganizationAddressState} required>
+                        {USStates.map((USState) => (<option>{USState.name}</option>))}
+                      </select>
+                    </div>
+                    <div className="col-md-3 form-group">
+                      <label htmlFor="inputZipCode">
+Zip Code
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="zipCode" placeholder="19104" value={this.state.organizationAddressZipcode} onChange={this.handleChangeOrganizationAddressZipcode} required />
+                    </div>
+                  </div>
+                  <div className="form-row">
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputEIN">
+Organization Employer Identification Number
+                        <text className="red-star">*</text>
+                        {' '}
+
+                      </label>
+
+                      <input type="text" className="form-control form-purple" id="ein" placeholder="12-3456789" value={this.state.organizationEIN} onChange={this.handleChangeOrganizationEIN} required />
+                    </div>
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputNumUsers">
+Expected Number of Users in 100s
+                        <text className="red-star">*</text>
+                      </label>
+
+                      <input type="number" className="form-control form-purple" id="numUsers" min="0" step="100" placeholder="1000" value={this.state.organizationNumClients} onChange={this.handleChangeOrganizationNumClients} required />
+                    </div>
+                    <div className="col-auto mt-4 pt-2">
+                      <button type="submit" className="btn btn-primary">Continue</button>
                     </div>
                   </div>
                 </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12 mt-5">
+            <h3 className="text-center textPrintHeader">
+                  Review Your Information
+            </h3>
+            <p className="textPrintDesc pl-3">
+              <span>This is just to check if you have filled out all the fields correctly.</span>
+            </p>
+            <div className="col-md-12">
+              <div className="row">
+                <div className="col-md-6">
+                  <label htmlFor="inputOrgName">Organization Name</label>
+                  <input type="text" readOnly className="form-control form-purple" id="orgName" value={this.state.organizationName} />
+                </div>
+                <div className="col-md-6">
+                  <label htmlFor="inputOrgWebsite">Organization Website</label>
+                  <input type="url" readOnly className="form-control form-purple" id="orgWebsite" value={this.state.organizationWebsite} />
+                </div>
               </div>
-            </div>
-            <div className="row mt-5">
-              <p className="textPrintDesc pl-3">
-                <span>End User License Agreement</span>
-              </p>
-              <div className="embed-responsive embed-responsive-16by9">
-                <iframe className="embed-responsive-item" src="eula-template.pdf" title="EULA Agreement"/>
+              <div className="row mt-2">
+                <div className="col-md-4">
+                  <label htmlFor="inputContactName">Contact Name</label>
+                  <input type="text" readOnly className="form-control form-purple" id="contactName" value={this.state.contactName} />
+                </div>
+                <div className="col-md-4">
+                  <label htmlFor="inputContactPhoneNumber">Contact Phone Number</label>
+                  <input type="tel" readOnly className="form-control form-purple" id="contactPhoneNumber" value={this.state.contactPhoneNumber} />
+                </div>
+                <div className="col-md-4">
+                  <label htmlFor="inputContactEmail">Contact Email Address</label>
+                  <input type="email" readOnly className="form-control form-purple" id="contactEmail" value={this.state.contactEmail} />
+                </div>
               </div>
-            </div>
-            <div className="row mt-5">
-              <p className="textPrintDesc pl-3">
-                <span>I Agree and Sign</span>
-              </p>
-            </div>
-            <div className="row mt-5 mb-auto">
-            <span className="border">
-              <SignaturePad acceptEULA={this.state.acceptEULA} handleChangeAcceptEULA={this.handleChangeAcceptEULA} />
-              </span>
-            </div>
-            <div className="row mt-5">
-              <div className="col-md-6">
-                <p> Need API key for ReCaptcha, which requires domain name</p>
+              <div className="row mt-2">
+                <div className="col-md-4">
+                  <label htmlFor="inputAddress">Organization Address</label>
+                  <input type="text" readOnly className="form-control form-purple" id="address" value={this.state.organizationAddressLine1} />
+                </div>
+                <div className="col-md-3">
+                  <label htmlFor="inputCity">City</label>
+                  <input type="text" readOnly className="form-control form-purple" id="city" value={this.state.organizationAddressCity} />
+                </div>
+                <div className="col-md-2">
+                  <label htmlFor="inputState">State</label>
+                  <input type="text" readOnly className="form-control form-purple" id="state" value={this.state.organizationAddressState} />
+                </div>
+                <div className="col-md-3">
+                  <label htmlFor="inputZipCode">Zip Code</label>
+                  <input type="number" readOnly className="form-control form-purple" id="zipCode" value={this.state.organizationAddressZipcode} />
+                </div>
               </div>
-              <div className="col-md-6 text-right">
-                <button onClick={this.handleChangeReaffirmStage} className="btn btn-primary">Back</button>
-                <button onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
+              <div className="row mt-2">
+                <div className="col-md-4">
+                  <label htmlFor="inputEIN">Organization Employer Identification Number </label>
+                  <input type="password" readOnly className="form-control form-purple" id="ein" value={this.state.organizationEIN} />
+                </div>
+                <div className="col-md-4">
+                  <label htmlFor="inputNumUsers">Expected Number of Users</label>
+                  <input type="number" readOnly className="form-control form-purple" id="numUsers" value={this.state.organizationNumClients} />
+                </div>
               </div>
             </div>
           </div>
-      );
-    }  
+        </div>
+        <div className="row mt-5">
+          <p className="textPrintDesc pl-3">
+            <span>End User License Agreement</span>
+          </p>
+          <div className="embed-responsive embed-responsive-16by9">
+            <iframe className="embed-responsive-item" src="eula-template.pdf" title="EULA Agreement" />
+          </div>
+        </div>
+        <div className="row mt-5">
+          <p className="textPrintDesc pl-3">
+            <span>I Agree and Sign</span>
+          </p>
+        </div>
+        <div className="row mt-5 mb-auto">
+          <span className="border">
+            <SignaturePad acceptEULA={this.state.acceptEULA} handleChangeAcceptEULA={this.handleChangeAcceptEULA} />
+          </span>
+        </div>
+        <div className="row mt-5">
+          <div className="col-md-6">
+            <p> Need API key for ReCaptcha, which requires domain name</p>
+          </div>
+          <div className="col-md-6 text-right">
+            <button onClick={this.handleChangeReaffirmStage} className="btn btn-primary">Back</button>
+            <button onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

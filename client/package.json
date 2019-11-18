@@ -17,8 +17,10 @@
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.11",
     "react-pdf": "^4.1.0",
+    "react-redirect": "^1.0.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+    "redirect": "^0.2.0",
     "typescript": "3.6.4"
   },
   "devDependencies": {

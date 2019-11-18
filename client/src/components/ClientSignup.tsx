@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
 import USStates from '../static/data/states_titlecase.json';
-/*
-import {
-  Form, Button, Container, Row, Col,
-} from 'react-bootstrap';
 import querystring from 'querystring';
 import https from 'https';
-
-import NumClientOptions from '../static/data/num_client_options.json';
-import SignaturePad from '../react-typescript-signature-pad';
- */
 
 // Need to validate form to make sure inputs are good, address is good, etc.
 // Google API for address checking
 
 interface State {
-  /*
   organizationName: string,
   organizationStatus: string,
   organizationWebsite: string,
-  organizationNumClients: string,
+  clientSSN: number,
   organizationEmail: string,
   organizationPhoneNumber: string,
   organizationAddressLine1: string,
@@ -29,18 +20,17 @@ interface State {
   organizationAddressZipcode: string,
   acceptEULA: boolean,
   reaffirmStage: boolean
-   */
 }
 
 class ClientSignup extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
     console.log(USStates);
-    this.state = {/*
+    this.state = {
       organizationName: '',
       organizationStatus: '', // 501c3, etc.
       organizationWebsite: '',
-      organizationNumClients: `${NumClientOptions[0][0]}-${NumClientOptions[0][1]}`,
+      clientSSN: 0,
       organizationEmail: '',
       organizationPhoneNumber: '',
       organizationAddressLine1: '',
@@ -50,7 +40,6 @@ class ClientSignup extends Component<{}, State, {}> {
       organizationAddressZipcode: '',
       acceptEULA: false,
       reaffirmStage: false,
-      */
     };
 
     /*

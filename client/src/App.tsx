@@ -1,4 +1,3 @@
-import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -17,42 +16,72 @@ import Print from './components/Print';
 import Request from './components/Request';
 
 interface State {
-  loggedIn : boolean,
-}
-
-// const LoggedInRoute = ({component: (React.Component), ...rest}) => (
-//   <Route {...rest} render={(props) => (
-//     this.state.loggedIn === true ?
-//     <React.Component component={component} {...props} /> :
-//     <Redirect to="/login" />
-//   )} />
-// );
+  isLoggedIn : boolean,
+};
 
 class App extends React.Component<{}, State, {}> {
+  // LoggedInRoute(component: (React.Component), exact: boolean, path: string) { 
+  //     const loggedIn = this.state.loggedIn;
+  //   return(
+  //   <Route exact={exact} path={path} render={(props) => (
+  //     loggedIn === true ?
+  //     <h1>Test</h1> : //<React.Component component={component} {...props} /> :
+  //     <Redirect to="/login" />
+  //   )} />
+  // );
+  // }
+
+  logIn() {
+    console.log("Log In");
+    this.setState({ isLoggedIn : true });
+  }
+
+  logOut() {
+    console.log("Log Out");
+    this.setState({ isLoggedIn: false });
+  }
+
   constructor(props: {}) {
     super(props);
     this.state = {
-      loggedIn: false,
-    }
+      isLoggedIn: false,
+    };
+    this.logIn = this.logIn.bind(this);
+    this.logOut = this.logOut.bind(this);
+    console.log('New');
   }
+
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header isLoggedIn={this.state.isLoggedIn} logIn={this.logIn} logOut={this.logOut} />
         <Router>
           <Switch>
-            <Route exact path="/">
-              <Landing />
+            <Route exact path="/" render={() => (
+              this.state.isLoggedIn === true ?
+              <Redirect to="/home" /> :
+              <Redirect to="/login"/>
+            )}/>
+
+            <Route path="/login" render={() => (
+              this.state.isLoggedIn === true ?
+              <Redirect to="/home" /> :
+              <Login />
+            )}/>
+            <Route path="/organization-signup">
+              <OrganizationSignup />
             </Route>
+
+            <Route path="/home" render={() => (
+              this.state.isLoggedIn === true ?
+              <Landing /> :
+              <Redirect to="/login"/>
+            )}/>
             <Route path="/client-signup">
               <ClientSignup />
             </Route>
             <Route path="/worker-signup">
               <WorkerSignup />
-            </Route>
-            <Route component={OrganizationSignup} path="/organization-signup" />
-            <Route path="/login">
-              <Login />
             </Route>
             <Route path="/print">
               <Print />
@@ -63,10 +92,8 @@ class App extends React.Component<{}, State, {}> {
           </Switch>
         </Router>
       </div>
-  );
-
+    );
   }
-  
 }
 
-export default hot(App);
+export default App;
