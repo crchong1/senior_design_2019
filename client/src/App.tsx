@@ -17,7 +17,8 @@ import Print from './components/Print';
 import Request from './components/Request';
 import SeeDocs from './components/SeeDocs';
 import Applications from './components/Applications';
-import Email from "./components/Email";
+import Email from './components/Email';
+import AdminLanding from './components/AdminLanding';
 
 interface State {
   loggedIn : boolean,
@@ -72,6 +73,9 @@ class App extends React.Component<{}, State, {}> {
             </Route>
             <Route path="/email">
                 <Email />
+            </Route>
+            <Route path="/adminlanding">
+                <AdminLanding />
             </Route>
           </Switch>
         </Router>
