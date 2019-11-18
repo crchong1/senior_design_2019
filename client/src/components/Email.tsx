@@ -38,7 +38,7 @@ class Email extends Component<{}, State, {}> {
               <div className="form-group row">
                 <label htmlFor="inputSubject" className="col-sm-2 col-form-label">Subject: </label>
                 <div className="col-sm-10">
-                  <input type="test" className="form-control" id="inputSubject" placeholder="Subject" />
+                  <input type="text" className="form-control" id="inputSubject" placeholder="Subject" />
                 </div>
               </div>
               <div className="form-group row">
@@ -47,11 +47,12 @@ class Email extends Component<{}, State, {}> {
                   <textarea className="form-control" id="inputBody" placeholder="Type your message here." />
                 </div>
               </div>
+              <button type="submit" className="btn btn-lg">
+                Send
+              </button>
             </form>
           </div>
-          <button type="submit" className="btn btn-lg">
-                Send
-          </button>
+
         </div>
       </div>
     );
