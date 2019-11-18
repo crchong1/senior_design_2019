@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
+// import querystring from 'querystring';
+// import https from 'https';
 import USStates from '../static/data/states_titlecase.json';
-/*
-import {
-  Form, Button, Container, Row, Col,
-} from 'react-bootstrap';
-import querystring from 'querystring';
-import https from 'https';
-
-import NumClientOptions from '../static/data/num_client_options.json';
-import SignaturePad from '../react-typescript-signature-pad';
- */
 
 // Need to validate form to make sure inputs are good, address is good, etc.
 // Google API for address checking
 
 interface State {
-  /*
   organizationName: string,
   organizationStatus: string,
   organizationWebsite: string,
-  organizationNumClients: string,
+  clientSSN: number,
   organizationEmail: string,
   organizationPhoneNumber: string,
   organizationAddressLine1: string,
@@ -29,18 +20,17 @@ interface State {
   organizationAddressZipcode: string,
   acceptEULA: boolean,
   reaffirmStage: boolean
-   */
 }
 
 class ClientSignup extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
     console.log(USStates);
-    this.state = {/*
+    this.state = {
       organizationName: '',
       organizationStatus: '', // 501c3, etc.
       organizationWebsite: '',
-      organizationNumClients: `${NumClientOptions[0][0]}-${NumClientOptions[0][1]}`,
+      clientSSN: 0,
       organizationEmail: '',
       organizationPhoneNumber: '',
       organizationAddressLine1: '',
@@ -50,7 +40,6 @@ class ClientSignup extends Component<{}, State, {}> {
       organizationAddressZipcode: '',
       acceptEULA: false,
       reaffirmStage: false,
-      */
     };
 
     /*
@@ -187,49 +176,79 @@ class ClientSignup extends Component<{}, State, {}> {
               <div className="col-md-12">
                 <div className="form-row">
                   <div className="col-md-6 form-group">
-                    <label htmlFor="inputFirstName">First Name<text className="red-star">*</text></label>
+                    <label htmlFor="inputFirstName">
+First Name
+                      <text className="red-star">*</text>
+                    </label>
                     <input type="text" className="form-control form-purple" id="firstName" placeholder="John" required />
                   </div>
                   <div className="col-md-6 form-group">
-                    <label htmlFor="inputLastName">Last Name<text className="red-star">*</text></label>
+                    <label htmlFor="inputLastName">
+Last Name
+                      <text className="red-star">*</text>
+                    </label>
                     <input type="text" className="form-control form-purple" id="lastName" placeholder="Doe" required />
                   </div>
                 </div>
                 <div className="form-row">
                   <div className="col-md-5 form-group">
-                    <label htmlFor="inputPhone">Contact Phone Number<text className="red-star">*</text></label>
+                    <label htmlFor="inputPhone">
+Contact Phone Number
+                      <text className="red-star">*</text>
+                    </label>
                     <input type="tel" className="form-control form-purple" id="phoneNumber" placeholder="1-(234)-567-8901" required />
                   </div>
                   <div className="col-md-7 form-group">
-                    <label htmlFor="inputEmail">Contact Email Address<text className="red-star">*</text></label>
+                    <label htmlFor="inputEmail">
+Contact Email Address
+                      <text className="red-star">*</text>
+                    </label>
                     <input type="email" className="form-control form-purple" id="email" placeholder="contact@example.com" required />
                   </div>
                 </div>
                 <div className="form-row">
                   <div className="col-md-4 form-group">
-                    <label htmlFor="inputMailingAddress">Client Mailing Address<text className="red-star">*</text></label>
+                    <label htmlFor="inputMailingAddress">
+Client Mailing Address
+                      <text className="red-star">*</text>
+                    </label>
                     <input type="text" className="form-control form-purple" id="mailingAddress" placeholder="311 Broad St" required />
                   </div>
                   <div className="col-md-3 form-group">
-                    <label htmlFor="inputCity">City<text className="red-star">*</text></label>
+                    <label htmlFor="inputCity">
+City
+                      <text className="red-star">*</text>
+                    </label>
                     <input type="text" className="form-control form-purple" id="city" placeholder="Philadelphia" required />
                   </div>
                   <div className="col-md-2 form-group">
-                    <label htmlFor="inputState">State<text className="red-star">*</text></label>
+                    <label htmlFor="inputState">
+State
+                      <text className="red-star">*</text>
+                    </label>
                     <input type="text" className="form-control form-purple" id="state" placeholder="PA" required />
                   </div>
                   <div className="col-md-3 form-group">
-                    <label htmlFor="inputZipCode">Zip Code<text className="red-star">*</text></label>
+                    <label htmlFor="inputZipCode">
+Zip Code
+                      <text className="red-star">*</text>
+                    </label>
                     <input type="number" className="form-control form-purple" id="zipCode" placeholder="19104" required />
                   </div>
                 </div>
                 <div className="form-row">
                   <div className="col-md-4 form-group">
-                    <label htmlFor="inputPassword">Password<text className="red-star">*</text></label>
+                    <label htmlFor="inputPassword">
+Password
+                      <text className="red-star">*</text>
+                    </label>
                     <input type="password" className="form-control form-purple" id="password" placeholder="Password" required />
                   </div>
                   <div className="col-md-4 form-group">
-                    <label htmlFor="inputConfirmPassword">Confirm Password<text className="red-star">*</text></label>
+                    <label htmlFor="inputConfirmPassword">
+Confirm Password
+                      <text className="red-star">*</text>
+                    </label>
                     <input type="password" className="form-control form-purple" id="confirmPassword" placeholder="Confirm password" required />
                   </div>
                   <div className="col-auto mt-4 pt-2">

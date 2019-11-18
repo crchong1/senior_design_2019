@@ -1,12 +1,11 @@
-import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
+  Redirect,
   Switch,
 } from 'react-router-dom';
 import './static/styles/App.scss';
-import EULA from './static/eula.json';
 import ClientSignup from './components/ClientSignup';
 import WorkerSignup from './components/WorkerSignup';
 import OrganizationSignup from './components/OrganizationSignup';
@@ -15,49 +14,101 @@ import Landing from './components/Landing';
 import Login from './components/Login';
 import Print from './components/Print';
 import Request from './components/Request';
-import OrganizationReview from './components/OrganizationReview';
+import SeeDocs from './components/SeeDocs';
+import Applications from './components/Applications';
+import Email from './components/Email';
 import AdminLanding from './components/AdminLanding';
 
-function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Landing />
-          </Route>
-          <Route path="/eula">
-            {EULA[0]}
-          </Route>
-          <Route path="/client-signup">
-            <ClientSignup />
-          </Route>
-          <Route path="/worker-signup">
-            <WorkerSignup />
-          </Route>
-          <Route path="/organization-signup">
-            <OrganizationSignup />
-          </Route>
-          <Route path="/organization-review">
-          <OrganizationReview />
-        </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/print">
-            <Print />
-          </Route>
-          <Route path="/admin-landing">
-            <AdminLanding />
-          </Route>
-          <Route path="/request">
-            <Request />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
-  );
+interface State {
+  isLoggedIn : boolean,
 }
 
-export default hot(App);
+class App extends React.Component<{}, State, {}> {
+  logIn() {
+    console.log('Log In');
+    this.setState({ isLoggedIn: true });
+  }
+
+  logOut() {
+    console.log('Log Out');
+    this.setState({ isLoggedIn: false });
+  }
+
+  constructor(props: {}) {
+    super(props);
+    this.state = {
+      isLoggedIn: true,
+    };
+    this.logIn = this.logIn.bind(this);
+    this.logOut = this.logOut.bind(this);
+    console.log('New');
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header isLoggedIn={this.state.isLoggedIn} logIn={this.logIn} logOut={this.logOut} />
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                this.state.isLoggedIn === true
+                  ? <Redirect to="/home" />
+                  : <Redirect to="/login" />
+              )}
+            />
+
+            <Route
+              path="/login"
+              render={() => (
+                this.state.isLoggedIn === true
+                  ? <Redirect to="/home" />
+                  : <Login />
+              )}
+            />
+            <Route path="/organization-signup">
+              <OrganizationSignup />
+            </Route>
+
+            <Route
+              path="/home"
+              render={() => (
+                this.state.isLoggedIn === true
+                  ? <Landing />
+                  : <Redirect to="/login" />
+              )}
+            />
+            <Route path="/client-signup">
+              <ClientSignup />
+            </Route>
+            <Route path="/worker-signup">
+              <WorkerSignup />
+            </Route>
+            <Route path="/seemydocs">
+              <SeeDocs />
+            </Route>
+            <Route path="/applications">
+              <Applications />
+            </Route>
+            <Route path="/print">
+              <Print />
+            </Route>
+            <Route path="/request">
+              <Request />
+            </Route>
+            <Route path="/email">
+                <Email />
+            </Route>
+            <Route path="/adminlanding">
+                <AdminLanding />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
+}
+
+export default App;
