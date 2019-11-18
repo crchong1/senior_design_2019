@@ -12,6 +12,8 @@ $theme-colors: (
 // import roboto
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+// @import '../../node_modules/react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+
 $primary-theme: #7B81FF;
 $secondary-theme: rgba(123, 130, 255, 0.12);
 $secondary-dark-theme: #262867;
@@ -90,10 +92,6 @@ color: #000000;
   font-weight: 500;
   font-size: 22px;
   line-height: 26px;
-}
-
-.btn {
-  background: #7B81FF;
 }
 
 // Print page classes

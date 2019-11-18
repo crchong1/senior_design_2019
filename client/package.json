@@ -15,6 +15,8 @@
     "normalize.css": "^8.0.1",
     "react": "^16.11",
     "react-bootstrap": "^1.0.0-beta.14",
+    "react-bootstrap-table-next": "^3.3.1",
+    "react-bootstrap-table2-paginator": "^2.1.0",
     "react-dom": "^16.11",
     "react-pdf": "^4.1.0",
     "react-router-dom": "^5.1.2",

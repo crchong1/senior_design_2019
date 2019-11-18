@@ -16,6 +16,7 @@ import Login from './components/Login';
 import Print from './components/Print';
 import Request from './components/Request';
 import OrganizationReview from './components/OrganizationReview';
+import AdminLanding from './components/AdminLanding';
 
 function App() {
   return (
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path="/print">
             <Print />
+          </Route>
+          <Route path="/admin-landing">
+            <AdminLanding />
           </Route>
           <Route path="/request">
             <Request />

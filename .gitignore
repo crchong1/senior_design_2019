@@ -123,3 +123,4 @@ package-lock.json
 /javaserver/target/*
 misc.xml
 compiler.xml
+*.iml
