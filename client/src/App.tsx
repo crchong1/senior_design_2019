@@ -14,6 +14,9 @@ import Landing from './components/Landing';
 import Login from './components/Login';
 import Print from './components/Print';
 import Request from './components/Request';
+import SeeDocs from './components/SeeDocs';
+import Applications from './components/Applications';
+import Email from "./components/Email";
 
 interface State {
   isLoggedIn : boolean,
@@ -93,11 +96,20 @@ class App extends React.Component<{}, State, {}> {
             <Route path="/worker-signup">
               <WorkerSignup />
             </Route>
+            <Route path="/seemydocs">
+              <SeeDocs />
+            </Route>
+            <Route path="/applications">
+              <Applications />
+            </Route>
             <Route path="/print">
               <Print />
             </Route>
             <Route path="/request">
               <Request />
+            </Route>
+            <Route path="/email">
+                <Email />
             </Route>
           </Switch>
         </Router>

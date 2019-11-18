@@ -265,7 +265,6 @@ Organization Employer Identification Number
                         {' '}
 
                       </label>
-
                       <input type="text" className="form-control form-purple" id="ein" placeholder="12-3456789" value={this.state.organizationEIN} onChange={this.handleChangeOrganizationEIN} required />
                     </div>
                     <div className="col-md-4 form-group">
@@ -321,6 +320,7 @@ Expected Number of Users in 100s
                   <label htmlFor="inputContactEmail">Contact Email Address</label>
                   <input type="email" readOnly className="form-control form-purple" id="contactEmail" value={this.state.contactEmail} />
                 </div>
+              </div>
               </div>
               <div className="row mt-2">
                 <div className="col-md-4">
