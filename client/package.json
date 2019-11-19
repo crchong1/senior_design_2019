@@ -57,7 +57,7 @@
     "fs-extra": "0.30.0",
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "^0.20.0",
-    "husky": "^3.1.0",
+    "husky": "^2.1.0",
     "jest": "24.9.0",
     "json-loader": "0.5.4",
     "node-hot-loader": "^1.17.6",
