@@ -9,7 +9,6 @@ import EmailLogo from '../static/images/email-24px.svg';
 import AssistLogo from '../static/images/assistance.svg';
 
 interface State {
-	loggedIn: boolean,
     show: boolean
 }
 
@@ -17,7 +16,6 @@ class Landing extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
-      loggedIn: true, // Change to true in order to show landing logged in
       show: false,
     };
   }
@@ -31,11 +29,6 @@ class Landing extends Component<{}, State, {}> {
   }
 
   render() {
-    if (!this.state.loggedIn) {
-      return (
-        <Redirect to="/login" />
-      );
-    }
     return (
       <div id="Buttons" className="container">
         <div className="row m-auto">
