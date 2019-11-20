@@ -38,10 +38,10 @@ class Landing extends Component<{}, State, {}> {
     }
     return (
       <div id="Buttons" className="container">
-        <div className="row">
-          <div id="Upload container">
+        <div className="row m-auto">
+          <div className="col d-flex" id="Upload container">
             <a href="/seemydocs">
-              <div className="rectangle col-lg mr-5 mt-5">
+              <div className="rectangle mt-5">
                 <img className="uploadImg" src={UploadLogo} alt="See" />
                 <p className="textLanding">
                   See My Documents
@@ -50,18 +50,18 @@ class Landing extends Component<{}, State, {}> {
 
             </a>
           </div>
-          <div id="Print container">
+          <div className="col d-flex" id="Print container">
             <a href="/print">
-              <div className="rectangle col-lg mr-5 mt-5">
+              <div className="rectangle mt-5">
                 <img className="normalImage" src={PrintLogo} alt="Print" />
                 <p className="textLanding mt-5">Print My Documents</p>
               </div>
 
             </a>
           </div>
-          <div id="Request container">
+          <div className="col d-flex" id="Request container">
             <a href="/request">
-              <div className="rectangle col-lg mt-5">
+              <div className="rectangle mt-5">
                 <img className="normalImage" src={RequestLogo} alt="Request" />
                 <p className="textLanding mt-3">
                   Request My
@@ -69,35 +69,33 @@ class Landing extends Component<{}, State, {}> {
                   Documents
                 </p>
               </div>
-
             </a>
           </div>
-        </div>
-        <div className="row">
-          <div id="Applications container">
+          <div className="col d-flex" id="Applications container">
             <a href="/applications">
-              <div className="rectangle col-lg mr-5 mt-4">
+              <div className="rectangle mt-5">
                 <img className="normalImage" src={AppLogo} alt="Applications" />
                 <p className="textLanding mt-5">My Applications</p>
               </div>
             </a>
           </div>
-          <div id="Email container">
+          <div className="col d-flex" id="Email container">
             <a href="/email">
-              <div className="rectangle col-lg mr-5 mt-4">
+              <div className="rectangle mt-5">
                 <img className="normalImage" src={EmailLogo} alt="Email" />
                 <p className="textLanding mt-5">Send an Email</p>
               </div>
             </a>
           </div>
-          <div id="Assistance container">
-            <a data-toggle="modal" href="/" onClick={this.showModal}>
-              <div className="rectangle col-lg mt-4">
+          <div className="col d-flex">
+          <button type="button" className="btn btn-assist mt-5" onClick={this.showModal}>
+              <div className="rectangle">
                 <img className="normalImage" src={AssistLogo} alt="Assistance" />
                 <p className="textLanding mt-5">Need Assistance?</p>
               </div>
-            </a>
+          </button>
           </div>
+        </div>
           <Modal show={this.state.show} onHide={this.hideModal}>
             <section className="modal-header background">
               <h5 className="modal-title" id="assistTitle">FAQ</h5>
@@ -120,7 +118,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             </section>
           </Modal>
         </div>
-      </div>
     );
   }
 }
