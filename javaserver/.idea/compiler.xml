@@ -9,8 +9,5 @@
         <module name="javaserver" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="javaserver" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
