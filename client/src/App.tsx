@@ -18,6 +18,7 @@ import SeeDocs from './components/SeeDocs';
 import Applications from './components/Applications';
 import Email from './components/Email';
 import AdminLanding from './components/AdminLanding';
+import DocViewer from './components/DocViewer';
 
 interface State {
   isLoggedIn : boolean,
@@ -103,6 +104,9 @@ class App extends React.Component<{}, State, {}> {
             </Route>
             <Route path="/adminlanding">
               <AdminLanding />
+            </Route>
+            <Route path="/docviewer">
+                <DocViewer/>
             </Route>
           </Switch>
         </Router>

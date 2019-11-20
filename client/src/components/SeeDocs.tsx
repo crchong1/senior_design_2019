@@ -29,37 +29,76 @@ class SeeDocs extends Component<{}, State, {}> {
         <div className="row">
           <div className="col-md-12">
             <p className="textPrintDesc mt-3">
-              <span>Click the name of the document you would like to view, and it will open in a new tab on your internet browser.</span>
+              <span>Click the row of the document you would like to view, and it will open in a new tab on your internet browser.</span>
             </p>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-12 overflow-auto" id="printTable">
-            <table className="table table-bordered table-hover">
-              <tbody>
+          <div className="col-md-12 overflow-auto">
+            <table className="table table-responsive table-bordered table-hover seeTable">
+              <thead>
                 <tr>
-                  <td>
+                  <th colSpan={2}> Document name </th>
+                  <th> Uploader </th>
+                  <th> Upload date</th>
+                </tr>
+              </thead>
+              <tbody>
+              <a href="/docviewer">
+                <tr>
+                  <td colSpan={2}>
                     Document name
                   </td>
-                </tr>
-                <tr>
                   <td>
+                    John Smith
+                  </td>
+                  <td>
+                    MM/DD/YYYY
+                  </td>
+                </tr>
+              </a>
+                <tr>
+                  <td colSpan={2}>
                       Document name
                   </td>
-                </tr>
-                <tr>
                   <td>
-                          Document name
+                    John Smith
+                  </td>
+                  <td>
+                    MM/DD/YYYY
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td colSpan={2}>
                           Document name
+                  </td>
+                  <td>
+                    John Smith
+                  </td>
+                  <td>
+                    MM/DD/YYYY
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td colSpan={2}>
                           Document name
+                  </td>
+                  <td>
+                    John Smith
+                  </td>
+                  <td>
+                    MM/DD/YYYY
+                  </td>
+                </tr>
+                <tr>
+                  <td colSpan={2}>
+                          Document name
+                  </td>
+                  <td>
+                    John Smith
+                  </td>
+                  <td>
+                    MM/DD/YYYY
                   </td>
                 </tr>
               </tbody>
