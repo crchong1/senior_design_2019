@@ -45,9 +45,7 @@ class Login extends Component<{}, State, {}> {
                 <p>
                   <span>Are you an aid organization fighting to end homelessness?</span>
                 </p>
-                <button type="button" className="btn btn-lg btn-primary">
-                    Join Our Cause
-                </button>
+                <a href="/organization-signup" role="button" className="btn btn-lg btn-primary">Join Our Cause</a>
               </div>
               <div className="col-md-1" />
               <div className="col-md-5">

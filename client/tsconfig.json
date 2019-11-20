@@ -17,10 +17,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
   },
   "include": [
-    "src",
+    "src/components/*",
+    "src/static/*",
+    "src/App.tsx",
+    "srcindex.tsx",
     ".d.ts"
   ]
 }

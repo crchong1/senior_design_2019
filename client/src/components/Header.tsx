@@ -6,34 +6,56 @@ import Logo from '../static/images/logo.svg';
 import UsernameSVG from '../static/images/username.svg';
 import PasswordSVG from '../static/images/password.svg';
 
-class Header extends Component {
-  constructor(props: Readonly<{}>) {
+interface Props {
+  logIn: () => void,
+  logOut: () => void,
+  isLoggedIn: boolean
+}
+
+interface State {
+  isLoggedIn: boolean,
+  incorrectCredentials: boolean,
+  userId: string,
+  password: string
+}
+
+class Header extends Component<Props, State, {}> {
+  constructor(props: Props) {
     super(props);
     this.state = {
+      isLoggedIn: false,
       incorrectCredentials: false,
-      organization: '', // Selection Menu
       userId: '',
       password: '', // Ensure proper length, combination of words and numbers (have a mapping for people to remember)
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
-    const isLoggedIn = false;// api.submitLogin(this.state.organization, this.userId, this.privateKey);
+  handleSubmit(event: any) {
+    event.preventDefault();
+    const isLoggedIn = true;// api.submitLogin(this.state.organization, this.userId, this.privateKey);
     if (isLoggedIn) {
-      // Redirect to main
+      this.props.logIn();
     } else {
       this.setState({ incorrectCredentials: true });
     }
   }
 
+  UNSAFE_componentWillReceiveProps(props: Props) {
+    this.setState({ isLoggedIn: props.isLoggedIn });
+  }
+
   render() {
+    if (this.state.isLoggedIn) {
+      return (<Button onClick={this.props.logOut}>Log Out</Button>);
+    }
     return (
       <div>
         <Navbar bg="primary-theme" variant="dark" sticky="top">
-          <Form>
+          <Form onSubmit={this.handleSubmit}>
             <Row className="d-flex justify-content-end">
               <Col sm={2}>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="/">
                   <img
                     alt=""
                     src={Logo}
@@ -41,7 +63,7 @@ class Header extends Component {
                     height="48"
                     className="d-inline-block align-top"
                   />
-                    keep.id
+                      keep.id
                 </Navbar.Brand>
               </Col>
               <Col sm={4}>
@@ -64,8 +86,8 @@ class Header extends Component {
                     required
                   />
                   {/* <Form.Control.Feedback type="invalid">
-                      Please choose a username.
-                    </Form.Control.Feedback> */}
+                        Please choose a username.
+                      </Form.Control.Feedback> */}
                 </InputGroup>
               </Col>
               <Col sm={4}>
@@ -88,8 +110,8 @@ class Header extends Component {
                     required
                   />
                   {/* <Form.Control.Feedback type="invalid">
-                      Please choose a username.
-                    </Form.Control.Feedback> */}
+                        Please choose a username.
+                      </Form.Control.Feedback> */}
                 </InputGroup>
               </Col>
               <Col sm={2}>

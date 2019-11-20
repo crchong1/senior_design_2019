@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
-// import querystring from 'querystring';
-// import https from 'https';
 import USStates from '../static/data/states_titlecase.json';
+/*
+import {
+  Form, Button, Container, Row, Col,
+} from 'react-bootstrap';
+import querystring from 'querystring';
+import https from 'https';
+
+import NumClientOptions from '../static/data/num_client_options.json';
+import SignaturePad from '../react-typescript-signature-pad';
+ */
 
 // Need to validate form to make sure inputs are good, address is good, etc.
 // Google API for address checking
 
 interface State {
+  /*
   organizationName: string,
   organizationStatus: string,
   organizationWebsite: string,
-  clientSSN: number,
+  organizationNumClients: string,
   organizationEmail: string,
   organizationPhoneNumber: string,
   organizationAddressLine1: string,
@@ -20,17 +29,18 @@ interface State {
   organizationAddressZipcode: string,
   acceptEULA: boolean,
   reaffirmStage: boolean
+   */
 }
 
-class ClientSignup extends Component<{}, State, {}> {
+class WorkerSignup extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
     console.log(USStates);
-    this.state = {
+    this.state = {/*
       organizationName: '',
       organizationStatus: '', // 501c3, etc.
       organizationWebsite: '',
-      clientSSN: 0,
+      organizationNumClients: `${NumClientOptions[0][0]}-${NumClientOptions[0][1]}`,
       organizationEmail: '',
       organizationPhoneNumber: '',
       organizationAddressLine1: '',
@@ -40,6 +50,7 @@ class ClientSignup extends Component<{}, State, {}> {
       organizationAddressZipcode: '',
       acceptEULA: false,
       reaffirmStage: false,
+      */
     };
 
     /*
@@ -167,7 +178,7 @@ class ClientSignup extends Component<{}, State, {}> {
         <div className="row">
           <div className="col-md-12 mt-5">
             <h3 className="text-center textPrintHeader">
-                  Client Signup Page
+                  Worker Signup Page
             </h3>
             <p className="textPrintDesc pl-3">
               <span>Thank you for using Keep.id to store your personal documents. Please fill out the following form to proceed with setting up your Keep.id account.</span>
@@ -264,4 +275,4 @@ Confirm Password
   }
 }
 
-export default ClientSignup;
+export default WorkerSignup;

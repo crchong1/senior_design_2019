@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import {
-  Form, Button, Container, Row, Col,
-} from 'react-bootstrap';
 import querystring from 'querystring';
 import https from 'https';
+
 import USStates from '../static/data/states_titlecase.json';
-import NumClientOptions from '../static/data/num_client_options.json';
 import SignaturePad from '../react-typescript-signature-pad';
 
 // Need to validate form to make sure inputs are good, address is good, etc.
@@ -15,9 +12,11 @@ interface State {
   organizationName: string,
   organizationStatus: string,
   organizationWebsite: string,
-  organizationNumClients: string,
-  organizationEmail: string,
-  organizationPhoneNumber: string,
+  organizationEIN: string,
+  organizationNumClients: number,
+  contactName: string,
+  contactEmail: string,
+  contactPhoneNumber: string,
   organizationAddressLine1: string,
   organizationAddressLine2: string,
   organizationAddressCity: string,
@@ -34,10 +33,12 @@ class OrganizationSignup extends Component<{}, State, {}> {
     this.state = {
       organizationName: '',
       organizationStatus: '', // 501c3, etc.
-      organizationWebsite: '',
-      organizationNumClients: `${NumClientOptions[0][0]}-${NumClientOptions[0][1]}`,
-      organizationEmail: '',
-      organizationPhoneNumber: '',
+      organizationWebsite: 'http://',
+      organizationNumClients: 0, // ${NumClientOptions[0][0]}-${NumClientOptions[0][1]}`,
+      organizationEIN: '',
+      contactName: '',
+      contactEmail: '',
+      contactPhoneNumber: '',
       organizationAddressLine1: '',
       organizationAddressLine2: '',
       organizationAddressCity: '',
@@ -46,14 +47,15 @@ class OrganizationSignup extends Component<{}, State, {}> {
       acceptEULA: false,
       reaffirmStage: false,
     };
-
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeOrganizationName = this.handleChangeOrganizationName.bind(this);
     this.handleChangeOrganizationStatus = this.handleChangeOrganizationStatus.bind(this);
     this.handleChangeOrganizationWebsite = this.handleChangeOrganizationWebsite.bind(this);
     this.handleChangeOrganizationNumClients = this.handleChangeOrganizationNumClients.bind(this);
-    this.handleChangeOrganizationEmail = this.handleChangeOrganizationEmail.bind(this);
-    this.handleChangeOrganizationPhoneNumber = this.handleChangeOrganizationPhoneNumber.bind(this);
+    this.handleChangeOrganizationEIN = this.handleChangeOrganizationEIN.bind(this);
+    this.handleChangeContactName = this.handleChangeContactName.bind(this);
+    this.handleChangeContactEmail = this.handleChangeContactEmail.bind(this);
+    this.handleChangeContactPhoneNumber = this.handleChangeContactPhoneNumber.bind(this);
     this.handleChangeOrganizationAddressLine1 = this.handleChangeOrganizationAddressLine1.bind(this);
     this.handleChangeOrganizationAddressLine2 = this.handleChangeOrganizationAddressLine2.bind(this);
     this.handleChangeOrganizationAddressCity = this.handleChangeOrganizationAddressCity.bind(this);
@@ -121,16 +123,24 @@ class OrganizationSignup extends Component<{}, State, {}> {
     this.setState({ organizationWebsite: event.target.value });
   }
 
+  handleChangeOrganizationEIN(event: any) {
+    this.setState({ organizationEIN: event.target.value });
+  }
+
   handleChangeOrganizationNumClients(event: any) {
     this.setState({ organizationNumClients: event.target.value });
   }
 
-  handleChangeOrganizationEmail(event: any) {
-    this.setState({ organizationEmail: event.target.value });
+  handleChangeContactName(event: any) {
+    this.setState({ contactName: event.target.value });
   }
 
-  handleChangeOrganizationPhoneNumber(event: any) {
-    this.setState({ organizationPhoneNumber: event.target.value });
+  handleChangeContactEmail(event: any) {
+    this.setState({ contactEmail: event.target.value });
+  }
+
+  handleChangeContactPhoneNumber(event: any) {
+    this.setState({ contactPhoneNumber: event.target.value });
   }
 
   handleChangeOrganizationAddressLine1(event: any) {
@@ -153,8 +163,8 @@ class OrganizationSignup extends Component<{}, State, {}> {
     this.setState({ organizationAddressZipcode: event.target.value });
   }
 
-  handleChangeAcceptEULA(event: any) {
-    this.setState({ acceptEULA: !this.state.acceptEULA });
+  handleChangeAcceptEULA(accept: boolean) {
+    this.setState({ acceptEULA: accept });
   }
 
   handleChangeReaffirmStage(event: any) {
@@ -163,238 +173,214 @@ class OrganizationSignup extends Component<{}, State, {}> {
   }
 
   render() {
-    if (this.state.reaffirmStage) {
+    if (!this.state.reaffirmStage) {
       return (
-        <div>
-          <Container>
-            <Row>
-              <Col>
-                Organization Details:
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                Organization Name:
-              </Col>
-              <Col>
-                {this.state.organizationName}
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                Organization Status:
-              </Col>
-              <Col>
-                {this.state.organizationStatus}
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                Organization Website:
-              </Col>
-              <Col>
-                {this.state.organizationWebsite}
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                Organization Size of Client Base:
-              </Col>
-              <Col>
-                {this.state.organizationNumClients}
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                Organization Contact:
-              </Col>
-              <Col />
-            </Row>
-            <Row>
-              <Col>
-                Organization Email:
-              </Col>
-              <Col>
-                {this.state.organizationEmail}
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                Organization Phone Number:
-              </Col>
-              <Col>
-                {this.state.organizationPhoneNumber}
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                Organization Address:
-              </Col>
-              <Col>
-                {this.state.organizationAddressLine1}
-              </Col>
-            </Row>
-            <Row>
-              <Col />
-              <Col>
-                {this.state.organizationAddressLine2}
-              </Col>
-            </Row>
-            <Row>
-              <Col />
-              <Col>
-                {this.state.organizationAddressCity}
-,
-                {this.state.organizationAddressState}
-                {' '}
-                {this.state.organizationAddressZipcode}
-              </Col>
-            </Row>
-          </Container>
-          When submitting the form, please be prepared to wait 1-3 business days for us to investigate your organization in order to ensure you are in good standing with clients and the law. We will email you a link with instructions at the email you provided when we have approved your request to join, and we will give you a courtesy call
-          <Form.Group controlId="acceptEULA">
-            <Form.Label>
-              I accept and have read the
-              {' '}
-              <a href="/eula"> EULA</a>
-            </Form.Label>
-            <Form.Control
-              required
-              type="checkbox"
-              checked={this.state.acceptEULA}
-              onChange={this.handleChangeAcceptEULA}
-            />
-          </Form.Group>
-          <SignaturePad />
-          By Signing Above, you certify this application data is true to your knowledge and that you consent to the EULA
-          <Button onClick={this.handleChangeReaffirmStage}>Back</Button>
-          <Button onClick={this.handleSubmit}>Submit</Button>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 mt-5">
+              <h3 className="text-center textPrintHeader">
+                  Organization Signup Page
+              </h3>
+              <p className="textPrintDesc pl-3">
+                <span>
+Thank you for expressing interest in using Keep.id in the fight to end homelessness.
+                 Please fill out the following form so we can get back to you with instructions on how to proceed.
+                </span>
+              </p>
+              <form onSubmit={this.handleChangeReaffirmStage}>
+                <div className="col-md-12">
+                  <div className="form-row">
+                    <div className="col-md-6 form-group">
+                      <label htmlFor="inputOrgName">
+Organization Name
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="orgName" placeholder="Keep" value={this.state.organizationName} onChange={this.handleChangeOrganizationName} required />
+                    </div>
+                    <div className="col-md-6 form-group">
+                      <label htmlFor="inputOrgWebsite">Organization Website</label>
+                      <input type="url" className="form-control form-purple" id="orgWebsite" placeholder="https://www.keep.id" value={this.state.organizationWebsite} onChange={this.handleChangeOrganizationWebsite} />
+                    </div>
+                  </div>
+                  <div className="form-row">
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputContactName">
+Contact Name
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="contactName" placeholder="John Doe" value={this.state.contactName} onChange={this.handleChangeContactName} required />
+                    </div>
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputContactPhoneNumber">
+Contact Phone Number
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="tel" className="form-control form-purple" id="contactPhoneNumber" placeholder="1-(234)-567-8901" value={this.state.contactPhoneNumber} onChange={this.handleChangeContactPhoneNumber} required />
+                    </div>
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputContactEmail">
+Contact Email Address
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="email" className="form-control form-purple" id="contactEmail" placeholder="contact@example.com" value={this.state.contactEmail} onChange={this.handleChangeContactEmail} required />
+                    </div>
+                  </div>
+                  <div className="form-row">
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputAddress">
+Organization Address
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="address" placeholder="311 Broad St" value={this.state.organizationAddressLine1} onChange={this.handleChangeOrganizationAddressLine1} required />
+                    </div>
+                    <div className="col-md-3 form-group">
+                      <label htmlFor="inputCity">
+City
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="city" placeholder="Philadelphia" value={this.state.organizationAddressCity} onChange={this.handleChangeOrganizationAddressCity} required />
+                    </div>
+                    <div className="col-md-2 form-group">
+                      <label htmlFor="inputState">
+State
+                        <text className="red-star">*</text>
+                      </label>
+                      <select className="form-control form-purple" id="state" value={this.state.organizationAddressState} onChange={this.handleChangeOrganizationAddressState} required>
+                        {USStates.map((USState) => (<option>{USState.name}</option>))}
+                      </select>
+                    </div>
+                    <div className="col-md-3 form-group">
+                      <label htmlFor="inputZipCode">
+Zip Code
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="zipCode" placeholder="19104" value={this.state.organizationAddressZipcode} onChange={this.handleChangeOrganizationAddressZipcode} required />
+                    </div>
+                  </div>
+                  <div className="form-row">
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputEIN">
+Organization Employer Identification Number
+                        <text className="red-star">*</text>
+                        {' '}
+
+                      </label>
+                      <input type="text" className="form-control form-purple" id="ein" placeholder="12-3456789" value={this.state.organizationEIN} onChange={this.handleChangeOrganizationEIN} required />
+                    </div>
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="inputNumUsers">
+Expected Number of Users in 100s
+                        <text className="red-star">*</text>
+                      </label>
+
+                      <input type="number" className="form-control form-purple" id="numUsers" min="0" step="100" placeholder="1000" value={this.state.organizationNumClients} onChange={this.handleChangeOrganizationNumClients} required />
+                    </div>
+                    <div className="col-auto mt-4 pt-2">
+                      <button type="submit" className="btn btn-primary">Continue</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       );
     }
     return (
       <div>
-        <Form onSubmit={this.handleChangeReaffirmStage}>
-          <h3>Organization Details</h3>
-          <Form.Group controlId="organizationName">
-            <Form.Label>Organization Name</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder=""
-              value={this.state.organizationName}
-              onChange={this.handleChangeOrganizationName}
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="organizationStatus">
-            <Form.Label>Organization Status</Form.Label>
-            <Form.Control
-              type="text"
-              value={this.state.organizationStatus}
-              onChange={this.handleChangeOrganizationStatus}
-            />
-          </Form.Group>
-          <Form.Group controlId="organizationWebsite">
-            <Form.Label>Organization Website</Form.Label>
-            <Form.Control
-              type="text"
-              value={this.state.organizationWebsite}
-              onChange={this.handleChangeOrganizationWebsite}
-              placeholder=""
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="organizationNumClients">
-            <Form.Label>Size of Client Base</Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.organizationNumClients}
-              onChange={this.handleChangeOrganizationNumClients}
-              required
-            >
-              {NumClientOptions.map((numClientOption) => (
-                <option>
-                  {numClientOption[0]}
--
-                  {numClientOption[1]}
-                </option>
-              ))}
-            </Form.Control>
-          </Form.Group>
-          <h3>Organization Contact Information</h3>
-          <Form.Group controlId="organizationEmail">
-            <Form.Label>Organization Email</Form.Label>
-            <Form.Control
-              type="email"
-              value={this.state.organizationEmail}
-              onChange={this.handleChangeOrganizationEmail}
-              placeholder=""
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="organizationPhoneNumber">
-            <Form.Label>Organization Phone Number</Form.Label>
-            <Form.Control
-              type="tel"
-              value={this.state.organizationPhoneNumber}
-              onChange={this.handleChangeOrganizationPhoneNumber}
-              placeholder=""
-              pattern="[0-9]{10}"
-              required
-            />
-          </Form.Group>
-          <h3>Organization Address</h3>
-          <Form.Group controlId="organizationAddressLine1">
-            <Form.Label>Organization Address Line One</Form.Label>
-            <Form.Control
-              type="text"
-              value={this.state.organizationAddressLine1}
-              onChange={this.handleChangeOrganizationAddressLine1}
-              placeholder=""
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="organizationAddressLine2">
-            <Form.Label>Organization Address Line Two</Form.Label>
-            <Form.Control
-              type="text"
-              value={this.state.organizationAddressLine2}
-              onChange={this.handleChangeOrganizationAddressLine2}
-              placeholder=""
-            />
-          </Form.Group>
-          <Form.Group controlId="organizationCity">
-            <Form.Label>Organization City</Form.Label>
-            <Form.Control
-              type="text"
-              value={this.state.organizationAddressCity}
-              onChange={this.handleChangeOrganizationAddressCity}
-              placeholder=""
-              required
-            />
-          </Form.Group>
-          <Form.Group controlId="organizationState">
-            <Form.Label>Organization State</Form.Label>
-            <Form.Control
-              as="select"
-              value={this.state.organizationAddressState}
-              onChange={this.handleChangeOrganizationAddressState}
-            >
-              {USStates.map((state) => (<option>{state.name}</option>))}
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="organizationZipcode">
-            <Form.Label>Zipcode</Form.Label>
-            <Form.Control
-              type="text"
-              value={this.state.organizationAddressZipcode}
-              onChange={this.handleChangeOrganizationAddressZipcode}
-              placeholder=""
-              required
-            />
-          </Form.Group>
-          <Button type="submit">Next</Button>
-        </Form>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 mt-5">
+              <h3 className="text-center textPrintHeader">
+                  Review Your Information
+              </h3>
+              <p className="textPrintDesc pl-3">
+                <span>This is just to check if you have filled out all the fields correctly.</span>
+              </p>
+              <div className="col-md-12">
+                <div className="row">
+                  <div className="col-md-6">
+                    <label htmlFor="inputOrgName">Organization Name</label>
+                    <input type="text" readOnly className="form-control form-purple" id="orgName" value={this.state.organizationName} />
+                  </div>
+                  <div className="col-md-6">
+                    <label htmlFor="inputOrgWebsite">Organization Website</label>
+                    <input type="url" readOnly className="form-control form-purple" id="orgWebsite" value={this.state.organizationWebsite} />
+                  </div>
+                </div>
+                <div className="row mt-2">
+                  <div className="col-md-4">
+                    <label htmlFor="inputContactName">Contact Name</label>
+                    <input type="text" readOnly className="form-control form-purple" id="contactName" value={this.state.contactName} />
+                  </div>
+                  <div className="col-md-4">
+                    <label htmlFor="inputContactPhoneNumber">Contact Phone Number</label>
+                    <input type="tel" readOnly className="form-control form-purple" id="contactPhoneNumber" value={this.state.contactPhoneNumber} />
+                  </div>
+                  <div className="col-md-4">
+                    <label htmlFor="inputContactEmail">Contact Email Address</label>
+                    <input type="email" readOnly className="form-control form-purple" id="contactEmail" value={this.state.contactEmail} />
+                  </div>
+                </div>
+              </div>
+              <div className="row mt-2">
+                <div className="col-md-4">
+                  <label htmlFor="inputAddress">Organization Address</label>
+                  <input type="text" readOnly className="form-control form-purple" id="address" value={this.state.organizationAddressLine1} />
+                </div>
+                <div className="col-md-3">
+                  <label htmlFor="inputCity">City</label>
+                  <input type="text" readOnly className="form-control form-purple" id="city" value={this.state.organizationAddressCity} />
+                </div>
+                <div className="col-md-2">
+                  <label htmlFor="inputState">State</label>
+                  <input type="text" readOnly className="form-control form-purple" id="state" value={this.state.organizationAddressState} />
+                </div>
+                <div className="col-md-3">
+                  <label htmlFor="inputZipCode">Zip Code</label>
+                  <input type="number" readOnly className="form-control form-purple" id="zipCode" value={this.state.organizationAddressZipcode} />
+                </div>
+              </div>
+              <div className="row mt-2">
+                <div className="col-md-4">
+                  <label htmlFor="inputEIN">Organization Employer Identification Number </label>
+                  <input type="password" readOnly className="form-control form-purple" id="ein" value={this.state.organizationEIN} />
+                </div>
+                <div className="col-md-4">
+                  <label htmlFor="inputNumUsers">Expected Number of Users</label>
+                  <input type="number" readOnly className="form-control form-purple" id="numUsers" value={this.state.organizationNumClients} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="row mt-5">
+          <p className="textPrintDesc pl-3">
+            <span>End User License Agreement</span>
+          </p>
+          <div className="embed-responsive embed-responsive-16by9">
+            <iframe className="embed-responsive-item" src="eula-template.pdf" title="EULA Agreement" />
+          </div>
+        </div>
+        <div className="row mt-5">
+          <p className="textPrintDesc pl-3">
+            <span>I Agree and Sign</span>
+          </p>
+        </div>
+        <div className="row mt-5 mb-auto">
+          <span className="border">
+            <SignaturePad acceptEULA={this.state.acceptEULA} handleChangeAcceptEULA={this.handleChangeAcceptEULA} />
+          </span>
+        </div>
+        <div className="row mt-5">
+          <div className="col-md-6">
+            <p> Need API key for ReCaptcha, which requires domain name</p>
+          </div>
+          <div className="col-md-6 text-right">
+            <button onClick={this.handleChangeReaffirmStage} className="btn btn-primary">Back</button>
+            <button onClick={this.handleSubmit} className="btn btn-primary">Submit</button>
+          </div>
+        </div>
       </div>
     );
   }

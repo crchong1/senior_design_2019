@@ -13,13 +13,19 @@ interface ISignaturePadProps extends React.Props<any> {
     onEnd?: (event: any, data: string) => void;
     onBegin?: () => void;
     clearButton?: boolean;
+    handleChangeAcceptEULA: (accept: boolean) => void;
+    acceptEULA: boolean;
     minDistance?: number;
+}
+
+interface ISignatureState {
+    acceptEULA: boolean;
 }
 const customStyles = {
   height: '100%',
   width: '100%',
 };
-export default class SignaturePad extends React.Component<ISignaturePadProps, {}> {
+export default class SignaturePad extends React.Component<ISignaturePadProps, ISignatureState> {
     velocityFilterWeight: number;
 
     minWidth: number;
@@ -52,11 +58,16 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, {}
 
     private mouseButtonDown: any;
 
+    handleChangeAcceptEULA: (accept: boolean) => void;
+
     private data: Point[][];
 
     constructor(props: Readonly<ISignaturePadProps>) {
       super(props);
 
+      this.state = {
+        acceptEULA: this.props.acceptEULA,
+      };
       this._isEmpty = true;
       this.points = [];
       this.velocityFilterWeight = this.props.velocityFilterWeight || 0.7;
@@ -68,7 +79,9 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, {}
       this.onEnd = this.props.onEnd;
       this.onBegin = this.props.onBegin;
       this.minDistance = this.props.minDistance || 5;
+      this.handleChangeAcceptEULA = this.props.handleChangeAcceptEULA;
       this.data = [];
+      this.handleChangeAcceptEULA(false);
     }
 
     componentDidMount() {
@@ -83,6 +96,12 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, {}
 
     componentWillUnmount() {
       this.off();
+    }
+
+    UNSAFE_componentWillReceiveProps(props: ISignaturePadProps) {
+      this.setState({
+        acceptEULA: this.props.acceptEULA,
+      });
     }
 
     clear(e?: any) {
@@ -166,6 +185,7 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, {}
       this.lastWidth = (this.minWidth + this.maxWidth) / 2;
       this._isEmpty = true;
       this.ctx.fillStyle = this.penColor;
+      this.handleChangeAcceptEULA(false);
     }
 
     private handleMouseEvents() {
@@ -387,6 +407,7 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, {}
       ctx.moveTo(x, y);
       ctx.arc(x, y, size, 0, 2 * Math.PI, false);
       this._isEmpty = false;
+      this.props.handleChangeAcceptEULA(true);
     }
 
     private drawCurve(curve: any, startWidth: any, endWidth: any) {
