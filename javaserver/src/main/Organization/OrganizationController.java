@@ -70,6 +70,7 @@ public class OrganizationController {
                     .append("expectedNumUsers", numUsers);
             orgCollection.insertOne(newOrg);
 
+            ctx.sessionAttribute("orgName", orgName);
             ctx.sessionAttribute("privelegeLevel", "admin");
             ctx.json(OrgEnrollmentStatus.SUCCESSFUL_ENROLLMENT);
         }

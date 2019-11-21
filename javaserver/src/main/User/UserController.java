@@ -35,6 +35,7 @@ public class UserController {
                 // Hash matches password
                 ctx.result(UserMessage.AUTH_SUCCESS.getErrorName());
                 ctx.sessionAttribute("privelegeLevel", user.get("privelegeLevel"));
+                ctx.sessionAttribute("orgName", user.get("organization"));
             } else {
                 // Hash doesn't match password
                 ctx.result(UserMessage.AUTH_FAILURE.getErrorName());
@@ -45,5 +46,44 @@ public class UserController {
             // Wipe confidential data from cache
             argon2.wipeArray(passwordArr);
         }
+    };
+
+    public static Handler createUser = ctx -> {
+        // Get all formParams
+        String username = ctx.formParam("username");
+        String password = ctx.formParam("password");
+        String organization = ctx.formParam("organization");
+        String email = ctx.formParam("email");
+        String name = ctx.formParam("name");
+        String userLevel = ctx.formParam("userLevel");
+
+        // Session tokens
+        String sessionUserLevel = ctx.sessionAttribute("privelegeLevel");
+        String sessionOrg = ctx.sessionAttribute("orgName");
+
+        if (sessionUserLevel == null || sessionOrg == null) {
+            ctx.result(UserMessage.SESSION_TOKEN_FAILURE.getErrorName());
+            return;
+        }
+
+        if (!sessionOrg.equals(organization)) {
+            ctx.result(UserMessage.DIFFERENT_ORGANIZATION.getErrorName());
+            return;
+        }
+
+        if (userLevel.equals("admin") && !sessionUserLevel.equals("admin")) {
+            ctx.result(UserMessage.NONADMIN_ENROLL_ADMIN.getErrorName());
+            return;
+        }
+
+        if (userLevel.equals("worker") && !sessionUserLevel.equals("admin")) {
+            ctx.result(UserMessage.NONADMIN_ENROLL_WORKER.getErrorName());
+        }
+
+        if (userLevel.equals("client") && sessionUserLevel.equals("client")) {
+            ctx.result(UserMessage.CLIENT_ENROLL_CLIENT.getErrorName());
+        }
+
+
     };
 }
