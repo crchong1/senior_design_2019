@@ -106,7 +106,7 @@ class App extends React.Component<{}, State, {}> {
               <AdminLanding />
             </Route>
             <Route path="/docviewer">
-                <DocViewer/>
+              <DocViewer />
             </Route>
           </Switch>
         </Router>

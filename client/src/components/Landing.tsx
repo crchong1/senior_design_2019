@@ -81,36 +81,36 @@ class Landing extends Component<{}, State, {}> {
             </a>
           </div>
           <div className="col d-flex">
-          <button type="button" className="btn btn-assist mt-5" onClick={this.showModal}>
+            <button type="button" className="btn btn-assist mt-5" onClick={this.showModal}>
               <div className="rectangle">
                 <img className="normalImage" src={AssistLogo} alt="Assistance" />
                 <p className="textLanding mt-5">Need Assistance?</p>
               </div>
-          </button>
+            </button>
           </div>
         </div>
-          <Modal show={this.state.show} onHide={this.hideModal}>
-            <section className="modal-header background">
-              <h5 className="modal-title" id="assistTitle">FAQ</h5>
-              <button type="button" className="close" onClick={this.hideModal}>
-                <span>&times;</span>
-              </button>
-            </section>
-            <section className="modal-main">
-              <p>
+        <Modal show={this.state.show} onHide={this.hideModal}>
+          <section className="modal-header background">
+            <h5 className="modal-title" id="assistTitle">FAQ</h5>
+            <button type="button" className="close" onClick={this.hideModal}>
+              <span>&times;</span>
+            </button>
+          </section>
+          <section className="modal-main">
+            <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                <br />
-                <br />
+              <br />
+              <br />
 
                 Send all technical issues to admin@keep.id
-              </p>
-            </section>
-          </Modal>
-        </div>
+            </p>
+          </section>
+        </Modal>
+      </div>
     );
   }
 }
