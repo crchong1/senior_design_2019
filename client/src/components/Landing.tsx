@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
 import UploadLogo from '../static/images/uploading-files-to-the-cloud.svg';
 import PrintLogo from '../static/images/print.svg';

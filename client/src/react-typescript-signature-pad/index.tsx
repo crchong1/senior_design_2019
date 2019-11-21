@@ -98,7 +98,7 @@ export default class SignaturePad extends React.Component<ISignaturePadProps, IS
       this.off();
     }
 
-    componentWillReceiveProps(props: ISignaturePadProps) {
+    UNSAFE_componentWillReceiveProps(props: ISignaturePadProps) {
       this.setState({
         acceptEULA: this.props.acceptEULA,
       });

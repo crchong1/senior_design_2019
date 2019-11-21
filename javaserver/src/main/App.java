@@ -69,7 +69,7 @@ public class App {
          * TODO: /put-documents
          *     - Adds a document to the user's db entry
          */
-
+        app.get("/", ctx -> ctx.result("Welcome to the Keep.id Server"));
         app.post("/login", UserController.loginUser);
         app.post("/organization-signup", OrganizationController.enrollOrganization);
     }

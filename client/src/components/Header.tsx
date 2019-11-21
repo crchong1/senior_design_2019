@@ -41,7 +41,7 @@ class Header extends Component<Props, State, {}> {
     }
   }
 
-  componentWillReceiveProps(props: Props) {
+  UNSAFE_componentWillReceiveProps(props: Props) {
     this.setState({ isLoggedIn: props.isLoggedIn });
   }
 

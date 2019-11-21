@@ -22,11 +22,11 @@
     "react-redirect": "^1.0.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "redirect": "^0.2.0",
-    "typescript": "3.6.4"
+    "typescript": "3.6.4",
+    "react-hot-loader": "^4.12.17"
   },
   "devDependencies": {
-    "@types/react-dom": "^16.9.2",
+    "redirect": "^0.2.0",
     "stylelint": "^12.0.0",
     "@typescript-eslint/eslint-plugin": "^2.5.0",
     "@typescript-eslint/parser": "^2.5.0",
@@ -66,7 +66,7 @@
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
     "react-dev-utils": "^9.1.0",
-    "react-hot-loader": "^4.12.15",
+    "react-hot-loader": "^4.12.17",
     "style-loader": "0.13.1",
     "url-loader": "^2.2.0",
     "webpack": "4.41.0",
