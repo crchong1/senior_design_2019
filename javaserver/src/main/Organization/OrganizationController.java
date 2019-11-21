@@ -18,7 +18,7 @@ public class OrganizationController {
 
         MongoCollection<Document> orgCollection = database.getCollection("organization");
         Document existingOrg = orgCollection.find(eq("orgName", orgName)).first();
-
+        
         if (existingOrg != null) {
             ctx.json(OrgEnrollmentStatus.ORG_EXISTS);
         }
