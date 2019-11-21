@@ -12,10 +12,9 @@ import org.bson.Document;
 
 public class UserController {
     public static Handler loginUser = ctx -> {
-        ctx.result(loginAuthenticate(ctx.formParam("username"), ctx.formParam("password")).getErrorName());
-    };
+        String password = ctx.formParam("password");
+        String username = ctx.formParam("username");
 
-    private static UserMessage loginAuthenticate(String username, String password) {
         Argon2 argon2 = Argon2Factory.create();
         // @validate make sure that username and password are not null
         char[] passwordArr = password.toCharArray();
@@ -27,22 +26,24 @@ public class UserController {
             MongoCollection<Document> userCollection = database.getCollection("user");
             Document user = userCollection.find(eq("username", username)).first();
             if (user == null) {
-                return UserMessage.USER_NOT_FOUND;
+                ctx.result(UserMessage.USER_NOT_FOUND.getErrorName());
+                argon2.wipeArray(passwordArr);
             }
 
             String hash = user.get("password", String.class);
             if (argon2.verify(hash, passwordArr)) {
                 // Hash matches password
-                return UserMessage.AUTH_SUCCESS;
+                ctx.result(UserMessage.AUTH_SUCCESS.getErrorName());
+                ctx.sessionAttribute("privelegeLevel", user.get("privelegeLevel"));
             } else {
                 // Hash doesn't match password
-                return UserMessage.AUTH_FAILURE;
+                ctx.result(UserMessage.AUTH_FAILURE.getErrorName());
             }
         } catch(Exception e) {
-            return UserMessage.HASH_FAILURE;
+            ctx.result(UserMessage.HASH_FAILURE.getErrorName());
         } finally {
             // Wipe confidential data from cache
             argon2.wipeArray(passwordArr);
         }
-    }
+    };
 }
