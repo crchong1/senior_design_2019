@@ -246,7 +246,7 @@ Contact Email Address
                   <div className="form-row">
                     <div className="col-md-4 form-group">
                       <label htmlFor="username">
-Username
+Admin Username
                         <text className="red-star">*</text>
                       </label>
                       <input type="text" className="form-control form-purple" id="username" placeholder="John Doe" value={this.state.username} onChange={this.handleChangeUsername} required />
