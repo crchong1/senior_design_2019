@@ -22,6 +22,9 @@ interface State {
   organizationAddressCity: string,
   organizationAddressState: string,
   organizationAddressZipcode: string,
+  username:string,
+  password: string,
+  confirmPassword: string,
   acceptEULA: boolean,
   reaffirmStage: boolean
 }
@@ -44,6 +47,9 @@ class OrganizationSignup extends Component<{}, State, {}> {
       organizationAddressCity: '',
       organizationAddressState: USStates[0].name,
       organizationAddressZipcode: '',
+      username: '',
+      password: '',
+      confirmPassword: '',
       acceptEULA: false,
       reaffirmStage: false,
     };
@@ -172,6 +178,18 @@ class OrganizationSignup extends Component<{}, State, {}> {
     this.setState({ reaffirmStage: !this.state.reaffirmStage });
   }
 
+  handleChangeUsername(event: any) {
+    this.setState({ username: event.target.value });
+  }
+
+  handleChangePassword(event: any) {
+    this.setState({ password: event.target.value });
+  }
+
+  handleChangeConfirmPassword(event: any) {
+    this.setState({ confirmPassword: event.target.value });
+  }
+
   render() {
     if (!this.state.reaffirmStage) {
       return (
@@ -223,6 +241,29 @@ Contact Email Address
                         <text className="red-star">*</text>
                       </label>
                       <input type="email" className="form-control form-purple" id="contactEmail" placeholder="contact@example.com" value={this.state.contactEmail} onChange={this.handleChangeContactEmail} required />
+                    </div>
+                  </div>
+                  <div className="form-row">
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="username">
+Username
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="username" placeholder="John Doe" value={this.state.username} onChange={this.handleChangeUsername} required />
+                    </div>
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="password">
+Password
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="password" placeholder="*******" value={this.state.password} onChange={this.handleChangePassword} required />
+                    </div>
+                    <div className="col-md-4 form-group">
+                      <label htmlFor="confirmpassword">
+Confirm Password
+                        <text className="red-star">*</text>
+                      </label>
+                      <input type="text" className="form-control form-purple" id="confirmpassword" placeholder="********" value={this.state.confirmPassword} onChange={this.handleChangeConfirmPassword} required />
                     </div>
                   </div>
                   <div className="form-row">
