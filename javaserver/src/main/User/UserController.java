@@ -1,5 +1,8 @@
 package User;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -33,9 +36,16 @@ public class UserController {
             String hash = user.get("password", String.class);
             if (argon2.verify(hash, passwordArr)) {
                 // Hash matches password
+
+                //ctx.sessionAttribute("privilegeLevel", user.get("privilegeLevel"));
+                //ctx.sessionAttribute("orgName", user.get("organization"));
+                Algorithm algo = Algorithm.HMAC256("secret");
+                String token = JWT.create()
+                        .withClaim("privilegeLevel", (String)user.get("privilegeLevel"))
+                        .withClaim("orgName", (String)user.get("organization"))
+                        .sign(algo);
+                ctx.cookieStore("token", token);
                 ctx.result(UserMessage.AUTH_SUCCESS.getErrorName());
-                ctx.sessionAttribute("privelegeLevel", user.get("privelegeLevel"));
-                ctx.sessionAttribute("orgName", user.get("organization"));
             } else {
                 // Hash doesn't match password
                 ctx.result(UserMessage.AUTH_FAILURE.getErrorName());
@@ -58,8 +68,13 @@ public class UserController {
         String userLevel = ctx.formParam("userLevel");
 
         // Session tokens
-        String sessionUserLevel = ctx.sessionAttribute("privelegeLevel");
-        String sessionOrg = ctx.sessionAttribute("orgName");
+        //String sessionUserLevel = ctx.sessionAttribute("privilegeLevel");
+        //String sessionOrg = ctx.sessionAttribute("orgName");
+        String token = ctx.cookieStore("token");
+        DecodedJWT dJWT = JWT.decode(token);
+
+        String sessionUserLevel = dJWT.getHeaderClaim("privilegeLevel").asString();
+        String sessionOrg = dJWT.getHeaderClaim("orgName").asString();
 
         if (sessionUserLevel == null || sessionOrg == null) {
             ctx.result(UserMessage.SESSION_TOKEN_FAILURE.getErrorName());
@@ -78,12 +93,46 @@ public class UserController {
 
         if (userLevel.equals("worker") && !sessionUserLevel.equals("admin")) {
             ctx.result(UserMessage.NONADMIN_ENROLL_WORKER.getErrorName());
+            return;
         }
 
         if (userLevel.equals("client") && sessionUserLevel.equals("client")) {
             ctx.result(UserMessage.CLIENT_ENROLL_CLIENT.getErrorName());
+            return;
         }
 
+        MongoDatabase database = MongoConfig.getMongoClient()
+                .getDatabase(MongoConfig.getDatabaseName());
 
+        MongoCollection<Document> userCollection = database.getCollection("user");
+        Document existingUser = userCollection.find(eq("username", username)).first();
+
+        if (existingUser != null) {
+            ctx.result(UserMessage.USERNAME_ALREADY_EXISTS.getErrorName());
+            return;
+        }
+        else {
+            Argon2 argon2 = Argon2Factory.create();
+            char[] passwordArr = password.toCharArray();
+            String passwordHash;
+            try {
+                passwordHash = argon2.hash(10, 65536, 1, passwordArr);
+                argon2.wipeArray(passwordArr);
+            } catch (Exception e) {
+                argon2.wipeArray(passwordArr);
+                ctx.result(UserMessage.HASH_FAILURE.getErrorName());
+                return;
+            }
+
+            Document newAdmin = new Document("username", username)
+                    .append("password", passwordHash)
+                    .append("organization", organization)
+                    .append("email", email)
+                    .append("name", name)
+                    .append("privilegeLevel", userLevel);
+            userCollection.insertOne(newAdmin);
+
+            ctx.result(UserMessage.ENROLL_SUCCESS.getErrorName());
+        }
     };
 }
