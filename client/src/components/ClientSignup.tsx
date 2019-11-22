@@ -20,7 +20,6 @@ interface State {
 class ClientSignup extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
-    console.log(USStates);
     this.state = {
       clientFirstName: '',
       clientLastName: '',
@@ -118,7 +117,13 @@ class ClientSignup extends Component<{}, State, {}> {
 First Name
                       <text className="red-star">*</text>
                     </label>
-                    <input type="text" className="form-control form-purple" id="firstName" placeholder="John" required />
+                    <input type="text" 
+                      className="form-control form-purple" 
+                      id="firstName" 
+                      onChange={this.handleChangeClientFirstName}
+                      value={this.state.clientFirstName}
+                      placeholder="John" 
+                      required />
                   </div>
                   <div className="col-md-6 form-group">
                     <label htmlFor="inputLastName">
