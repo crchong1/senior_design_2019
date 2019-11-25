@@ -36,7 +36,7 @@ class ClientSignup extends Component<{}, State, {}> {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeClientFirstName = this.handleChangeClientFirstName.bind(this);
     this.handleChangeClientLastName = this.handleChangeClientLastName.bind(this);
-    
+
     this.handleChangeClientEmail = this.handleChangeClientEmail.bind(this);
     this.handleChangeClientPhoneNumber = this.handleChangeClientPhoneNumber.bind(this);
     this.handleChangeClientAddressLine1 = this.handleChangeClientAddressLine1.bind(this);
@@ -117,13 +117,15 @@ class ClientSignup extends Component<{}, State, {}> {
 First Name
                       <text className="red-star">*</text>
                     </label>
-                    <input type="text" 
-                      className="form-control form-purple" 
-                      id="firstName" 
+                    <input
+                      type="text"
+                      className="form-control form-purple"
+                      id="firstName"
                       onChange={this.handleChangeClientFirstName}
                       value={this.state.clientFirstName}
-                      placeholder="John" 
-                      required />
+                      placeholder="John"
+                      required
+                    />
                   </div>
                   <div className="col-md-6 form-group">
                     <label htmlFor="inputLastName">
