@@ -8,11 +8,9 @@ import Config.MongoConfig;
 import io.javalin.http.Handler;
 import org.bson.Document;
 import static com.mongodb.client.model.Filters.*;
-import org.json.*
 
 public class OrganizationController {
     public static Handler enrollOrganization = ctx -> {
-        JSONObject
 
         String orgName = ctx.formParam("orgName");
 

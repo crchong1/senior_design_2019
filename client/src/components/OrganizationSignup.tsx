@@ -63,6 +63,9 @@ class OrganizationSignup extends Component<{}, State, {}> {
     this.handleChangeContactName = this.handleChangeContactName.bind(this);
     this.handleChangeContactEmail = this.handleChangeContactEmail.bind(this);
     this.handleChangeContactPhoneNumber = this.handleChangeContactPhoneNumber.bind(this);
+    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChangeConfirmPassword = this.handleChangeConfirmPassword.bind(this);
     this.handleChangeOrganizationAddressLine1 = this.handleChangeOrganizationAddressLine1.bind(this);
     this.handleChangeOrganizationAddressLine2 = this.handleChangeOrganizationAddressLine2.bind(this);
     this.handleChangeOrganizationAddressCity = this.handleChangeOrganizationAddressCity.bind(this);
@@ -85,8 +88,8 @@ class OrganizationSignup extends Component<{}, State, {}> {
           phone: this.state.contactPhoneNumber,
           orgName: this.state.organizationName,
           email: this.state.contactEmail,
-          username: 'Username',
-          password: 'asdjafja',
+          username: this.state.username,
+          password: this.state.password,
           address: this.state.organizationAddressLine1,
           city: this.state.organizationAddressCity,
           state: this.state.organizationAddressState,
@@ -159,7 +162,11 @@ class OrganizationSignup extends Component<{}, State, {}> {
 
   handleChangeReaffirmStage(event: any) {
     event.preventDefault();
-    this.setState({ reaffirmStage: !this.state.reaffirmStage });
+    if(this.state.password !== this.state.confirmPassword) {
+      alert("Your Passwords are not Identical")
+    } else {
+      this.setState({ reaffirmStage: !this.state.reaffirmStage });
+    }
   }
 
   handleChangeUsername(event: any) {
@@ -349,6 +356,29 @@ Confirm Password
                     <label htmlFor="inputContactEmail">Contact Email Address</label>
                     <input type="email" readOnly className="form-control form-purple" id="contactEmail" value={this.state.contactEmail} />
                   </div>
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="col-md-4 form-group">
+                  <label htmlFor="username">
+Admin Username
+                    <text className="red-star">*</text>
+                  </label>
+                  <input type="text" readOnly className="form-control form-purple" id="username" value={this.state.username} required />
+                </div>
+                <div className="col-md-4 form-group">
+                  <label htmlFor="password">
+Password
+                    <text className="red-star">*</text>
+                  </label>
+                  <input type="text" readOnly className="form-control form-purple" id="password" value={this.state.password} required />
+                </div>
+                <div className="col-md-4 form-group">
+                  <label htmlFor="confirmpassword">
+Confirm Password
+                    <text className="red-star">*</text>
+                  </label>
+                  <input type="text" readOnly className="form-control form-purple" id="confirmpassword" value={this.state.confirmPassword} required />
                 </div>
               </div>
               <div className="row mt-2">
