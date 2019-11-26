@@ -33,7 +33,7 @@ public class App {
         /*
          * Server API:
          *
-         * TODO: /login
+         *  /login
          *     - Takes {
          *          username: (Of the form <firstname>-<lastname>-<orgName>-<dateofbirth>)
          *          password:
@@ -42,7 +42,7 @@ public class App {
          *     - Logs a user in, given a username and password.
          *     - Sets proper privilege level.
          *
-         * TODO: /organization-signup
+         *  /organization-signup
          *     - Takes {
          *          orgName:
          *          firstname:
@@ -57,11 +57,8 @@ public class App {
          *          - OrgEnrollmentStatus.ORG_EXISTS
          *          - OrgEnrollmentStatus.SUCCESSFUL_ENROLLMENT
          *
-         * TODO: /worker-enroll
-         *     - Takes a User JSON.
-         *     - Signs up an admin or worker of an organization.
-         *     - Must be enrolled by another admin, so credentials must be checked.
-         *     - TODO: Returns whether or not the worker was successfully added to DB.
+         *  TODO: /create-user
+         *     - Takes form params for creating new user, and adds to DB.
          *
          * TODO: /document
          *     - Takes userID and document name
@@ -69,8 +66,12 @@ public class App {
          * TODO: /put-documents
          *     - Adds a document to the user's db entry
          */
+
+        app.before(ctx -> ctx.header("Access-Control-Allow-Credentials", "true"));
+
         app.get("/", ctx -> ctx.result("Welcome to the Keep.id Server"));
         app.post("/login", UserController.loginUser);
         app.post("/organization-signup", OrganizationController.enrollOrganization);
+        // app.post("/create-user", UserController.createUser);
     }
 }
