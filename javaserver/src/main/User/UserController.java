@@ -12,11 +12,15 @@ import de.mkammerer.argon2.Argon2Factory;
 import Config.MongoConfig;
 import io.javalin.http.Handler;
 import org.bson.Document;
+import org.json.JSONObject;
 
 public class UserController {
     public static Handler loginUser = ctx -> {
-        String password = ctx.formParam("password");
-        String username = ctx.formParam("username");
+        System.out.println(ctx.body());
+
+        JSONObject obj = new JSONObject(ctx.body());
+        String username = obj.getString("username");
+        String password = obj.getString("password");
 
         Argon2 argon2 = Argon2Factory.create();
         // @validate make sure that username and password are not null
@@ -25,12 +29,14 @@ public class UserController {
             // retrieve hash from database
             // do mongodb lookup here
             MongoClient client = MongoConfig.getMongoClient();
+            System.out.println(client);
             MongoDatabase database = client.getDatabase(MongoConfig.getDatabaseName());
             MongoCollection<Document> userCollection = database.getCollection("user");
             Document user = userCollection.find(eq("username", username)).first();
             if (user == null) {
                 ctx.result(UserMessage.USER_NOT_FOUND.getErrorName());
                 argon2.wipeArray(passwordArr);
+                return;
             }
 
             String hash = user.get("password", String.class);
