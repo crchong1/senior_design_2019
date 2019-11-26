@@ -14,6 +14,7 @@ import static com.mongodb.client.model.Filters.*;
 
 public class OrganizationController {
     public static Handler enrollOrganization = ctx -> {
+
         String orgName = ctx.formParam("orgName");
         String orgWebsite = ctx.formParam("orgWebsite").toLowerCase();
         String adminName = ctx.formParam("name").toLowerCase();
@@ -31,6 +32,7 @@ public class OrganizationController {
         MongoDatabase database = MongoConfig.getMongoClient()
                 .getDatabase(MongoConfig.getDatabaseName());
 
+        System.out.println(ctx.body());
         MongoCollection<Document> orgCollection = database.getCollection("organization");
         Document existingOrg = orgCollection.find(eq("orgName", orgName)).first();
 

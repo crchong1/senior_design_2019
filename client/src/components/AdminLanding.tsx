@@ -1,47 +1,14 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 interface State {
-	loggedIn: boolean,
+  people: any,
+
 }
 
 class AdminLanding extends Component<{}, State, {}> {
-  constructor(props: Readonly<{}>) {
-    super(props);
-    this.state = {
-      loggedIn: true, // Change to true in order to show landing logged in
-      // we should also pass in other state such as the admin information. we could also do a fetch call inside
-    };
-  }
-
-  // @steffen please use this format to send a fetch from the backend and populate these fields
-  // with the appropriate data fields
-  exampleData = [
-    {
-      id: 'id1',
-      name: 'exampleName1',
-      role: 'worker',
-    },
-    {
-      id: 'id2',
-      name: 'exampleName2',
-      role: 'worker',
-    },
-    {
-      id: 'id3',
-      name: 'exampleName3',
-      role: 'worker',
-    },
-    {
-      id: 'id4',
-      name: 'exampleName4',
-      role: 'admin',
-    },
-  ];
-
   tableCols = [{
     dataField: 'id',
     text: 'Worker ID',
@@ -56,12 +23,36 @@ class AdminLanding extends Component<{}, State, {}> {
     sort: true,
   }];
 
+  constructor(props: Readonly<{}>) {
+    super(props);
+    this.state = {
+      people : [
+        {
+          id: 'id1',
+          name: 'exampleName1',
+          role: 'worker',
+        },
+        {
+          id: 'id2',
+          name: 'exampleName2',
+          role: 'worker',
+        },
+        {
+          id: 'id3',
+          name: 'exampleName3',
+          role: 'worker',
+        },
+        {
+          id: 'id4',
+          name: 'exampleName4',
+          role: 'admin',
+        },
+      ]
+      // we should also pass in other state such as the admin information. we could also do a fetch call inside
+    };
+  }
+
   render() {
-    if (!this.state.loggedIn) {
-      return (
-        <Redirect to="/login" />
-      );
-    }
     return (
       <div>
         <div className="jumbotron jumbotron-fluid">
@@ -80,7 +71,7 @@ class AdminLanding extends Component<{}, State, {}> {
               <BootstrapTable
                 bootstrap4
                 keyField="id"
-                data={this.exampleData}
+                data={this.state.people}
                 columns={this.tableCols}
                 pagination={paginationFactory()}
               />

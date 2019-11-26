@@ -1,164 +1,101 @@
 import React, { Component } from 'react';
-// import querystring from 'querystring';
-// import https from 'https';
 import USStates from '../static/data/states_titlecase.json';
 
 // Need to validate form to make sure inputs are good, address is good, etc.
 // Google API for address checking
 
 interface State {
-  organizationName: string,
-  organizationStatus: string,
-  organizationWebsite: string,
-  clientSSN: number,
-  organizationEmail: string,
-  organizationPhoneNumber: string,
-  organizationAddressLine1: string,
-  organizationAddressLine2: string,
-  organizationAddressCity: string,
-  organizationAddressState: string,
-  organizationAddressZipcode: string,
-  acceptEULA: boolean,
-  reaffirmStage: boolean
+  clientFirstName: string,
+  clientLastName: string,
+  clientEmail: string,
+  clientPhoneNumber: string,
+  clientAddressLine1: string,
+  clientAddressCity: string,
+  clientAddressState: string,
+  clientAddressZipcode: string,
+  clientPassword1: string,
+  clientPassword2: string
 }
 
 class ClientSignup extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
-    console.log(USStates);
     this.state = {
-      organizationName: '',
-      organizationStatus: '', // 501c3, etc.
-      organizationWebsite: '',
-      clientSSN: 0,
-      organizationEmail: '',
-      organizationPhoneNumber: '',
-      organizationAddressLine1: '',
-      organizationAddressLine2: '',
-      organizationAddressCity: '',
-      organizationAddressState: USStates[0].name,
-      organizationAddressZipcode: '',
-      acceptEULA: false,
-      reaffirmStage: false,
+      clientFirstName: '',
+      clientLastName: '',
+      clientEmail: '',
+      clientPhoneNumber: '',
+      clientAddressLine1: '',
+      clientAddressCity: '',
+      clientAddressState: USStates[0].name,
+      clientAddressZipcode: '',
+      clientPassword1: '',
+      clientPassword2: '',
     };
 
-    /*
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChangeOrganizationName = this.handleChangeOrganizationName.bind(this);
-    this.handleChangeOrganizationStatus = this.handleChangeOrganizationStatus.bind(this);
-    this.handleChangeOrganizationWebsite = this.handleChangeOrganizationWebsite.bind(this);
-    this.handleChangeOrganizationNumClients = this.handleChangeOrganizationNumClients.bind(this);
-    this.handleChangeOrganizationEmail = this.handleChangeOrganizationEmail.bind(this);
-    this.handleChangeOrganizationPhoneNumber = this.handleChangeOrganizationPhoneNumber.bind(this);
-    this.handleChangeOrganizationAddressLine1 = this.handleChangeOrganizationAddressLine1.bind(this);
-    this.handleChangeOrganizationAddressLine2 = this.handleChangeOrganizationAddressLine2.bind(this);
-    this.handleChangeOrganizationAddressCity = this.handleChangeOrganizationAddressCity.bind(this);
-    this.handleChangeOrganizationAddressState = this.handleChangeOrganizationAddressState.bind(this);
-    this.handleChangeOrganizationAddressZipcode = this.handleChangeOrganizationAddressZipcode.bind(this);
-    this.handleChangeReaffirmStage = this.handleChangeReaffirmStage.bind(this);
-    this.handleChangeAcceptEULA = this.handleChangeAcceptEULA.bind(this);
-     */
+    this.handleChangeClientFirstName = this.handleChangeClientFirstName.bind(this);
+    this.handleChangeClientLastName = this.handleChangeClientLastName.bind(this);
+
+    this.handleChangeClientEmail = this.handleChangeClientEmail.bind(this);
+    this.handleChangeClientPhoneNumber = this.handleChangeClientPhoneNumber.bind(this);
+    this.handleChangeClientAddressLine1 = this.handleChangeClientAddressLine1.bind(this);
+    this.handleChangeClientAddressCity = this.handleChangeClientAddressCity.bind(this);
+    this.handleChangeClientAddressState = this.handleChangeClientAddressState.bind(this);
+    this.handleChangeClientAddressZipcode = this.handleChangeClientAddressZipcode.bind(this);
+    this.handleChangeClientPassword1 = this.handleChangeClientPassword1.bind(this);
+    this.handleChangeClientPassword2 = this.handleChangeClientPassword2.bind(this);
   }
-  /*
+
   handleSubmit(event: any) {
-    if (!this.state.acceptEULA) {
-      alert('Please accept EULA before completing application');
+    event.preventDefault();
+    if (this.state.clientPassword1 !== this.state.clientPassword2) {
+      alert('Your passwords are not identical');
     } else {
-      alert('Thank you for Submitting. Please wait 1-3 business days for a response.');
-      event.preventDefault();
-
-      const postData = querystring.stringify({ test: 'hi' });
-      //   this.state
-      // );
-      const options = {
-        hostname: 'www.google.com',
-        port: 80,
-        path: '/upload',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': Buffer.byteLength(postData),
-        },
-      };
-
-      const req = https.request(options, (res) => {
-        console.log('submit form');
-
-
-        res.setEncoding('utf8');
-
-        res.on('data', (chunk) => {
-          console.log(chunk);
-        });
-
-        res.on('end', () => {
-          console.log('No more data');
-        });
-      });
-
-      req.on('error', (error) => {
-        console.log(error.message);
-      });
-
-      req.write(postData);
-      req.end();
+      alert('Submitted request for new guest');
     }
   }
 
-  handleChangeOrganizationName(event: any) {
+  handleChangeClientFirstName(event: any) {
     console.log(event);
-    this.setState({ organizationName: event.target.value });
+    this.setState({ clientFirstName: event.target.value });
   }
 
-  handleChangeOrganizationStatus(event: any) {
-    this.setState({ organizationStatus: event.target.value });
+  handleChangeClientLastName(event: any) {
+    this.setState({ clientLastName: event.target.value });
   }
 
-  handleChangeOrganizationWebsite(event: any) {
-    this.setState({ organizationWebsite: event.target.value });
+  handleChangeClientEmail(event: any) {
+    this.setState({ clientEmail: event.target.value });
   }
 
-  handleChangeOrganizationNumClients(event: any) {
-    this.setState({ organizationNumClients: event.target.value });
+  handleChangeClientPhoneNumber(event: any) {
+    this.setState({ clientPhoneNumber: event.target.value });
   }
 
-  handleChangeOrganizationEmail(event: any) {
-    this.setState({ organizationEmail: event.target.value });
+  handleChangeClientAddressLine1(event: any) {
+    this.setState({ clientAddressLine1: event.target.value });
   }
 
-  handleChangeOrganizationPhoneNumber(event: any) {
-    this.setState({ organizationPhoneNumber: event.target.value });
+  handleChangeClientAddressCity(event: any) {
+    this.setState({ clientAddressCity: event.target.value });
   }
 
-  handleChangeOrganizationAddressLine1(event: any) {
-    this.setState({ organizationAddressLine1: event.target.value });
+  handleChangeClientAddressState(event: any) {
+    this.setState({ clientAddressState: event.target.value });
   }
 
-  handleChangeOrganizationAddressLine2(event: any) {
-    this.setState({ organizationAddressLine2: event.target.value });
+  handleChangeClientAddressZipcode(event: any) {
+    this.setState({ clientAddressZipcode: event.target.value });
   }
 
-  handleChangeOrganizationAddressCity(event: any) {
-    this.setState({ organizationAddressCity: event.target.value });
+  handleChangeClientPassword1(event: any) {
+    this.setState({ clientPassword1: event.target.value });
   }
 
-  handleChangeOrganizationAddressState(event: any) {
-    this.setState({ organizationAddressState: event.target.value });
+  handleChangeClientPassword2(event: any) {
+    this.setState({ clientPassword2: event.target.value });
   }
-
-  handleChangeOrganizationAddressZipcode(event: any) {
-    this.setState({ organizationAddressZipcode: event.target.value });
-  }
-
-  handleChangeAcceptEULA(event: any) {
-    this.setState({ acceptEULA: !this.state.acceptEULA });
-  }
-
-  handleChangeReaffirmStage(event: any) {
-    event.preventDefault();
-    this.setState({ reaffirmStage: !this.state.reaffirmStage });
-  }
-*/
 
   render() {
     // if (this.state.reaffirmStage) {
@@ -180,7 +117,15 @@ class ClientSignup extends Component<{}, State, {}> {
 First Name
                       <text className="red-star">*</text>
                     </label>
-                    <input type="text" className="form-control form-purple" id="firstName" placeholder="John" required />
+                    <input
+                      type="text"
+                      className="form-control form-purple"
+                      id="firstName"
+                      onChange={this.handleChangeClientFirstName}
+                      value={this.state.clientFirstName}
+                      placeholder="John"
+                      required
+                    />
                   </div>
                   <div className="col-md-6 form-group">
                     <label htmlFor="inputLastName">

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import querystring from 'querystring';
-import https from 'https';
+import { Redirect } from 'react-router-dom';
 
 import USStates from '../static/data/states_titlecase.json';
-import SignaturePad from '../react-typescript-signature-pad';
+import SignaturePad from '../lib/react-typescript-signature-pad';
 
 // Need to validate form to make sure inputs are good, address is good, etc.
 // Google API for address checking
 
 interface State {
+  submitSuccessful: boolean,
   organizationName: string,
   organizationStatus: string,
   organizationWebsite: string,
@@ -34,6 +34,7 @@ class OrganizationSignup extends Component<{}, State, {}> {
     super(props);
     console.log(USStates);
     this.state = {
+      submitSuccessful: false,
       organizationName: '',
       organizationStatus: '', // 501c3, etc.
       organizationWebsite: 'http://',
@@ -62,6 +63,9 @@ class OrganizationSignup extends Component<{}, State, {}> {
     this.handleChangeContactName = this.handleChangeContactName.bind(this);
     this.handleChangeContactEmail = this.handleChangeContactEmail.bind(this);
     this.handleChangeContactPhoneNumber = this.handleChangeContactPhoneNumber.bind(this);
+    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChangeConfirmPassword = this.handleChangeConfirmPassword.bind(this);
     this.handleChangeOrganizationAddressLine1 = this.handleChangeOrganizationAddressLine1.bind(this);
     this.handleChangeOrganizationAddressLine2 = this.handleChangeOrganizationAddressLine2.bind(this);
     this.handleChangeOrganizationAddressCity = this.handleChangeOrganizationAddressCity.bind(this);
@@ -76,43 +80,26 @@ class OrganizationSignup extends Component<{}, State, {}> {
       alert('Please accept EULA before completing application');
     } else {
       alert('Thank you for Submitting. Please wait 1-3 business days for a response.');
-      event.preventDefault();
-
-      const postData = querystring.stringify({ test: 'hi' });
-      //   this.state
-      // );
-      const options = {
-        hostname: 'www.google.com',
-        port: 80,
-        path: '/upload',
+      fetch('http://localhost:7000/organization-signup', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': Buffer.byteLength(postData),
-        },
-      };
-
-      const req = https.request(options, (res) => {
-        console.log('submit form');
-
-
-        res.setEncoding('utf8');
-
-        res.on('data', (chunk) => {
-          console.log(chunk);
-        });
-
-        res.on('end', () => {
-          console.log('No more data');
-        });
+        body: JSON.stringify({
+          orgWebsite: this.state.organizationWebsite,
+          name: this.state.contactName,
+          phone: this.state.contactPhoneNumber,
+          orgName: this.state.organizationName,
+          email: this.state.contactEmail,
+          username: this.state.username,
+          password: this.state.password,
+          address: this.state.organizationAddressLine1,
+          city: this.state.organizationAddressCity,
+          state: this.state.organizationAddressState,
+          zipcode: this.state.organizationAddressZipcode,
+          taxCode: this.state.organizationEIN,
+          numUsers: this.state.organizationNumClients,
+        }),
+      }).then((response) => response.json()).then((responseJSON) => {
+        this.setState({ submitSuccessful: true });
       });
-
-      req.on('error', (error) => {
-        console.log(error.message);
-      });
-
-      req.write(postData);
-      req.end();
     }
   }
 
@@ -175,7 +162,11 @@ class OrganizationSignup extends Component<{}, State, {}> {
 
   handleChangeReaffirmStage(event: any) {
     event.preventDefault();
-    this.setState({ reaffirmStage: !this.state.reaffirmStage });
+    if (this.state.password !== this.state.confirmPassword) {
+      alert('Your Passwords are not Identical');
+    } else {
+      this.setState({ reaffirmStage: !this.state.reaffirmStage });
+    }
   }
 
   handleChangeUsername(event: any) {
@@ -191,18 +182,21 @@ class OrganizationSignup extends Component<{}, State, {}> {
   }
 
   render() {
+    if (this.state.submitSuccessful) {
+      return (<Redirect to="/" />);
+    }
     if (!this.state.reaffirmStage) {
       return (
         <div className="container">
           <div className="row">
             <div className="col-md-12 mt-5">
               <h3 className="text-center textPrintHeader">
-                  Organization Signup Page
+                    Organization Signup Page
               </h3>
               <p className="textPrintDesc pl-3">
                 <span>
-Thank you for expressing interest in using Keep.id in the fight to end homelessness.
-                 Please fill out the following form so we can get back to you with instructions on how to proceed.
+  Thank you for expressing interest in using Keep.id in the fight to end homelessness.
+                   Please fill out the following form so we can get back to you with instructions on how to proceed.
                 </span>
               </p>
               <form onSubmit={this.handleChangeReaffirmStage}>
@@ -210,7 +204,7 @@ Thank you for expressing interest in using Keep.id in the fight to end homelessn
                   <div className="form-row">
                     <div className="col-md-6 form-group">
                       <label htmlFor="inputOrgName">
-Organization Name
+  Organization Name
                         <text className="red-star">*</text>
                       </label>
                       <input type="text" className="form-control form-purple" id="orgName" placeholder="Keep" value={this.state.organizationName} onChange={this.handleChangeOrganizationName} required />
@@ -223,21 +217,21 @@ Organization Name
                   <div className="form-row">
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputContactName">
-Contact Name
+  Contact Name
                         <text className="red-star">*</text>
                       </label>
                       <input type="text" className="form-control form-purple" id="contactName" placeholder="John Doe" value={this.state.contactName} onChange={this.handleChangeContactName} required />
                     </div>
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputContactPhoneNumber">
-Contact Phone Number
+  Contact Phone Number
                         <text className="red-star">*</text>
                       </label>
                       <input type="tel" className="form-control form-purple" id="contactPhoneNumber" placeholder="1-(234)-567-8901" value={this.state.contactPhoneNumber} onChange={this.handleChangeContactPhoneNumber} required />
                     </div>
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputContactEmail">
-Contact Email Address
+  Contact Email Address
                         <text className="red-star">*</text>
                       </label>
                       <input type="email" className="form-control form-purple" id="contactEmail" placeholder="contact@example.com" value={this.state.contactEmail} onChange={this.handleChangeContactEmail} required />
@@ -269,21 +263,21 @@ Confirm Password
                   <div className="form-row">
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputAddress">
-Organization Address
+  Organization Address
                         <text className="red-star">*</text>
                       </label>
                       <input type="text" className="form-control form-purple" id="address" placeholder="311 Broad St" value={this.state.organizationAddressLine1} onChange={this.handleChangeOrganizationAddressLine1} required />
                     </div>
                     <div className="col-md-3 form-group">
                       <label htmlFor="inputCity">
-City
+  City
                         <text className="red-star">*</text>
                       </label>
                       <input type="text" className="form-control form-purple" id="city" placeholder="Philadelphia" value={this.state.organizationAddressCity} onChange={this.handleChangeOrganizationAddressCity} required />
                     </div>
                     <div className="col-md-2 form-group">
                       <label htmlFor="inputState">
-State
+  State
                         <text className="red-star">*</text>
                       </label>
                       <select className="form-control form-purple" id="state" value={this.state.organizationAddressState} onChange={this.handleChangeOrganizationAddressState} required>
@@ -292,7 +286,7 @@ State
                     </div>
                     <div className="col-md-3 form-group">
                       <label htmlFor="inputZipCode">
-Zip Code
+  Zip Code
                         <text className="red-star">*</text>
                       </label>
                       <input type="text" className="form-control form-purple" id="zipCode" placeholder="19104" value={this.state.organizationAddressZipcode} onChange={this.handleChangeOrganizationAddressZipcode} required />
@@ -301,7 +295,7 @@ Zip Code
                   <div className="form-row">
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputEIN">
-Organization Employer Identification Number
+  Organization Employer Identification Number
                         <text className="red-star">*</text>
                         {' '}
 
@@ -310,7 +304,7 @@ Organization Employer Identification Number
                     </div>
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputNumUsers">
-Expected Number of Users in 100s
+  Expected Number of Users in 100s
                         <text className="red-star">*</text>
                       </label>
 
@@ -333,7 +327,7 @@ Expected Number of Users in 100s
           <div className="row">
             <div className="col-md-12 mt-5">
               <h3 className="text-center textPrintHeader">
-                  Review Your Information
+                    Review Your Information
               </h3>
               <p className="textPrintDesc pl-3">
                 <span>This is just to check if you have filled out all the fields correctly.</span>
@@ -362,6 +356,29 @@ Expected Number of Users in 100s
                     <label htmlFor="inputContactEmail">Contact Email Address</label>
                     <input type="email" readOnly className="form-control form-purple" id="contactEmail" value={this.state.contactEmail} />
                   </div>
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="col-md-4 form-group">
+                  <label htmlFor="username">
+Admin Username
+                    <text className="red-star">*</text>
+                  </label>
+                  <input type="text" readOnly className="form-control form-purple" id="username" value={this.state.username} required />
+                </div>
+                <div className="col-md-4 form-group">
+                  <label htmlFor="password">
+Password
+                    <text className="red-star">*</text>
+                  </label>
+                  <input type="text" readOnly className="form-control form-purple" id="password" value={this.state.password} required />
+                </div>
+                <div className="col-md-4 form-group">
+                  <label htmlFor="confirmpassword">
+Confirm Password
+                    <text className="red-star">*</text>
+                  </label>
+                  <input type="text" readOnly className="form-control form-purple" id="confirmpassword" value={this.state.confirmPassword} required />
                 </div>
               </div>
               <div className="row mt-2">

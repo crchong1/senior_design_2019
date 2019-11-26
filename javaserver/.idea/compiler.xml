@@ -11,6 +11,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="javaserver" target="11" />
+      <module name="keepid" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
