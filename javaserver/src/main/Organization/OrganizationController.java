@@ -77,12 +77,14 @@ public class OrganizationController {
                     .append("expectedNumUsers", numUsers);
             orgCollection.insertOne(newOrg);
 
+            /*
             Algorithm algo = Algorithm.HMAC256("secret");
             String token = JWT.create()
                     .withClaim("privilegeLevel", "admin")
                     .withClaim("orgName", orgName)
                     .sign(algo);
             ctx.cookieStore("token", token);
+             */
             ctx.json(OrgEnrollmentStatus.SUCCESSFUL_ENROLLMENT);
         }
     };

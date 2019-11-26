@@ -57,7 +57,7 @@ public class App {
          *          - OrgEnrollmentStatus.ORG_EXISTS
          *          - OrgEnrollmentStatus.SUCCESSFUL_ENROLLMENT
          *
-         *  /create-user
+         *  TODO: /create-user
          *     - Takes form params for creating new user, and adds to DB.
          *
          * TODO: /document
@@ -72,6 +72,6 @@ public class App {
         app.get("/", ctx -> ctx.result("Welcome to the Keep.id Server"));
         app.post("/login", UserController.loginUser);
         app.post("/organization-signup", OrganizationController.enrollOrganization);
-        app.post("/create-user", UserController.createUser);
+        // app.post("/create-user", UserController.createUser);
     }
 }

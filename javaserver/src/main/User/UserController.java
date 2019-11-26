@@ -39,12 +39,14 @@ public class UserController {
 
                 //ctx.sessionAttribute("privilegeLevel", user.get("privilegeLevel"));
                 //ctx.sessionAttribute("orgName", user.get("organization"));
+               /*
                 Algorithm algo = Algorithm.HMAC256("secret");
                 String token = JWT.create()
                         .withClaim("privilegeLevel", (String)user.get("privilegeLevel"))
                         .withClaim("orgName", (String)user.get("organization"))
                         .sign(algo);
                 ctx.cookieStore("token", token);
+                */
                 ctx.result(UserMessage.AUTH_SUCCESS.getErrorName());
             } else {
                 // Hash doesn't match password
@@ -58,6 +60,7 @@ public class UserController {
         }
     };
 
+    /*
     public static Handler createUser = ctx -> {
         // Get all formParams
         String username = ctx.formParam("username");
@@ -70,11 +73,14 @@ public class UserController {
         // Session tokens
         //String sessionUserLevel = ctx.sessionAttribute("privilegeLevel");
         //String sessionOrg = ctx.sessionAttribute("orgName");
+
         String token = ctx.cookieStore("token");
         DecodedJWT dJWT = JWT.decode(token);
 
         String sessionUserLevel = dJWT.getHeaderClaim("privilegeLevel").asString();
         String sessionOrg = dJWT.getHeaderClaim("orgName").asString();
+
+
 
         if (sessionUserLevel == null || sessionOrg == null) {
             ctx.result(UserMessage.SESSION_TOKEN_FAILURE.getErrorName());
@@ -135,4 +141,5 @@ public class UserController {
             ctx.result(UserMessage.ENROLL_SUCCESS.getErrorName());
         }
     };
+    */
 }
