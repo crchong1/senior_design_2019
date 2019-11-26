@@ -10,29 +10,32 @@ import de.mkammerer.argon2.Argon2Factory;
 import Config.MongoConfig;
 import io.javalin.http.Handler;
 import org.bson.Document;
+import org.json.JSONObject;
+
 import static com.mongodb.client.model.Filters.*;
 
 public class OrganizationController {
     public static Handler enrollOrganization = ctx -> {
 
-        String orgName = ctx.formParam("orgName");
-        String orgWebsite = ctx.formParam("orgWebsite").toLowerCase();
-        String adminName = ctx.formParam("name").toLowerCase();
-        String orgContactPhoneNumber = ctx.formParam("phone").toLowerCase();
-        String email = ctx.formParam("email").toLowerCase();
-        String username = ctx.formParam("username");
-        String password = ctx.formParam("password");
-        String address = ctx.formParam("address").toLowerCase();
-        String city = ctx.formParam("city").toLowerCase();
-        String state = ctx.formParam("state").toUpperCase();
-        String zipcode = ctx.formParam("zipcode");
-        String taxCode = ctx.formParam("taxCode");
-        Integer numUsers = Integer.parseInt(ctx.formParam("numUsers"));
+        JSONObject obj = new JSONObject(ctx.body());
+
+        String orgName = obj.getString("orgName");
+        String orgWebsite = obj.getString("orgWebsite").toLowerCase();
+        String adminName = obj.getString("name").toLowerCase();
+        String orgContactPhoneNumber = obj.getString("phone").toLowerCase();
+        String email = obj.getString("email").toLowerCase();
+        String username = obj.getString("username");
+        String password = obj.getString("password");
+        String address = obj.getString("address").toLowerCase();
+        String city = obj.getString("city").toLowerCase();
+        String state = obj.getString("state").toUpperCase();
+        String zipcode = obj.getString("zipcode");
+        String taxCode = obj.getString("taxCode");
+        Integer numUsers = Integer.parseInt(obj.getString("numUsers"));
 
         MongoDatabase database = MongoConfig.getMongoClient()
                 .getDatabase(MongoConfig.getDatabaseName());
 
-        System.out.println(ctx.body());
         MongoCollection<Document> orgCollection = database.getCollection("organization");
         Document existingOrg = orgCollection.find(eq("orgName", orgName)).first();
 
@@ -41,7 +44,6 @@ public class OrganizationController {
 
         if (existingOrg != null) {
             ctx.json(OrgEnrollmentStatus.ORG_EXISTS);
-            return;
         }
         else if (existingUser != null) {
             ctx.json(UserMessage.USERNAME_ALREADY_EXISTS.getErrorName());

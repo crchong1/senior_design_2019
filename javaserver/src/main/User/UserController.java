@@ -16,7 +16,6 @@ import org.json.JSONObject;
 
 public class UserController {
     public static Handler loginUser = ctx -> {
-        System.out.println(ctx.body());
 
         JSONObject obj = new JSONObject(ctx.body());
         String username = obj.getString("username");
@@ -29,12 +28,11 @@ public class UserController {
             // retrieve hash from database
             // do mongodb lookup here
             MongoClient client = MongoConfig.getMongoClient();
-            System.out.println(client);
             MongoDatabase database = client.getDatabase(MongoConfig.getDatabaseName());
             MongoCollection<Document> userCollection = database.getCollection("user");
             Document user = userCollection.find(eq("username", username)).first();
             if (user == null) {
-                ctx.result(UserMessage.USER_NOT_FOUND.getErrorName());
+                ctx.json(UserMessage.USER_NOT_FOUND.getErrorName());
                 argon2.wipeArray(passwordArr);
                 return;
             }
@@ -53,13 +51,13 @@ public class UserController {
                         .sign(algo);
                 ctx.cookieStore("token", token);
                 */
-                ctx.result(UserMessage.AUTH_SUCCESS.getErrorName());
+                ctx.json(UserMessage.AUTH_SUCCESS.getErrorName());
             } else {
                 // Hash doesn't match password
-                ctx.result(UserMessage.AUTH_FAILURE.getErrorName());
+                ctx.json(UserMessage.AUTH_FAILURE.getErrorName());
             }
         } catch(Exception e) {
-            ctx.result(UserMessage.HASH_FAILURE.getErrorName());
+            ctx.json(UserMessage.HASH_FAILURE.getErrorName());
         } finally {
             // Wipe confidential data from cache
             argon2.wipeArray(passwordArr);
