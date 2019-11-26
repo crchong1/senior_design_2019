@@ -22,6 +22,7 @@ interface State {
 class Header extends Component<Props, State, {}> {
   constructor(props: Props) {
     super(props);
+    console.log(process.env.SERVER + "/login");
     this.state = {
       isLoggedIn: false,
       incorrectCredentials: false,
@@ -33,12 +34,21 @@ class Header extends Component<Props, State, {}> {
 
   handleSubmit(event: any) {
     event.preventDefault();
-    const isLoggedIn = true;// api.submitLogin(this.state.organization, this.userId, this.privateKey);
-    if (isLoggedIn) {
-      this.props.logIn();
-    } else {
-      this.setState({ incorrectCredentials: true });
-    }
+    const isLoggedIn = true;
+    fetch("http://localhost:7000/login", {
+      method: "POST",
+      body: JSON.stringify({
+        username: this.state.userId,
+        password: this.state.password,
+      })
+    }).then((response) => response.json())
+    .then((responseJSON) => {
+      if (isLoggedIn) {
+        this.props.logIn();
+      } else {
+        this.setState({ incorrectCredentials: true });
+      }
+    });
   }
 
   UNSAFE_componentWillReceiveProps(props: Props) {

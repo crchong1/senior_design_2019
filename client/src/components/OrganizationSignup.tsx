@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import USStates from '../static/data/states_titlecase.json';
-import SignaturePad from '../react-typescript-signature-pad';
+import SignaturePad from '../lib/react-typescript-signature-pad';
 
 // Need to validate form to make sure inputs are good, address is good, etc.
 // Google API for address checking
@@ -162,8 +162,8 @@ class OrganizationSignup extends Component<{}, State, {}> {
 
   handleChangeReaffirmStage(event: any) {
     event.preventDefault();
-    if(this.state.password !== this.state.confirmPassword) {
-      alert("Your Passwords are not Identical")
+    if (this.state.password !== this.state.confirmPassword) {
+      alert('Your Passwords are not Identical');
     } else {
       this.setState({ reaffirmStage: !this.state.reaffirmStage });
     }
@@ -205,8 +205,8 @@ class OrganizationSignup extends Component<{}, State, {}> {
                     <div className="col-md-6 form-group">
                       <label htmlFor="inputOrgName">
   Organization Name
-                          <text className="red-star">*</text>
-                        </label>
+                        <text className="red-star">*</text>
+                      </label>
                       <input type="text" className="form-control form-purple" id="orgName" placeholder="Keep" value={this.state.organizationName} onChange={this.handleChangeOrganizationName} required />
                     </div>
                     <div className="col-md-6 form-group">
@@ -218,22 +218,22 @@ class OrganizationSignup extends Component<{}, State, {}> {
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputContactName">
   Contact Name
-                          <text className="red-star">*</text>
-                        </label>
+                        <text className="red-star">*</text>
+                      </label>
                       <input type="text" className="form-control form-purple" id="contactName" placeholder="John Doe" value={this.state.contactName} onChange={this.handleChangeContactName} required />
                     </div>
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputContactPhoneNumber">
   Contact Phone Number
-                          <text className="red-star">*</text>
-                        </label>
+                        <text className="red-star">*</text>
+                      </label>
                       <input type="tel" className="form-control form-purple" id="contactPhoneNumber" placeholder="1-(234)-567-8901" value={this.state.contactPhoneNumber} onChange={this.handleChangeContactPhoneNumber} required />
                     </div>
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputContactEmail">
   Contact Email Address
-                          <text className="red-star">*</text>
-                        </label>
+                        <text className="red-star">*</text>
+                      </label>
                       <input type="email" className="form-control form-purple" id="contactEmail" placeholder="contact@example.com" value={this.state.contactEmail} onChange={this.handleChangeContactEmail} required />
                     </div>
                   </div>
@@ -264,31 +264,31 @@ Confirm Password
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputAddress">
   Organization Address
-                          <text className="red-star">*</text>
-                        </label>
+                        <text className="red-star">*</text>
+                      </label>
                       <input type="text" className="form-control form-purple" id="address" placeholder="311 Broad St" value={this.state.organizationAddressLine1} onChange={this.handleChangeOrganizationAddressLine1} required />
                     </div>
                     <div className="col-md-3 form-group">
                       <label htmlFor="inputCity">
   City
-                          <text className="red-star">*</text>
-                        </label>
+                        <text className="red-star">*</text>
+                      </label>
                       <input type="text" className="form-control form-purple" id="city" placeholder="Philadelphia" value={this.state.organizationAddressCity} onChange={this.handleChangeOrganizationAddressCity} required />
                     </div>
                     <div className="col-md-2 form-group">
                       <label htmlFor="inputState">
   State
-                          <text className="red-star">*</text>
-                        </label>
+                        <text className="red-star">*</text>
+                      </label>
                       <select className="form-control form-purple" id="state" value={this.state.organizationAddressState} onChange={this.handleChangeOrganizationAddressState} required>
-                          {USStates.map((USState) => (<option>{USState.name}</option>))}
-                        </select>
+                        {USStates.map((USState) => (<option>{USState.name}</option>))}
+                      </select>
                     </div>
                     <div className="col-md-3 form-group">
                       <label htmlFor="inputZipCode">
   Zip Code
-                          <text className="red-star">*</text>
-                        </label>
+                        <text className="red-star">*</text>
+                      </label>
                       <input type="text" className="form-control form-purple" id="zipCode" placeholder="19104" value={this.state.organizationAddressZipcode} onChange={this.handleChangeOrganizationAddressZipcode} required />
                     </div>
                   </div>
@@ -296,17 +296,17 @@ Confirm Password
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputEIN">
   Organization Employer Identification Number
-                          <text className="red-star">*</text>
-                          {' '}
+                        <text className="red-star">*</text>
+                        {' '}
 
-                        </label>
+                      </label>
                       <input type="text" className="form-control form-purple" id="ein" placeholder="12-3456789" value={this.state.organizationEIN} onChange={this.handleChangeOrganizationEIN} required />
                     </div>
                     <div className="col-md-4 form-group">
                       <label htmlFor="inputNumUsers">
   Expected Number of Users in 100s
-                          <text className="red-star">*</text>
-                        </label>
+                        <text className="red-star">*</text>
+                      </label>
 
                       <input type="number" className="form-control form-purple" id="numUsers" min="0" step="100" placeholder="1000" value={this.state.organizationNumClients} onChange={this.handleChangeOrganizationNumClients} required />
                     </div>
