@@ -41,8 +41,8 @@ class Header extends Component<Props, State, {}> {
       method: 'POST',
       body: JSON.stringify({
         username: this.state.username,
-        password: this.state.password,
-      }),
+        password: this.state.password
+      })
     }).then((response) => response.json())
       .then((responseJSON) => {
         if (isLoggedIn) {
@@ -72,7 +72,7 @@ class Header extends Component<Props, State, {}> {
     return (
       <div>
         <Navbar bg="primary-theme" variant="dark" sticky="top">
-          <Form onSubmit={this.handleSubmit}>
+          <Form id="loginForm" onSubmit={this.handleSubmit}>
             <Row className="d-flex justify-content-end">
               <Col sm={2}>
                 <Navbar.Brand href="/">

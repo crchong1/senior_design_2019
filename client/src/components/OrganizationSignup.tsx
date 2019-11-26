@@ -197,6 +197,7 @@ class OrganizationSignup extends Component<{}, State, {}> {
                 <span>
   Thank you for expressing interest in using Keep.id in the fight to end homelessness.
                    Please fill out the following form so we can get back to you with instructions on how to proceed.
+                   The contact should be the organization leader who will control the priviledges of all users of the service.
                 </span>
               </p>
               <form onSubmit={this.handleChangeReaffirmStage}>

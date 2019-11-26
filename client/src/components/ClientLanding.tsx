@@ -12,7 +12,7 @@ interface State {
     show: boolean
 }
 
-class Landing extends Component<{}, State, {}> {
+class ClientLanding extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
@@ -115,4 +115,4 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit,
   }
 }
 
-export default Landing;
+export default ClientLanding;
