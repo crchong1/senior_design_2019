@@ -15,44 +15,54 @@ interface Props {
 interface State {
   isLoggedIn: boolean,
   incorrectCredentials: boolean,
-  userId: string,
+  username: string,
   password: string
 }
 
 class Header extends Component<Props, State, {}> {
   constructor(props: Props) {
     super(props);
-    console.log(process.env.SERVER + "/login");
+    console.log(`${process.env.SERVER}/login`);
     this.state = {
       isLoggedIn: false,
       incorrectCredentials: false,
-      userId: '',
+      username: '',
       password: '', // Ensure proper length, combination of words and numbers (have a mapping for people to remember)
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeUsername = this.handleChangeUsername.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
   }
 
   handleSubmit(event: any) {
     event.preventDefault();
     const isLoggedIn = true;
-    fetch("http://localhost:7000/login", {
-      method: "POST",
+    fetch('http://localhost:7000/login', {
+      method: 'POST',
       body: JSON.stringify({
-        username: this.state.userId,
+        username: this.state.username,
         password: this.state.password,
-      })
+      }),
     }).then((response) => response.json())
-    .then((responseJSON) => {
-      if (isLoggedIn) {
-        this.props.logIn();
-      } else {
-        this.setState({ incorrectCredentials: true });
-      }
-    });
+      .then((responseJSON) => {
+        if (isLoggedIn) {
+          this.props.logIn();
+        } else {
+          this.setState({ incorrectCredentials: true });
+        }
+      });
   }
 
   UNSAFE_componentWillReceiveProps(props: Props) {
     this.setState({ isLoggedIn: props.isLoggedIn });
+  }
+
+  handleChangePassword(event: any) {
+    this.setState({password: event.target.value});
+  }
+
+  handleChangeUsername(event: any) {
+    this.setState({username: event.target.value});
   }
 
   render() {
@@ -91,6 +101,8 @@ class Header extends Component<Props, State, {}> {
                   </InputGroup.Prepend>
                   <Form.Control
                     type="text"
+                    onChange={this.handleChangeUsername}
+                    value={this.state.username}
                     placeholder="First-Last-MM-DD-YYYY"
                     aria-describedby="Username Login"
                     required
@@ -115,6 +127,8 @@ class Header extends Component<Props, State, {}> {
                   </InputGroup.Prepend>
                   <Form.Control
                     type="password"
+                    onChange={this.handleChangePassword}
+                    value={this.state.password}
                     placeholder="Password"
                     aria-describedby="Password Login"
                     required

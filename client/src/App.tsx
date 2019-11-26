@@ -25,16 +25,6 @@ interface State {
 }
 
 class App extends React.Component<{}, State, {}> {
-  logIn() {
-    console.log('Log In');
-    this.setState({ isLoggedIn: true });
-  }
-
-  logOut() {
-    console.log('Log Out');
-    this.setState({ isLoggedIn: false });
-  }
-
   constructor(props: {}) {
     super(props);
     this.state = {
@@ -42,7 +32,14 @@ class App extends React.Component<{}, State, {}> {
     };
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
-    console.log('New');
+  }
+
+  logIn() {
+    this.setState({ isLoggedIn: true });
+  }
+
+  logOut() {
+    this.setState({ isLoggedIn: false });
   }
 
   render() {
