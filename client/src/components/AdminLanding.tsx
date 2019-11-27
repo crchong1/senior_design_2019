@@ -4,7 +4,7 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 interface State {
-  people: any,
+  workers: any,
 
 }
 
@@ -26,7 +26,7 @@ class AdminLanding extends Component<{}, State, {}> {
   constructor(props: Readonly<{}>) {
     super(props);
     this.state = {
-      people : [
+      workers: [
         {
           id: 'id1',
           name: 'exampleName1',
@@ -47,12 +47,15 @@ class AdminLanding extends Component<{}, State, {}> {
           name: 'exampleName4',
           role: 'admin',
         },
-      ]
+      ],
       // we should also pass in other state such as the admin information. we could also do a fetch call inside
     };
   }
 
   render() {
+    const {
+      workers
+    } = this.state;
     return (
       <div>
         <div className="jumbotron jumbotron-fluid">
@@ -71,7 +74,7 @@ class AdminLanding extends Component<{}, State, {}> {
               <BootstrapTable
                 bootstrap4
                 keyField="id"
-                data={this.state.people}
+                data={workers}
                 columns={this.tableCols}
                 pagination={paginationFactory()}
               />

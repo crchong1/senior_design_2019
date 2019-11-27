@@ -21,11 +21,11 @@ import AdminLanding from './components/AdminLanding';
 import DocViewer from './components/DocViewer';
 
 interface State {
-  userType: userType
+  userType: userTypeLevel
 }
 
-enum userType {
-  headAdmin, //can delete admin and create admin
+enum userTypeLevel {
+  headAdmin, // can delete admin and create admin
   admin,
   worker,
   volunteer,
@@ -37,24 +37,27 @@ class App extends React.Component<{}, State, {}> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      userType: userType.loggedOut
+      userType: userTypeLevel.loggedOut,
     };
     this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
   }
 
   logIn() {
-    this.setState({ userType: userType.client });
+    this.setState({ userType: userTypeLevel.client });
   }
 
   logOut() {
-    this.setState({ userType: userType.loggedOut });
+    this.setState({ userType: userTypeLevel.loggedOut });
   }
 
   render() {
+    const {
+      userType
+    } = this.state;
     return (
       <div className="App">
-        <Header isLoggedIn={this.state.userType !== userType.loggedOut} logIn={this.logIn} logOut={this.logOut} />
+        <Header isLoggedIn={userType !== userTypeLevel.loggedOut} logIn={this.logIn} logOut={this.logOut} />
         <Router>
           <Switch>
             // Home/Login Components
@@ -62,7 +65,7 @@ class App extends React.Component<{}, State, {}> {
               exact
               path="/"
               render={() => (
-                this.state.userType !== userType.loggedOut
+                userType !== userTypeLevel.loggedOut
                   ? <Redirect to="/home" />
                   : <Redirect to="/login" />
               )}
@@ -70,19 +73,18 @@ class App extends React.Component<{}, State, {}> {
             <Route
               path="/home"
               render={() => {
-                if (this.state.userType === userType.admin || this.state.userType === userType.headAdmin) {
-                  return(<AdminLanding />)
-                }  else if (this.state.userType === userType.client) {
-                  return(<ClientLanding />)
-                } else {
-                  return(<Redirect to="/login"/>);
+                if (userType === userTypeLevel.admin || userType === userTypeLevel.headAdmin) {
+                  return (<AdminLanding />);
+                } if (userType === userTypeLevel.client) {
+                  return (<ClientLanding />);
                 }
+                return (<Redirect to="/login" />);
               }}
             />
             <Route
               path="/login"
               render={() => (
-                this.state.userType !== userType.loggedOut
+                userType !== userTypeLevel.loggedOut
                   ? <Redirect to="/home" />
                   : <Login />
               )}
@@ -91,19 +93,21 @@ class App extends React.Component<{}, State, {}> {
             <Route path="/organization-signup">
               <OrganizationSignup />
             </Route>
-            <Route path="/client-signup"
-              render={() =>  (
-                (this.state.userType === userType.headAdmin || this.state.userType === userType.admin || this.state.userType === userType.worker)
-                  ? <ClientSignup /> 
-                  : <Redirect to="/"/>
+            <Route
+              path="/client-signup"
+              render={() => (
+                (userType === userTypeLevel.headAdmin || userType === userTypeLevel.admin || userType === userTypeLevel.worker)
+                  ? <ClientSignup />
+                  : <Redirect to="/" />
               )}
             />
-              
-            <Route path="/worker-signup"
+
+            <Route
+              path="/worker-signup"
               render={() => (
-                (this.state.userType === userType.headAdmin || this.state.userType === userType.admin)
+                (userType === userTypeLevel.headAdmin || userType === userTypeLevel.admin)
                   ? <WorkerSignup />
-                  : <Redirect to ="/"/>
+                  : <Redirect to="/" />
               )}
             />
             // Client Components
@@ -127,7 +131,7 @@ class App extends React.Component<{}, State, {}> {
             </Route>
             // Component
             <Route>
-              <Redirect to="/"/>
+              <Redirect to="/" />
             </Route>
           </Switch>
         </Router>

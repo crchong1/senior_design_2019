@@ -36,20 +36,26 @@ class Header extends Component<Props, State, {}> {
 
   handleSubmit(event: any) {
     event.preventDefault();
-    const isLoggedIn = true;
     fetch('http://localhost:7000/login', {
       method: 'POST',
       body: JSON.stringify({
         username: this.state.username,
-        password: this.state.password
-      })
+        password: this.state.password,
+      }),
     }).then((response) => response.json())
       .then((responseJSON) => {
-        if (isLoggedIn) {
+        if (responseJSON === "AUTH_SUCCESS") {
           this.props.logIn();
-        } else {
+        } else if (responseJSON === "AUTH_FAILURE") {
+          alert("Incorrect Password");
           this.setState({ incorrectCredentials: true });
+        } else if (responseJSON === "USER_NOT_FOUND") {
+          alert("Incorrect Username");
+          this.setState({ incorrectCredentials: true });
+        } else {
+          alert("Server Failure: Please Try Again");
         }
+        console.log(responseJSON);
       });
   }
 
@@ -58,11 +64,11 @@ class Header extends Component<Props, State, {}> {
   }
 
   handleChangePassword(event: any) {
-    this.setState({password: event.target.value});
+    this.setState({ password: event.target.value });
   }
 
   handleChangeUsername(event: any) {
-    this.setState({username: event.target.value});
+    this.setState({ username: event.target.value });
   }
 
   render() {

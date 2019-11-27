@@ -97,8 +97,17 @@ class OrganizationSignup extends Component<{}, State, {}> {
           taxCode: this.state.organizationEIN,
           numUsers: this.state.organizationNumClients,
         }),
-      }).then((response) => response.json()).then((responseJSON) => {
-        this.setState({ submitSuccessful: true });
+      }).then((response) => response.json())
+      .then((responseJSON) => {
+        if (responseJSON === "SUCCESSFUL_ENROLLMENT") {
+          this.setState({ submitSuccessful: true});
+        } else if (responseJSON === "USER_ALREADY_EXISTS") {
+          alert("User already exists");
+        } else if (responseJSON === "ORG_ALREADY_EXISTS") {
+          alert("Organization already exists");
+        } else {
+          alert("Server Failure: Please Try Again");
+        }
       });
     }
   }
@@ -244,14 +253,14 @@ class OrganizationSignup extends Component<{}, State, {}> {
 Admin Username
                         <text className="red-star">*</text>
                       </label>
-                      <input type="text" className="form-control form-purple" id="username" placeholder="John Doe" value={this.state.username} onChange={this.handleChangeUsername} required />
+                      <input type="password" className="form-control form-purple" id="username" placeholder="John Doe" value={this.state.username} onChange={this.handleChangeUsername} required />
                     </div>
                     <div className="col-md-4 form-group">
                       <label htmlFor="password">
 Password
                         <text className="red-star">*</text>
                       </label>
-                      <input type="text" className="form-control form-purple" id="password" placeholder="*******" value={this.state.password} onChange={this.handleChangePassword} required />
+                      <input type="password" className="form-control form-purple" id="password" placeholder="*******" value={this.state.password} onChange={this.handleChangePassword} required />
                     </div>
                     <div className="col-md-4 form-group">
                       <label htmlFor="confirmpassword">

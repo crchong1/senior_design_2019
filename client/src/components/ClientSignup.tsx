@@ -54,8 +54,8 @@ class ClientSignup extends Component<{}, State, {}> {
     if (this.state.clientPassword1 !== this.state.clientPassword2) {
       alert('Your passwords are not identical');
     } else {
-      fetch("http://localhost:7000/client-signup", {
-        method: "POST",
+      fetch('http://localhost:7000/client-signup', {
+        method: 'POST',
         body: JSON.stringify({
           firstname: this.state.clientFirstName,
           lastname: this.state.clientLastName,
@@ -65,13 +65,13 @@ class ClientSignup extends Component<{}, State, {}> {
           city: this.state.clientAddressCity,
           state: this.state.clientAddressState,
           zipcode: this.state.clientAddressZipcode,
-          password: this.state.clientPassword1
-        })
+          password: this.state.clientPassword1,
+        }),
       }).then((response) => response.json())
-      .then(responseJSON => {
-      alert('Submitted request for new guest');
-      this.setState({submitSuccessful: true});
-      });
+        .then((responseJSON) => {
+          alert('Submitted request for new guest');
+          this.setState({ submitSuccessful: true });
+        });
     }
   }
 
@@ -118,8 +118,8 @@ class ClientSignup extends Component<{}, State, {}> {
 
   render() {
     if (this.state.submitSuccessful) {
-      return( 
-        <Redirect to="/"/> 
+      return (
+        <Redirect to="/" />
       );
     }
     return (
@@ -155,13 +155,15 @@ First Name
 Last Name
                       <text className="red-star">*</text>
                     </label>
-                    <input type="text"
-                      className="form-control form-purple" 
-                      id="lastName" 
+                    <input
+                      type="text"
+                      className="form-control form-purple"
+                      id="lastName"
                       onChange={this.handleChangeClientLastName}
                       value={this.state.clientLastName}
-                      placeholder="Doe" 
-                      required />
+                      placeholder="Doe"
+                      required
+                    />
                   </div>
                 </div>
                 <div className="form-row">
@@ -170,26 +172,30 @@ Last Name
 Contact Phone Number
                       <text className="red-star">*</text>
                     </label>
-                    <input type="tel" 
-                      className="form-control form-purple" 
-                      id="phoneNumber" 
+                    <input
+                      type="tel"
+                      className="form-control form-purple"
+                      id="phoneNumber"
                       onChange={this.handleChangeClientPhoneNumber}
                       value={this.state.clientPhoneNumber}
-                      placeholder="1-(234)-567-8901" 
-                      required />
+                      placeholder="1-(234)-567-8901"
+                      required
+                    />
                   </div>
                   <div className="col-md-7 form-group">
                     <label htmlFor="inputEmail">
 Contact Email Address
                       <text className="red-star">*</text>
                     </label>
-                    <input type="email" 
-                      className="form-control form-purple" 
-                      id="email" 
+                    <input
+                      type="email"
+                      className="form-control form-purple"
+                      id="email"
                       onChange={this.handleChangeClientEmail}
                       value={this.state.clientEmail}
-                      placeholder="contact@example.com" 
-                      required />
+                      placeholder="contact@example.com"
+                      required
+                    />
                   </div>
                 </div>
                 <div className="form-row">
@@ -198,37 +204,41 @@ Contact Email Address
 Client Mailing Address
                       <text className="red-star">*</text>
                     </label>
-                    <input type="text" 
-                      className="form-control form-purple" 
-                      id="mailingAddress" 
+                    <input
+                      type="text"
+                      className="form-control form-purple"
+                      id="mailingAddress"
                       onChange={this.handleChangeClientAddressLine1}
                       value={this.state.clientAddressLine1}
-                      placeholder="311 Broad St" 
-                      required />
+                      placeholder="311 Broad St"
+                      required
+                    />
                   </div>
                   <div className="col-md-3 form-group">
                     <label htmlFor="inputCity">
 City
                       <text className="red-star">*</text>
                     </label>
-                    <input type="text" 
-                      className="form-control form-purple" 
-                      id="city" 
+                    <input
+                      type="text"
+                      className="form-control form-purple"
+                      id="city"
                       onChange={this.handleChangeClientAddressCity}
                       value={this.state.clientAddressCity}
-                      placeholder="Philadelphia" 
-                      required />
+                      placeholder="Philadelphia"
+                      required
+                    />
                   </div>
                   <div className="col-md-2 form-group">
                     <label htmlFor="inputState">
 State
                       <text className="red-star">*</text>
                     </label>
-                    <select 
-                      className="form-control form-purple" 
-                      id="state" 
-                      value={this.state.clientAddressState} 
-                      onChange={this.handleChangeClientAddressState} 
+                    <select
+                      className="form-control form-purple"
+                      id="state"
+                      value={this.state.clientAddressState}
+                      onChange={this.handleChangeClientAddressState}
                       required
                     >
                       {USStates.map((USState) => (<option>{USState.name}</option>))}
@@ -239,13 +249,15 @@ State
 Zip Code
                       <text className="red-star">*</text>
                     </label>
-                    <input type="text" 
-                      className="form-control form-purple" 
-                      id="zipCode" 
+                    <input
+                      type="text"
+                      className="form-control form-purple"
+                      id="zipCode"
                       onChange={this.handleChangeClientAddressZipcode}
                       value={this.state.clientAddressZipcode}
-                      placeholder="19104" 
-                      required />
+                      placeholder="19104"
+                      required
+                    />
                   </div>
                 </div>
                 <div className="form-row">
@@ -254,26 +266,30 @@ Zip Code
 Password
                       <text className="red-star">*</text>
                     </label>
-                    <input type="password" 
-                      className="form-control form-purple" 
-                      id="password" 
+                    <input
+                      type="password"
+                      className="form-control form-purple"
+                      id="password"
                       onChange={this.handleChangeClientPassword1}
                       value={this.state.clientPassword1}
-                      placeholder="Password" 
-                      required />
+                      placeholder="Password"
+                      required
+                    />
                   </div>
                   <div className="col-md-4 form-group">
                     <label htmlFor="inputConfirmPassword">
 Confirm Password
                       <text className="red-star">*</text>
                     </label>
-                    <input type="password" 
-                      className="form-control form-purple" 
-                      id="confirmPassword" 
+                    <input
+                      type="password"
+                      className="form-control form-purple"
+                      id="confirmPassword"
                       onChange={this.handleChangeClientPassword2}
                       value={this.state.clientPassword2}
-                      placeholder="Confirm password" 
-                      required />
+                      placeholder="Confirm password"
+                      required
+                    />
                   </div>
                   <div className="col-auto mt-4 pt-2">
                     <button type="submit" className="btn btn-primary">Submit</button>
